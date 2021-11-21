@@ -62,20 +62,22 @@ class _HomeState extends State<Home> {
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(30.0)),
                   color: const Color(0xff520140),
-                  onPressed: () async {
-                    const url =
-                        'http://202.29.54.207/dev3/admission/index.php?fbclid=IwAR0v2FiZKU0IvXeC6aYZqnjgKpcp6OYg6ydZsDN_mq2J17lvf-5nPp4c5vs';
-                    if (await canLaunch(url)) {
-                      await launch(url);
-                    } else {
-                      throw 'Couid not launch $url';
-                    }
-                  },
-                  // onPressed: () {
-                  //   route(WebViewExample(
-                  //       url:
-                  //           'http://202.29.54.207/dev3/admission/index.php?fbclid=IwAR0v2FiZKU0IvXeC6aYZqnjgKpcp6OYg6ydZsDN_mq2J17lvf-5nPp4c5vs'));
+                  // onPressed: () async {
+                  //   const url =
+                  //       'http://202.29.54.207/dev3/admission/index.php?fbclid=IwAR0v2FiZKU0IvXeC6aYZqnjgKpcp6OYg6ydZsDN_mq2J17lvf-5nPp4c5vs';
+                  //   if (await canLaunch(url)) {
+                  //     await launch(url);
+                  //   } else {
+                  //     throw 'Couid not launch $url';
+                  //   }
                   // },
+                  onPressed: () {
+                    _launchURL(
+                        'http://202.29.54.207/dev3/admission/index.php?fbclid=IwAR0v2FiZKU0IvXeC6aYZqnjgKpcp6OYg6ydZsDN_mq2J17lvf-5nPp4c5vs');
+                    // route(WebViewExample(
+                    //     url:
+                    //         'http://202.29.54.207/dev3/admission/index.php?fbclid=IwAR0v2FiZKU0IvXeC6aYZqnjgKpcp6OYg6ydZsDN_mq2J17lvf-5nPp4c5vs'));
+                  },
                   child: const Text(
                     'สมัครเลย!!',
                     style: TextStyle(fontSize: 30, color: Colors.white),
