@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -116,6 +117,16 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
+    var textStyle = const TextStyle(
+        fontFamily: 'Spartan',
+        fontWeight: FontWeight.w900,
+        fontSize: 24,
+        color: Colors.white);
+    var textStyle2 = const TextStyle(
+        fontSize: 20,
+        fontFamily: 'Spartan',
+        fontWeight: FontWeight.w900,
+        color: Color(0xff621895));
     return Material(
       type: MaterialType.canvas,
       child: Scaffold(
@@ -159,8 +170,50 @@ class _HomeState extends State<Home> {
                       ),
                       Image.asset(
                         'images/2.png',
-                        height: 60,
+                        height: 50,
                       ),
+                      // Column(mainAxisAlignment: MainAxisAlignment.center,
+                      //   children: [
+                      //     Row(
+                      //       children: [
+                      //         Text(
+                      //           'C',
+                      //           style: textStyle,
+                      //         ),
+                      //         Text(
+                      //           'omputer',
+                      //           style: textStyle2,
+                      //         ),
+                      //         const SizedBox(
+                      //           width: 10,
+                      //         ),
+                      //         Text(
+                      //           'S',
+                      //           style: textStyle,
+                      //         ),
+                      //         Text(
+                      //           'cience',
+                      //           style: textStyle2,
+                      //         ),
+                      //         const SizedBox(
+                      //           width: 10,
+                      //         ),
+
+                      //         const SizedBox(
+                      //           width: 10,
+                      //         ),
+                      //       ],
+                      //     ),
+                      //     Row(mainAxisAlignment: MainAxisAlignment.end,
+                      //       children: [
+                      //         Text(
+                      //               'BSRU',
+                      //               style: textStyle,
+                      //             ),
+                      //       ],
+                      //     ),
+                      //   ],
+                      // )
                     ],
                   ),
                 ),
