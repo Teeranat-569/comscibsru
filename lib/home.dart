@@ -13,6 +13,7 @@ import 'page/manual/manual_page.dart';
 import 'page/people_page.dart';
 import 'page/student/student_new.dart';
 import 'page/technology/tech_page.dart';
+import 'page/work/work_page.dart';
 import 'web.dart';
 
 class Home extends StatefulWidget {
@@ -277,23 +278,20 @@ class _HomeState extends State<Home> {
                             ],
                           ),
                         ),
-                        // Padding(
-                        //   padding: const EdgeInsets.only(left: 20, right: 20),
-                        //   child: Row(
-                        //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        //     children: [
-                        //       // ignore: deprecated_member_use
-                        //       RaisedButton(
-                        //         onPressed: () {
-                        //           // route(WebViewExample(
-                        //           //   url:
-                        //           //       'http://site.bsru.ac.th/comsci/?page_id=204',
-                        //           // ));
-                        //         },
-                        //       )
-                        //     ],
-                        //   ),
-                        // ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 20, right: 20),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              workButton(),
+                              // contactButton(),
+                              // aboutButton(),
+                            ],
+                          ),
+                        ),
                       ],
                     ),
                   ),
@@ -902,6 +900,57 @@ class _HomeState extends State<Home> {
         const Center(
             child: Text(
           'เทคโนโลยี',
+          style: TextStyle(fontSize: 12),
+        )),
+      ],
+    );
+  }
+
+  Widget workButton() {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Container(
+          width: 90,
+          height: 95,
+          decoration: const BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage('images/11.png'),
+              fit: BoxFit.cover,
+            ),
+          ),
+          child: Center(
+            child: MaterialButton(
+              padding: const EdgeInsets.all(8.0),
+              textColor: Colors.white,
+              splashColor: Colors.greenAccent,
+              elevation: 8.0,
+              child: Container(
+                decoration: const BoxDecoration(
+                  image: DecorationImage(
+                      image: AssetImage('images/work.png'), fit: BoxFit.cover),
+                ),
+                width: 65,
+                height: 55,
+              ),
+              // ),
+              onPressed: () {
+                // ignore: avoid_print
+                print('Tapped');
+                Navigator.of(context)
+                    .push<void>(_createRoute(const WorkPage()));
+              },
+            ),
+          ),
+        ),
+        const Center(
+            child: Text(
+          'ประกาศ',
+          style: TextStyle(fontSize: 12),
+        )),
+        const Center(
+            child: Text(
+          'รับสมัครงาน',
           style: TextStyle(fontSize: 12),
         )),
       ],
