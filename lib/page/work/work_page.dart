@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 
 class WorkPage extends StatefulWidget {
   const WorkPage({Key? key}) : super(key: key);
@@ -9,6 +10,7 @@ class WorkPage extends StatefulWidget {
 }
 
 class _WorkPageState extends State<WorkPage> {
+  dynamic statuss, amount;
   final Stream<QuerySnapshot> _usersStream =
       FirebaseFirestore.instance.collection('work').snapshots();
 
@@ -44,6 +46,9 @@ class _WorkPageState extends State<WorkPage> {
                   Map<String, dynamic> data =
                       document.data()! as Map<String, dynamic>;
                   data["docid"] = document.id;
+                  statuss = data['status'];
+                  amount = data['amount'];
+
                   // ignore: avoid_print
                   print('4444444444444444444444444 ${data["docid"]}');
                   return Padding(
@@ -57,6 +62,9 @@ class _WorkPageState extends State<WorkPage> {
                       // ignore: deprecated_member_use
                       child: Column(
                         children: [
+                          const SizedBox(
+                            height: 5,
+                          ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
@@ -65,7 +73,8 @@ class _WorkPageState extends State<WorkPage> {
                               //   color: Colors.blue[200],
                               // ),
                               Column(
-                                mainAxisAlignment: MainAxisAlignment.start,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
                                 children: [
                                   CircleAvatar(
                                     backgroundColor: Colors.grey,
@@ -88,35 +97,56 @@ class _WorkPageState extends State<WorkPage> {
                                 ],
                               ),
                               const SizedBox(
-                                width: 10,
+                                width: 12,
                               ),
                               Container(
-                                color: Colors.amber,
-                                width: 200,
+                                width: 250,
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Text(
-                                      data['aboutCompany'],
-                                      maxLines: 2,
-                                      overflow: TextOverflow.ellipsis,
-                                      style: TextStyle(
-                                          fontSize: 14,
-                                          color: Colors.purple[100]),
-                                    ),
-                                    Text(
-                                      data['workType'],
-                                      maxLines: 2,
-                                      overflow: TextOverflow.ellipsis,
-                                      style: TextStyle(
-                                          fontSize: 14, color: Colors.purple),
-                                    ),
+                                    if (statuss == 'open')
+                                      Container(
+                                        // color: Colors.green,
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(10.0),
+                                          color: Colors.green,
+                                        ),
+                                        child: const Padding(
+                                          padding: EdgeInsets.all(8.0),
+                                          child: Text(
+                                            'เปิดรับสมัคร',
+                                            // maxLines: 2,
+                                            // overflow: TextOverflow.ellipsis,
+                                            style: TextStyle(
+                                                fontSize: 14,
+                                                color: Colors.white),
+                                          ),
+                                        ),
+                                      ),
                                     Text(
                                       data['workPosition'],
-                                      maxLines: 2,
-                                      overflow: TextOverflow.ellipsis,
-                                      style: TextStyle(
-                                          fontSize: 14, color: Colors.purple),
+                                      style: const TextStyle(
+                                          fontSize: 20, color: Colors.purple),
+                                    ),
+                                    Text(
+                                      'รับสมัคร' +
+                                          data['workType'] +
+                                          'จำนวน' +
+                                          '\t' +
+                                          data['amount'].toString() +
+                                          '\t' +
+                                          'คน',
+                                    ),
+                                    Text(
+                                      'เงินเดือน/เบี้ยเลี้ยง' +
+                                          '\t' +
+                                          data['salary'] +
+                                          '\t' +
+                                          'บาท',
+                                    ),
+                                    Text(
+                                      data['province'] + '\t' + data['area'],
                                     ),
                                   ],
                                 ),
@@ -137,12 +167,19 @@ class _WorkPageState extends State<WorkPage> {
                             // ignore: prefer_const_literals_to_create_immutables
                             children: [
                               const Text(
-                                'อ่านต่อ >>>',
+                                'ดูรายละเอียด >>>',
                                 style:
                                     TextStyle(fontSize: 12, color: Colors.grey),
                               ),
+                              const SizedBox(
+                                width: 20,
+                                height: 20,
+                              ),
                             ],
-                          )
+                          ),
+                          const SizedBox(
+                            height: 5,
+                          ),
                         ],
                       ),
                     ),
