@@ -1,3 +1,4 @@
+import 'package:comsci/page/admin/work_admin/add_work2.dart';
 import 'package:flutter/material.dart';
 
 class AddWork extends StatefulWidget {
@@ -62,6 +63,12 @@ class _AddWorkState extends State<AddWork> {
                   ],
                 ),
                 companyAboutform(),
+                Row(mainAxisAlignment: MainAxisAlignment.end, children: [
+                  buttonNext(),
+                  SizedBox(
+                    width: 15,
+                  ),
+                ])
               ],
             ),
           ),
@@ -123,61 +130,36 @@ class _AddWorkState extends State<AddWork> {
                 Radius.circular(10.0),
               ),
             ),
-            // labelText: 'เกี่ยวกับบริษัท',
-            // labelStyle: const TextStyle(
-            //   fontSize: 16.0,
-            //   color: Colors.grey,
-            //   fontWeight: FontWeight.bold,
-            // ),
           )),
     );
   }
-  Widget buttonll() {
-return  RaisedButton(
-              child: const Text("Upload Image2",
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 20)),
-              onPressed: () async {
-                // final results = await FilePicker.platform.pickFiles(
-                //     allowMultiple: false,
-                //     type: FileType.custom,
-                //     allowedExtensions: ['png', 'jpg', 'jpeg']);
-                // if (results == null) {
-                //   ScaffoldMessenger.of(context).showSnackBar(
-                //       const SnackBar(content: Text('ไม่ได้เลือกรูปภาพ')));
-                //   // ignore: avoid_returning_null_for_void
-                //   return null;
-                // }
 
-                // final path = results.files.single.path;
-                // final filename = results.files.single.name;
-                // uploadFile(path!, filename).then((value) {
-                //   print('**************************Done');
-                //   print('66666666666666666666666 $path');
-                //   print('jjjjjjjjjjjjjjjjjjj $filename');
-                // });
-                // // ignore: avoid_print
-                // print('66666666666666666666666 $path');
-                // // ignore: avoid_print
-                // print('jjjjjjjjjjjjjjjjjjj $filename');
-                // // UploadImage(context);
-                Random random = Random();
-                int i = random.nextInt(100000);
-                uploadFile(pathPIC, 'img$i.jpg');
-              },
-              // onPressed: (){
+  Widget buttonNext() {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: RaisedButton(
+        child: const Text("ถัดไป",
+            style: TextStyle(
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+            )),
+        onPressed: () async {
+          route(AddWork2());
+        },
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(14.0),
+            side: const BorderSide(color: Colors.purple)),
+        color: Colors.purple,
+        textColor: Colors.white,
+        padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
+        splashColor: Colors.grey,
+      ),
+    );
+  }
 
-              // },
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(18.0),
-                  side: const BorderSide(color: Colors.blue)),
-              elevation: 5.0,
-              color: Colors.blue,
-              textColor: Colors.white,
-              padding: const EdgeInsets.fromLTRB(15, 15, 15, 15),
-              splashColor: Colors.grey,
-            ),
+  Future<Null> route(Widget routeName) async {
+    MaterialPageRoute materialPageRoute =
+        MaterialPageRoute(builder: (BuildContext context) => routeName);
+    await Navigator.of(context).push(materialPageRoute);
   }
 }

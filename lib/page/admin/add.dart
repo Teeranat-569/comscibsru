@@ -1,4 +1,4 @@
-import 'package:comsci/page/admin/work_page_admin.dart';
+import 'package:comsci/page/admin/work_admin/work_page_admin.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import '../../home.dart';
