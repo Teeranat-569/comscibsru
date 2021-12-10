@@ -1,20 +1,47 @@
-import 'dart:io';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:firebase_storage/firebase_storage.dart';
-import 'package:image_picker/image_picker.dart';
 
-class WorkPage extends StatefulWidget {
-  const WorkPage({Key? key}) : super(key: key);
+class DataWorkPage extends StatefulWidget {
+  dynamic companyName,
+      aboutCompany,
+      workType,
+      workPosition,
+      mission,
+      salary,
+      status,
+      amount,
+      picCompany,
+      nameANDlast,
+      phone,
+      address,
+      eMail,
+      province,
+      area;
+  DataWorkPage(
+      {Key? key,
+      this.aboutCompany,
+      this.address,
+      this.amount,
+      this.area,
+      this.companyName,
+      this.eMail,
+      this.mission,
+      this.nameANDlast,
+      this.phone,
+      this.picCompany,
+      this.province,
+      this.salary,
+      this.status,
+      this.workPosition,
+      this.workType})
+      : super(key: key);
 
   @override
-  _WorkPageState createState() => _WorkPageState();
+  _DataWorkPageState createState() => _DataWorkPageState();
 }
 
-class _WorkPageState extends State<WorkPage> {
+class _DataWorkPageState extends State<DataWorkPage> {
   dynamic statuss, amount;
-  dynamic _image;
   final Stream<QuerySnapshot> _usersStream =
       FirebaseFirestore.instance.collection('work').snapshots();
 
@@ -104,7 +131,6 @@ class _WorkPageState extends State<WorkPage> {
                                 width: 12,
                               ),
                               Container(
-                                width: 250,
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
@@ -162,7 +188,7 @@ class _WorkPageState extends State<WorkPage> {
                             // ignore: prefer_const_literals_to_create_immutables
                             children: [
                               const SizedBox(
-                                width: 40,
+                                width: 20,
                               ),
                             ],
                           ),
@@ -171,7 +197,9 @@ class _WorkPageState extends State<WorkPage> {
                             // ignore: prefer_const_literals_to_create_immutables
                             children: [
                               FlatButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  // route(DataWorkPage());
+                                },
                                 child: const Text(
                                   'ดูรายละเอียด >>>',
                                   style: TextStyle(
@@ -179,13 +207,10 @@ class _WorkPageState extends State<WorkPage> {
                                 ),
                               ),
                               const SizedBox(
-                                width: 20,
-                                height: 20,
+                                width: 10,
+                                // height: ,
                               ),
                             ],
-                          ),
-                          const SizedBox(
-                            height: 5,
                           ),
                         ],
                       ),
@@ -199,13 +224,4 @@ class _WorkPageState extends State<WorkPage> {
       },
     );
   }
-
-  // Future chooseFile() async {
-  //   await ImagePicker.pickImage(source: ImageSource.gallery).then((image) {
-  //     setState(() {
-  //       _image = image;
-  //     });
-  //   });
-  // }
-  
 }

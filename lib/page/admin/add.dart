@@ -1,4 +1,4 @@
-
+import 'package:comsci/page/admin/work_page_admin.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import '../../home.dart';
@@ -14,7 +14,6 @@ class Add extends StatefulWidget {
 }
 
 class _AddState extends State<Add> {
-
   // ignore: prefer_void_to_null
   Future<Null> route(Widget routeName) async {
     MaterialPageRoute materialPageRoute =
@@ -59,7 +58,9 @@ class _AddState extends State<Add> {
                         borderRadius: BorderRadius.circular(30.0),
                       ),
                       onPressed: () {
-                        route(CalendarAdmin(nameFormm: '',));
+                        route(CalendarAdmin(
+                          nameFormm: '',
+                        ));
                       },
                       child: Row(
                         children: const [
@@ -150,6 +151,44 @@ class _AddState extends State<Add> {
                     ),
                   ),
                 ],
+              ),
+              const SizedBox(
+                height: 15,
+              ),
+              Row(
+                children: [
+                  Expanded(
+                    // ignore: deprecated_member_use
+                    child: RaisedButton(
+                      padding: const EdgeInsets.all(10),
+                      color: Colors.green,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30.0),
+                      ),
+                      onPressed: () {
+                        route(const WorkPageAdmin());
+                      },
+                      child: Row(
+                        children: const [
+                          Icon(
+                            Icons.work,
+                            color: Colors.white,
+                          ),
+                          SizedBox(
+                            width: 5,
+                          ),
+                          Text(
+                            'ประกาศรับสมัครงาน',
+                            style: TextStyle(fontSize: 20, color: Colors.white),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(
+                height: 15,
               ),
             ],
           ),

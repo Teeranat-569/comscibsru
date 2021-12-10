@@ -141,7 +141,7 @@ class _ContactPageState extends State<ContactPage> {
                       children: [
                         const Text(
                           'เว็บไซต์สาขา :',
-                          style: TextStyle(fontSize: 17),
+                          style: TextStyle(fontSize: 15),
                         ),
                         TextButton(
                             onPressed: () {
@@ -153,7 +153,7 @@ class _ContactPageState extends State<ContactPage> {
                             child: Text(
                               'http://site.bsru.ac.th/comsci/',
                               style: TextStyle(
-                                  color: Colors.blue[300], fontSize: 17),
+                                  color: Colors.blue[300], fontSize: 15),
                             ))
                       ],
                     ),
