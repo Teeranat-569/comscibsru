@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'add_work3.dart';
 
 class AddWork2 extends StatefulWidget {
-  const AddWork2({Key? key}) : super(key: key);
+  dynamic companyName, aboutCompany;
+  AddWork2({Key? key, this.aboutCompany, this.companyName}) : super(key: key);
 
   @override
   _AddWork2State createState() => _AddWork2State();
@@ -18,26 +19,27 @@ class _AddWork2State extends State<AddWork2> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(title: Text('ประกาศรับสมัครงานด้านไอที')),
+        appBar: AppBar(title: const Text('ประกาศรับสมัครงานด้านไอที')),
         body: SingleChildScrollView(
+          // ignore: sized_box_for_whitespace
           child: Container(
             width: MediaQuery.of(context).size.width,
             height: MediaQuery.of(context).size.height,
             child: Column(
               children: [
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 dropDown(),
-                SizedBox(
+                const SizedBox(
                   height: 15,
                 ),
                 positionform(),
-                SizedBox(
+                const SizedBox(
                   height: 15,
                 ),
                 Row(
-                  children: [
+                  children: const [
                     SizedBox(
                       width: 15,
                     ),
@@ -50,7 +52,7 @@ class _AddWork2State extends State<AddWork2> {
                 missionform(),
                 Row(mainAxisAlignment: MainAxisAlignment.end, children: [
                   buttonNext(),
-                  SizedBox(
+                  const SizedBox(
                     width: 15,
                   ),
                 ])
@@ -74,7 +76,7 @@ class _AddWork2State extends State<AddWork2> {
             fontWeight: FontWeight.w500,
           ),
         ),
-        SizedBox(),
+        const SizedBox(),
         Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10),
@@ -85,7 +87,7 @@ class _AddWork2State extends State<AddWork2> {
             child: DropdownButton<String>(
               focusColor: Colors.white,
               value: _chosenValue,
-              style: TextStyle(color: Colors.white),
+              style: const TextStyle(color: Colors.white),
               iconEnabledColor: Colors.black,
               items: <String>['พนักงานประจำ', 'นักศึกษาฝึกงาน']
                   .map<DropdownMenuItem<String>>((String value) {
@@ -111,7 +113,9 @@ class _AddWork2State extends State<AddWork2> {
               onChanged: (dynamic value) {
                 setState(() {
                   _chosenValue = value;
+                  // ignore: avoid_print
                   print(_chosenValue);
+                  // ignore: avoid_print
                   print('66666666666' + value);
                 });
               },
@@ -175,7 +179,18 @@ class _AddWork2State extends State<AddWork2> {
               fontWeight: FontWeight.bold,
             )),
         onPressed: () async {
-          route(AddWork3());
+          print(' aboutCompany: ${widget.aboutCompany}');
+          print(' workPosition: ${position},');
+          print('mission: ${mission}');
+          print('companyName:${widget.companyName},');
+          print('workType: ${_chosenValue},');
+          route(AddWork3(
+            position: position,
+            mission: mission,
+            aboutCompany: widget.aboutCompany,
+            companyName: widget.companyName,
+            worktype: _chosenValue,
+          ));
         },
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(14.0),

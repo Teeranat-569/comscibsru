@@ -3,14 +3,34 @@ import 'package:flutter/material.dart';
 import 'add_work5.dart';
 
 class AddWork4 extends StatefulWidget {
-  const AddWork4({Key? key}) : super(key: key);
+  dynamic position,
+      mission,
+      companyName,
+      aboutCompany,
+      worktype,
+      gender,
+      age,
+      exp,
+      more3;
+  AddWork4(
+      {Key? key,
+      this.mission,
+      this.position,
+      this.aboutCompany,
+      this.companyName,
+      this.worktype,
+      this.age,
+      this.exp,
+      this.gender,
+      this.more3})
+      : super(key: key);
 
   @override
   _AddWork4State createState() => _AddWork4State();
 }
 
 class _AddWork4State extends State<AddWork4> {
-  dynamic _chosenValue, age, mission;
+  dynamic salary, more4;
   var textEditController = TextEditingController();
   var textEditController2 = TextEditingController();
   bool bonus = false;
@@ -25,36 +45,36 @@ class _AddWork4State extends State<AddWork4> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(title: Text('ประกาศรับสมัครงานด้านไอที')),
+        appBar: AppBar(title: const Text('ประกาศรับสมัครงานด้านไอที')),
         body: SingleChildScrollView(
           child: Container(
             width: MediaQuery.of(context).size.width,
             // height: MediaQuery.of(context).size.height,
             child: Column(
               children: [
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
-                Text(
+                const Text(
                   'เบี้ยเลี้ยง/เงินเดือน',
-                  style: TextStyle(fontSize: 15),
+                  style: const TextStyle(fontSize: 15),
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    ageform(),
-                    Text(
+                    salaryform(),
+                    const Text(
                       '/เดือน',
-                      style: TextStyle(fontSize: 15),
+                      style: const TextStyle(fontSize: 15),
                     ),
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 15,
                 ),
-                Text(
+                const Text(
                   'สวัสดิการ',
-                  style: TextStyle(fontSize: 15),
+                  style: const TextStyle(fontSize: 15),
                 ),
                 Column(
                   children: [
@@ -77,7 +97,7 @@ class _AddWork4State extends State<AddWork4> {
                           });
                         },
                       ),
-                      Text("โบนัส"),
+                      const Text("โบนัส"),
                       Checkbox(
                         value: social,
                         onChanged: (value) {
@@ -97,7 +117,7 @@ class _AddWork4State extends State<AddWork4> {
                           });
                         },
                       ),
-                      Text("ประกันสังคม"),
+                      const Text("ประกันสังคม"),
                       Checkbox(
                         value: health,
                         onChanged: (value) {
@@ -116,7 +136,7 @@ class _AddWork4State extends State<AddWork4> {
                           });
                         },
                       ),
-                      Text("ประกันสุขภาพ"),
+                      const Text("ประกันสุขภาพ"),
                     ]),
                     Row(mainAxisAlignment: MainAxisAlignment.center, children: <
                         Widget>[
@@ -179,7 +199,7 @@ class _AddWork4State extends State<AddWork4> {
                           });
                         },
                       ),
-                      Text("ค่ารักษาพยาบาล"),
+                      const Text("ค่ารักษาพยาบาล"),
                       Checkbox(
                         value: covid,
                         onChanged: (value) {
@@ -195,25 +215,25 @@ class _AddWork4State extends State<AddWork4> {
                           });
                         },
                       ),
-                      Text("ประกันโควิด"),
+                      const Text("ประกันโควิด"),
                     ]),
                   ],
                 ),
                 Row(
                   children: [
-                    SizedBox(
+                    const SizedBox(
                       width: 15,
                     ),
-                    Text(
+                    const Text(
                       'สวัสดิการเพิ่มเติม',
-                      style: TextStyle(fontSize: 15),
+                      style: const TextStyle(fontSize: 15),
                     ),
                   ],
                 ),
-                missionform(),
+                more4form(),
                 Row(mainAxisAlignment: MainAxisAlignment.end, children: [
                   buttonNext(),
-                  SizedBox(
+                  const SizedBox(
                     width: 15,
                   ),
                 ])
@@ -225,73 +245,13 @@ class _AddWork4State extends State<AddWork4> {
     );
   }
 
-  Widget dropDown() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        const Text(
-          'เพศ : ',
-          style: TextStyle(
-            color: Colors.black,
-            fontSize: 16,
-            fontWeight: FontWeight.w500,
-          ),
-        ),
-        SizedBox(),
-        Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10),
-            color: Colors.grey[200],
-          ),
-          child: Padding(
-            padding: const EdgeInsets.only(left: 10, right: 10),
-            child: DropdownButton<String>(
-              focusColor: Colors.white,
-              value: _chosenValue,
-              style: TextStyle(color: Colors.white),
-              iconEnabledColor: Colors.black,
-              items: <String>['ชาย', 'หญิง']
-                  .map<DropdownMenuItem<String>>((String value) {
-                return DropdownMenuItem<String>(
-                  value: value,
-                  child: Text(
-                    value,
-                    style: const TextStyle(
-                        color: Colors.black, fontFamily: 'Mitr'),
-                  ),
-                );
-              }).toList(),
-              hint: const Center(
-                child: Text(
-                  "เลือกเพศ",
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 16,
-                      fontWeight: FontWeight.w500,
-                      fontFamily: 'Mitr'),
-                ),
-              ),
-              onChanged: (dynamic value) {
-                setState(() {
-                  _chosenValue = value;
-                  print(_chosenValue);
-                  print('66666666666' + value);
-                });
-              },
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-
-  Widget ageform() {
+  Widget salaryform() {
     return Container(
       width: 200,
       child: Padding(
         padding: const EdgeInsets.all(10.0),
         child: TextField(
-            onChanged: (value) => age = value.trim(),
+            onChanged: (value) => salary = value.trim(),
             controller: textEditController,
             decoration: InputDecoration(
               filled: true,
@@ -311,13 +271,13 @@ class _AddWork4State extends State<AddWork4> {
     );
   }
 
-  Widget missionform() {
+  Widget more4form() {
     return Padding(
       padding: const EdgeInsets.all(15.0),
       child: TextField(
           maxLines: 6,
           textDirection: TextDirection.ltr,
-          onChanged: (value) => mission = value.trim(),
+          onChanged: (value) => more4 = value.trim(),
           controller: textEditController2,
           decoration: InputDecoration(
             filled: true,
@@ -341,7 +301,44 @@ class _AddWork4State extends State<AddWork4> {
               fontWeight: FontWeight.bold,
             )),
         onPressed: () async {
-          route(AddWork5());
+          print(' aboutCompany: ${widget.aboutCompany}');
+          print(' workPosition: ${widget.position},');
+          print('mission: ${widget.mission}');
+          print('companyName:${widget.companyName},');
+          print('workType: ${widget.worktype},');
+          print('age: ${widget.age},');
+          print('exp: ${widget.exp},');
+          print(' gender:${widget.gender},');
+          print(' more3 : ${widget.more3},');
+          print('bonus: ${bonus.toString()},');
+          print(' social: ${social.toString()},');
+          print(' health:${health.toString()},');
+          print('  timeCost:${timecost.toString()},');
+          print(' hospital: ${hospital.toString()},');
+          print('covid: ${covid.toString()},');
+          print('people: ${people.toString()},');
+          print(' more4 : ${more4},');
+          print('salary: ${salary},');
+          route(AddWork5(
+            aboutCompany: widget.aboutCompany,
+            age: widget.age,
+            bonus: bonus.toString(),
+            companyName: widget.companyName,
+            covid: covid.toString(),
+            exp: widget.exp,
+            gender: widget.gender,
+            health: health.toString(),
+            hospital: hospital.toString(),
+            mission: widget.mission,
+            more3: widget.more3,
+            people: people.toString(),
+            position: widget.position,
+            social: social.toString(),
+            worktype: widget.worktype,
+            more4: more4,
+            timecost: timecost.toString(),
+            salary: salary,
+          ));
         },
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(14.0),

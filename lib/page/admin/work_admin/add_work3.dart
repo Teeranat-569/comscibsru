@@ -3,14 +3,22 @@ import 'package:flutter/material.dart';
 import 'add_work4.dart';
 
 class AddWork3 extends StatefulWidget {
-  const AddWork3({Key? key}) : super(key: key);
+  dynamic position, mission, companyName, aboutCompany, worktype;
+  AddWork3(
+      {Key? key,
+      this.mission,
+      this.position,
+      this.aboutCompany,
+      this.companyName,
+      this.worktype})
+      : super(key: key);
 
   @override
   _AddWork3State createState() => _AddWork3State();
 }
 
 class _AddWork3State extends State<AddWork3> {
-  dynamic _chosenValue, age, mission, exp;
+  dynamic _chosenValue, age, more, exp;
   var textEditController = TextEditingController();
   var textEditController2 = TextEditingController();
 
@@ -18,62 +26,62 @@ class _AddWork3State extends State<AddWork3> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(title: Text('ประกาศรับสมัครงานด้านไอที')),
+        appBar: AppBar(title: const Text('ประกาศรับสมัครงานด้านไอที')),
         body: SingleChildScrollView(
           child: Container(
             width: MediaQuery.of(context).size.width,
             child: Column(
               children: [
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
-                Text(
+                const Text(
                   'คุณสมบัติ',
-                  style: TextStyle(fontSize: 20),
+                  style: const TextStyle(fontSize: 20),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 dropDown(),
-                SizedBox(
+                const SizedBox(
                   height: 15,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(
+                    const Text(
                       'อายุ',
-                      style: TextStyle(fontSize: 15),
+                      style: const TextStyle(fontSize: 15),
                     ),
                     ageform(),
-                    Text(
+                    const Text(
                       'ปี',
-                      style: TextStyle(fontSize: 15),
+                      style: const TextStyle(fontSize: 15),
                     ),
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 15,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(
+                    const Text(
                       'ประสบการณ์',
                       style: TextStyle(fontSize: 15),
                     ),
                     expform(),
-                    Text(
+                    const Text(
                       'ปี',
                       style: TextStyle(fontSize: 15),
                     ),
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 15,
                 ),
                 Row(
-                  children: [
+                  children: const [
                     SizedBox(
                       width: 15,
                     ),
@@ -83,10 +91,10 @@ class _AddWork3State extends State<AddWork3> {
                     ),
                   ],
                 ),
-                missionform(),
+                moreform(),
                 Row(mainAxisAlignment: MainAxisAlignment.end, children: [
                   buttonNext(),
-                  SizedBox(
+                  const SizedBox(
                     width: 15,
                   ),
                 ])
@@ -110,7 +118,7 @@ class _AddWork3State extends State<AddWork3> {
             fontWeight: FontWeight.w500,
           ),
         ),
-        SizedBox(),
+        const SizedBox(),
         Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10),
@@ -121,7 +129,7 @@ class _AddWork3State extends State<AddWork3> {
             child: DropdownButton<String>(
               focusColor: Colors.white,
               value: _chosenValue,
-              style: TextStyle(color: Colors.white),
+              style: const TextStyle(color: Colors.white),
               iconEnabledColor: Colors.black,
               items: <String>['ชาย', 'หญิง']
                   .map<DropdownMenuItem<String>>((String value) {
@@ -210,13 +218,13 @@ class _AddWork3State extends State<AddWork3> {
     );
   }
 
-  Widget missionform() {
+  Widget moreform() {
     return Padding(
       padding: const EdgeInsets.all(15.0),
       child: TextField(
           maxLines: 12,
           textDirection: TextDirection.ltr,
-          onChanged: (value) => mission = value.trim(),
+          onChanged: (value) => more = value.trim(),
           controller: textEditController2,
           decoration: InputDecoration(
             filled: true,
@@ -240,7 +248,26 @@ class _AddWork3State extends State<AddWork3> {
               fontWeight: FontWeight.bold,
             )),
         onPressed: () async {
-          route(AddWork4());
+          print(' aboutCompany: ${widget.aboutCompany}');
+          print(' workPosition: ${widget.position},');
+          print('mission: ${widget.mission}');
+          print('companyName:${widget.companyName},');
+          print('workType: ${widget.worktype},');
+          print('age: ${age},');
+          print('exp: ${exp},');
+          print(' gender:${_chosenValue},');
+          print(' more3 : ${more},');
+          route(AddWork4(
+            aboutCompany: widget.aboutCompany,
+            age: age,
+            companyName: widget.companyName,
+            exp: exp,
+            gender: _chosenValue,
+            mission: widget.mission,
+            more3: more,
+            position: widget.position,
+            worktype: widget.worktype,
+          ));
         },
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(14.0),

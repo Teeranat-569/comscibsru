@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:comsci/page/admin/work_admin/add_work2.dart';
 import 'package:flutter/material.dart';
 
@@ -23,36 +25,32 @@ class _AddWorkState extends State<AddWork> {
             height: MediaQuery.of(context).size.height,
             child: Column(
               children: [
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
-                Text(
+                const Text(
                   'รูปภาพบริษัท',
                   style: TextStyle(fontSize: 20),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 //showImage
                 IconButton(
                     onPressed: () {},
-                    icon: Icon(
+                    icon: const Icon(
                       Icons.file_upload,
                       size: 40,
                     )),
-                SizedBox(
+                const SizedBox(
                   height: 15,
                 ),
-                // Text(
-                //   'ชื่อบริษัท',
-                //   style: TextStyle(fontSize: 15),
-                // ),
                 companyNameform(),
-                SizedBox(
+                const SizedBox(
                   height: 15,
                 ),
                 Row(
-                  children: [
+                  children: const [
                     SizedBox(
                       width: 15,
                     ),
@@ -65,7 +63,7 @@ class _AddWorkState extends State<AddWork> {
                 companyAboutform(),
                 Row(mainAxisAlignment: MainAxisAlignment.end, children: [
                   buttonNext(),
-                  SizedBox(
+                  const SizedBox(
                     width: 15,
                   ),
                 ])
@@ -144,7 +142,12 @@ class _AddWorkState extends State<AddWork> {
               fontWeight: FontWeight.bold,
             )),
         onPressed: () async {
-          route(AddWork2());
+          route(AddWork2(
+            aboutCompany: aboutCompany,
+            companyName: companyName,
+          ));
+          print(' aboutCompany: ${aboutCompany}');
+          print('companyName:${companyName},');
         },
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(14.0),

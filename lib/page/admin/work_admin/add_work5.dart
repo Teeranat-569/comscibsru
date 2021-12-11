@@ -5,7 +5,45 @@ import 'package:intl/intl.dart';
 import 'package:buddhist_datetime_dateformat_sns/buddhist_datetime_dateformat_sns.dart';
 
 class AddWork5 extends StatefulWidget {
-  const AddWork5({Key? key}) : super(key: key);
+  dynamic position,
+      mission,
+      companyName,
+      aboutCompany,
+      worktype,
+      gender,
+      age,
+      exp,
+      more3,
+      bonus,
+      social,
+      health,
+      timecost,
+      hospital,
+      covid,
+      people,
+      salary,
+      more4;
+  AddWork5(
+      {Key? key,
+      this.mission,
+      this.position,
+      this.aboutCompany,
+      this.companyName,
+      this.worktype,
+      this.age,
+      this.exp,
+      this.gender,
+      this.more3,
+      this.bonus,
+      this.covid,
+      this.health,
+      this.hospital,
+      this.people,
+      this.social,
+      this.more4,
+      this.salary,
+      this.timecost})
+      : super(key: key);
 
   @override
   _AddWork5State createState() => _AddWork5State();
@@ -15,13 +53,6 @@ class _AddWork5State extends State<AddWork5> {
   dynamic _chosenValue, amount, mission, dateTimestop, dateThai;
   var textEditController = TextEditingController();
   var textEditController2 = TextEditingController();
-  bool bonus = false;
-  bool social = false;
-  bool health = false;
-  bool timecost = false;
-  bool hospital = false;
-  bool covid = false;
-  bool people = false;
 
   @override
   Widget build(BuildContext context) {
@@ -70,66 +101,6 @@ class _AddWork5State extends State<AddWork5> {
           ),
         ),
       ),
-    );
-  }
-
-  Widget dropDown() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        const Text(
-          'เพศ : ',
-          style: TextStyle(
-            color: Colors.black,
-            fontSize: 16,
-            fontWeight: FontWeight.w500,
-          ),
-        ),
-        SizedBox(),
-        Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10),
-            color: Colors.grey[200],
-          ),
-          child: Padding(
-            padding: const EdgeInsets.only(left: 10, right: 10),
-            child: DropdownButton<String>(
-              focusColor: Colors.white,
-              value: _chosenValue,
-              style: TextStyle(color: Colors.white),
-              iconEnabledColor: Colors.black,
-              items: <String>['ชาย', 'หญิง']
-                  .map<DropdownMenuItem<String>>((String value) {
-                return DropdownMenuItem<String>(
-                  value: value,
-                  child: Text(
-                    value,
-                    style: const TextStyle(
-                        color: Colors.black, fontFamily: 'Mitr'),
-                  ),
-                );
-              }).toList(),
-              hint: const Center(
-                child: Text(
-                  "เลือกเพศ",
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 16,
-                      fontWeight: FontWeight.w500,
-                      fontFamily: 'Mitr'),
-                ),
-              ),
-              onChanged: (dynamic value) {
-                setState(() {
-                  _chosenValue = value;
-                  print(_chosenValue);
-                  print('66666666666' + value);
-                });
-              },
-            ),
-          ),
-        ),
-      ],
     );
   }
 
@@ -215,7 +186,48 @@ class _AddWork5State extends State<AddWork5> {
               fontWeight: FontWeight.bold,
             )),
         onPressed: () async {
-          route(AddWork6());
+          print(' aboutCompany: ${widget.aboutCompany}');
+          print(' workPosition: ${widget.position},');
+          print('mission: ${widget.mission}');
+          print('companyName:${widget.companyName},');
+          print('workType: ${widget.worktype},');
+          print('age: ${widget.age},');
+          print('exp: ${widget.exp},');
+          print(' gender:${widget.gender},');
+          print(' more3 : ${widget.more3},');
+          print('bonus: ${widget.bonus},');
+          print(' social: ${widget.social},');
+          print(' health:${widget.health},');
+          print('  timeCost:${widget.timecost},');
+          print(' hospital: ${widget.hospital},');
+          print('covid: ${widget.covid},');
+          print('people: ${widget.people},');
+          print(' more4 : ${widget.more4},');
+          print('salary: ${widget.salary},');
+          print('  amount: ${amount.toString()}');
+          print(' dateStop: ${dateThai},');
+          route(AddWork6(
+            aboutCompany: widget.aboutCompany,
+            age: widget.age,
+            bonus: widget.bonus,
+            companyName: widget.companyName,
+            covid: widget.covid,
+            exp: widget.exp,
+            gender: widget.gender,
+            health: widget.health,
+            hospital: widget.hospital,
+            mission: widget.mission,
+            more3: widget.more3,
+            people: widget.people,
+            position: widget.position,
+            social: widget.social,
+            worktype: widget.worktype,
+            more4: widget.more4,
+            timecost: widget.timecost,
+            amount: amount.toString(),
+            dateStop: dateThai,
+            salary: widget.salary,
+          ));
         },
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(14.0),
