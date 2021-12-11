@@ -1,7 +1,13 @@
 // ignore_for_file: deprecated_member_use
 
+import 'dart:io';
+
 import 'package:comsci/page/admin/work_admin/add_work2.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
+import 'package:firebase_core/firebase_core.dart' as firebase_core;
 
 class AddWork extends StatefulWidget {
   const AddWork({Key? key}) : super(key: key);
@@ -11,9 +17,10 @@ class AddWork extends StatefulWidget {
 }
 
 class _AddWorkState extends State<AddWork> {
-  dynamic companyName, aboutCompany;
+  dynamic companyName, aboutCompany, pathPIC, url;
   var textEditController = TextEditingController();
   var textEditController2 = TextEditingController();
+  var _image;
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -22,7 +29,7 @@ class _AddWorkState extends State<AddWork> {
         body: SingleChildScrollView(
           child: Container(
             width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.height,
+            // height: MediaQuery.of(context).size.height,
             child: Column(
               children: [
                 const SizedBox(
@@ -35,9 +42,11 @@ class _AddWorkState extends State<AddWork> {
                 const SizedBox(
                   height: 10,
                 ),
-                //showImage
+                showImage(),
                 IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      getImage();
+                    },
                     icon: const Icon(
                       Icons.file_upload,
                       size: 40,
@@ -75,19 +84,20 @@ class _AddWorkState extends State<AddWork> {
     );
   }
 
-  //  Widget showImage2() {
-  //   return Container(
-  //       decoration: BoxDecoration(
-  //           color: Colors.grey[200],
-  //           borderRadius: BorderRadius.all(Radius.circular(20.0))),
-  //       width: 355.0,
-  //       height: 300.0,
-  //       child: _image == null
-  //           ? Center(child: Text('ไม่ได้อัปโหลดรูปภาพ'))
-  //           : ClipRect(
-  //               child: InteractiveViewer(
-  //                   maxScale: 20, child: Image.file(_image))));
-  // }
+  Widget showImage() {
+    return Container(
+        decoration: BoxDecoration(
+            color: Colors.grey[200],
+            borderRadius: BorderRadius.all(Radius.circular(20.0))),
+        width: 300.0,
+        height: 200.0,
+        child: _image == null
+            ? Center(child: Text('ไม่ได้อัปโหลดรูปภาพ'))
+            : ClipRect(
+                child: InteractiveViewer(
+                    maxScale: 20, child: Image.file(_image))));
+  }
+
   Widget companyNameform() {
     return Padding(
       padding: const EdgeInsets.all(15.0),
@@ -145,9 +155,11 @@ class _AddWorkState extends State<AddWork> {
           route(AddWork2(
             aboutCompany: aboutCompany,
             companyName: companyName,
+            pathPIC: pathPIC,
           ));
           print(' aboutCompany: ${aboutCompany}');
           print('companyName:${companyName},');
+          print('path:${pathPIC},');
         },
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(14.0),
@@ -158,6 +170,20 @@ class _AddWorkState extends State<AddWork> {
         splashColor: Colors.grey,
       ),
     );
+  }
+
+  Future getImage() async {
+    final pickedFile =
+        await ImagePicker().getImage(source: ImageSource.gallery);
+    setState(() {
+      if (pickedFile != null) {
+        _image = File(pickedFile.path);
+        pathPIC = pickedFile.path;
+        print('ffffffffffffffffffffffffffffs' + pathPIC);
+      } else {
+        print('No image selected.');
+      }
+    });
   }
 
   Future<Null> route(Widget routeName) async {

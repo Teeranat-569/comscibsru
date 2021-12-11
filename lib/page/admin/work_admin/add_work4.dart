@@ -10,7 +10,7 @@ class AddWork4 extends StatefulWidget {
       worktype,
       gender,
       age,
-      exp,
+      exp,pathPIC,
       more3;
   AddWork4(
       {Key? key,
@@ -22,7 +22,7 @@ class AddWork4 extends StatefulWidget {
       this.age,
       this.exp,
       this.gender,
-      this.more3})
+      this.more3,this.pathPIC})
       : super(key: key);
 
   @override
@@ -319,6 +319,7 @@ class _AddWork4State extends State<AddWork4> {
           print('people: ${people.toString()},');
           print(' more4 : ${more4},');
           print('salary: ${salary},');
+          print('path:${widget.pathPIC},');
           route(AddWork5(
             aboutCompany: widget.aboutCompany,
             age: widget.age,
@@ -338,6 +339,7 @@ class _AddWork4State extends State<AddWork4> {
             more4: more4,
             timecost: timecost.toString(),
             salary: salary,
+            pathPIC: widget.pathPIC,
           ));
         },
         shape: RoundedRectangleBorder(

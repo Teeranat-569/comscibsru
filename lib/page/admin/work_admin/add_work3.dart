@@ -3,14 +3,15 @@ import 'package:flutter/material.dart';
 import 'add_work4.dart';
 
 class AddWork3 extends StatefulWidget {
-  dynamic position, mission, companyName, aboutCompany, worktype;
+  dynamic position, mission, companyName, aboutCompany, worktype, pathPIC;
   AddWork3(
       {Key? key,
       this.mission,
       this.position,
       this.aboutCompany,
       this.companyName,
-      this.worktype})
+      this.worktype,
+      this.pathPIC})
       : super(key: key);
 
   @override
@@ -21,6 +22,7 @@ class _AddWork3State extends State<AddWork3> {
   dynamic _chosenValue, age, more, exp;
   var textEditController = TextEditingController();
   var textEditController2 = TextEditingController();
+  var textEditController3 = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -199,7 +201,7 @@ class _AddWork3State extends State<AddWork3> {
         padding: const EdgeInsets.all(10.0),
         child: TextField(
             onChanged: (value) => exp = value.trim(),
-            controller: textEditController,
+            controller: textEditController3,
             decoration: InputDecoration(
               filled: true,
               fillColor: Colors.grey[200],
@@ -257,6 +259,7 @@ class _AddWork3State extends State<AddWork3> {
           print('exp: ${exp},');
           print(' gender:${_chosenValue},');
           print(' more3 : ${more},');
+          print('path:${widget.pathPIC},');
           route(AddWork4(
             aboutCompany: widget.aboutCompany,
             age: age,
@@ -267,6 +270,7 @@ class _AddWork3State extends State<AddWork3> {
             more3: more,
             position: widget.position,
             worktype: widget.worktype,
+            pathPIC: widget.pathPIC,
           ));
         },
         shape: RoundedRectangleBorder(

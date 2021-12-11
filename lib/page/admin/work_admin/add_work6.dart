@@ -24,30 +24,32 @@ class AddWork6 extends StatefulWidget {
       more4,
       amount,
       salary,
+      pathPIC,
       dateStop;
-  AddWork6({
-    Key? key,
-    this.mission,
-    this.position,
-    this.aboutCompany,
-    this.companyName,
-    this.worktype,
-    this.age,
-    this.exp,
-    this.gender,
-    this.more3,
-    this.bonus,
-    this.covid,
-    this.health,
-    this.hospital,
-    this.people,
-    this.social,
-    this.more4,
-    this.amount,
-    this.dateStop,
-    this.timecost,
-    this.salary,
-  }) : super(key: key);
+  AddWork6(
+      {Key? key,
+      this.mission,
+      this.position,
+      this.aboutCompany,
+      this.companyName,
+      this.worktype,
+      this.age,
+      this.exp,
+      this.gender,
+      this.more3,
+      this.bonus,
+      this.covid,
+      this.health,
+      this.hospital,
+      this.people,
+      this.social,
+      this.more4,
+      this.amount,
+      this.dateStop,
+      this.timecost,
+      this.salary,
+      this.pathPIC})
+      : super(key: key);
 
   @override
   _AddWork6State createState() => _AddWork6State();
@@ -60,6 +62,7 @@ class _AddWork6State extends State<AddWork6> {
   var textEditController3 = TextEditingController();
   var textEditController4 = TextEditingController();
   var textEditController5 = TextEditingController();
+  var textEditController6 = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -264,7 +267,7 @@ class _AddWork6State extends State<AddWork6> {
         padding: const EdgeInsets.all(10.0),
         child: TextField(
             onChanged: (value) => area = value.trim(),
-            controller: textEditController5,
+            controller: textEditController6,
             decoration: InputDecoration(
               filled: true,
               fillColor: Colors.grey[200],
@@ -318,7 +321,7 @@ class _AddWork6State extends State<AddWork6> {
           print(' name: ${name},');
           print('  phone:${phone},');
           print('  email:${email}');
-
+          print('path:${widget.pathPIC},');
           route(AddWork7(
             aboutCompany: widget.aboutCompany,
             age: widget.age,
@@ -346,6 +349,7 @@ class _AddWork6State extends State<AddWork6> {
             phone: phone,
             province: province,
             salary: widget.salary,
+            pathPIC: widget.pathPIC,
           ));
         },
         shape: RoundedRectangleBorder(

@@ -3,8 +3,9 @@ import 'package:flutter/material.dart';
 import 'add_work3.dart';
 
 class AddWork2 extends StatefulWidget {
-  dynamic companyName, aboutCompany;
-  AddWork2({Key? key, this.aboutCompany, this.companyName}) : super(key: key);
+  dynamic companyName, aboutCompany, pathPIC;
+  AddWork2({Key? key, this.aboutCompany, this.companyName, this.pathPIC})
+      : super(key: key);
 
   @override
   _AddWork2State createState() => _AddWork2State();
@@ -184,12 +185,15 @@ class _AddWork2State extends State<AddWork2> {
           print('mission: ${mission}');
           print('companyName:${widget.companyName},');
           print('workType: ${_chosenValue},');
+          print('path:${widget.pathPIC},');
           route(AddWork3(
             position: position,
             mission: mission,
             aboutCompany: widget.aboutCompany,
             companyName: widget.companyName,
             worktype: _chosenValue,
+            pathPIC: widget.pathPIC,
+
           ));
         },
         shape: RoundedRectangleBorder(

@@ -22,6 +22,7 @@ class AddWork5 extends StatefulWidget {
       covid,
       people,
       salary,
+      pathPIC,
       more4;
   AddWork5(
       {Key? key,
@@ -42,6 +43,7 @@ class AddWork5 extends StatefulWidget {
       this.social,
       this.more4,
       this.salary,
+      this.pathPIC,
       this.timecost})
       : super(key: key);
 
@@ -206,6 +208,7 @@ class _AddWork5State extends State<AddWork5> {
           print('salary: ${widget.salary},');
           print('  amount: ${amount.toString()}');
           print(' dateStop: ${dateThai},');
+          print('path:${widget.pathPIC},');
           route(AddWork6(
             aboutCompany: widget.aboutCompany,
             age: widget.age,
@@ -227,6 +230,7 @@ class _AddWork5State extends State<AddWork5> {
             amount: amount.toString(),
             dateStop: dateThai,
             salary: widget.salary,
+            pathPIC: widget.pathPIC,
           ));
         },
         shape: RoundedRectangleBorder(

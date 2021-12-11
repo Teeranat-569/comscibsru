@@ -1,9 +1,15 @@
+import 'dart:io';
+import 'dart:math';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:date_time_picker/date_time_picker.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:intl/intl.dart';
 import 'package:buddhist_datetime_dateformat_sns/buddhist_datetime_dateformat_sns.dart';
+import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
+import 'package:firebase_core/firebase_core.dart' as firebase_core;
 
 class AddWork7 extends StatefulWidget {
   dynamic position,
@@ -31,6 +37,7 @@ class AddWork7 extends StatefulWidget {
       address,
       province,
       salary,
+      pathPIC,
       area;
   AddWork7(
       {Key? key,
@@ -59,6 +66,7 @@ class AddWork7 extends StatefulWidget {
       this.name,
       this.phone,
       this.salary,
+      this.pathPIC,
       this.province})
       : super(key: key);
 
@@ -67,7 +75,7 @@ class AddWork7 extends StatefulWidget {
 }
 
 class _AddWork7State extends State<AddWork7> {
-  dynamic more7;
+  dynamic more7, url, img;
   var textEditController = TextEditingController();
   var textEditController2 = TextEditingController();
   var textEditController3 = TextEditingController();
@@ -148,35 +156,41 @@ class _AddWork7State extends State<AddWork7> {
               fontWeight: FontWeight.bold,
             )),
         onPressed: () async {
-          print(' aboutCompany: ${widget.aboutCompany}');
-          print('  amount: ${widget.amount}');
-          print('  area: ${widget.area}');
-          print('companyName:${widget.companyName},');
-          print('mission: ${widget.mission}');
-          print('  picCompany: ');
-          print('province:${widget.province},');
-          print('salary: ${widget.salary},');
-          print(' status: open,');
-          print(' workPosition: ${widget.position},');
-          print('workType: ${widget.worktype},');
-          print(' name: ${widget.name},');
-          print('  phone:${widget.phone},');
-          print('  email:${widget.email}');
-          print(' address: ${widget.address},');
-          print(' gender:${widget.gender},');
-          print(' dateStop: ${widget.dateStop},');
-          print(' more3 : ${widget.more3},');
-          print(' more4: ${widget.more4},');
-          print('  more7 : ${more7}');
-          print('age: ${widget.age},');
-          print('exp: ${widget.exp},');
-          print('bonus: ${widget.bonus},');
-          print(' social: ${widget.social},');
-          print(' health:${widget.health},');
-          print('  timeCost:${widget.timecost},');
-          print(' hospital: ${widget.hospital},');
-          print('covid: ${widget.covid},');
-          print('people: ${widget.people},');
+          // print(' aboutCompany: ${widget.aboutCompany}');
+          // print('  amount: ${widget.amount}');
+          // print('  area: ${widget.area}');
+          // print('companyName:${widget.companyName},');
+          // print('mission: ${widget.mission}');
+          print('  picCompany: $img');
+          // print('province:${widget.province},');
+          // print('salary: ${widget.salary},');
+          // print(' status: open,');
+          // print(' workPosition: ${widget.position},');
+          // print('workType: ${widget.worktype},');
+          // print(' name: ${widget.name},');
+          // print('  phone:${widget.phone},');
+          // print('  email:${widget.email}');
+          // print(' address: ${widget.address},');
+          // print(' gender:${widget.gender},');
+          // print(' dateStop: ${widget.dateStop},');
+          // print(' more3 : ${widget.more3},');
+          // print(' more4: ${widget.more4},');
+          // print('  more7 : ${more7}');
+          // print('age: ${widget.age},');
+          // print('exp: ${widget.exp},');
+          // print('bonus: ${widget.bonus},');
+          // print(' social: ${widget.social},');
+          // print(' health:${widget.health},');
+          // print('  timeCost:${widget.timecost},');
+          // print(' hospital: ${widget.hospital},');
+          // print('covid: ${widget.covid},');
+          // print('people: ${widget.people},');
+          // print('path:${widget.pathPIC},');
+          addUser();
+          Random random = Random();
+          int i = random.nextInt(100000);
+          // uploadFile(widget.pathPIC, 'img$i.jpg');
+          print('7777777777777777777777777777$img');
         },
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(14.0),
@@ -197,7 +211,7 @@ class _AddWork7State extends State<AddWork7> {
       'area': widget.area,
       'companyName': widget.companyName,
       'mission': widget.mission,
-      'picCompany': '',
+      'picCompany': img,
       'province': widget.province,
       'salary': widget.salary,
       'status': 'open',
@@ -220,10 +234,11 @@ class _AddWork7State extends State<AddWork7> {
       'timeCost': widget.timecost,
       'hospital': widget.hospital,
       'covid': widget.covid,
-      'people': widget.people,
+      'people': widget.people
     }).then((value) {
       // ignore: avoid_print
-      print("User Added");
+      print(
+          "3636363636363636363636363636363636363636363636363636363636363636User Added");
       Fluttertoast.showToast(
         msg: "เพิ่มแหล่งความรู้สำเร็จ",
         toastLength: Toast.LENGTH_SHORT,
@@ -233,6 +248,36 @@ class _AddWork7State extends State<AddWork7> {
       );
       // ignore: avoid_print, invalid_return_type_for_catch_error
     }).catchError((error) => print("Failed to add user: $error"));
+  }
+
+  Future<void> uploadFile(String filePath, String fileName) async {
+    await Firebase.initializeApp();
+    final firebase_storage.FirebaseStorage storage =
+        firebase_storage.FirebaseStorage.instance;
+    File file = File(filePath);
+    try {
+      await storage.ref('company/$fileName').putFile(file);
+
+      setState(() {
+        downloadURLExample(fileName);
+        print('7777777777777777777777777777$fileName');
+      });
+    } on firebase_core.FirebaseException catch (e) {
+      // ignore: avoid_print
+      print(e);
+    }
+  }
+
+  Future<void> downloadURLExample(String fileName) async {
+    url = await firebase_storage.FirebaseStorage.instance
+        .ref('company/$fileName')
+        .getDownloadURL();
+    setState(() {
+      img = url.toString(); print('7777777777777777777777777777$img');
+    });
+   
+    // Within your widgets:
+    // Image.network(downloadURL);
   }
 
   Future<Null> route(Widget routeName) async {

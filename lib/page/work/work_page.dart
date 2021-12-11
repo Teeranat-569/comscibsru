@@ -1,9 +1,7 @@
-import 'dart:io';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:comsci/page/admin/work_admin/data_workpage_admin.dart';
+import 'package:comsci/page/work/data_work_page.dart';
 import 'package:flutter/material.dart';
-import 'package:firebase_storage/firebase_storage.dart';
-import 'package:image_picker/image_picker.dart';
 
 class WorkPage extends StatefulWidget {
   const WorkPage({Key? key}) : super(key: key);
@@ -76,35 +74,38 @@ class _WorkPageState extends State<WorkPage> {
                               //   Icons.tab,
                               //   color: Colors.blue[200],
                               // ),
-                              Column(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                children: [
-                                  CircleAvatar(
-                                    backgroundColor: Colors.grey,
-                                    radius: 50,
-                                    child: ClipOval(
-                                      child: Image.asset(
-                                        'images/T-piyanan.jpg',
-                                        height: 100,
-                                        width: 100,
-                                        fit: BoxFit.cover,
+                              Container(
+                                width: 120,
+                                child: Column(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    CircleAvatar(
+                                      backgroundColor: Colors.grey,
+                                      radius: 50,
+                                      child: ClipOval(
+                                        child: Image.network(
+                                          data['picCompany'],
+                                          height: 100,
+                                          width: 100,
+                                          fit: BoxFit.cover,
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                  Text(
-                                    data['companyName'],
-                                    // maxLines: 3,
-                                    // overflow: TextOverflow.ellipsis,
-                                    style: const TextStyle(fontSize: 16),
-                                  ),
-                                ],
+                                    Text(
+                                      data['companyName'],
+                                      // maxLines: 3,
+                                      // overflow: TextOverflow.ellipsis,
+                                      style: const TextStyle(fontSize: 14),
+                                    ),
+                                  ],
+                                ),
                               ),
                               const SizedBox(
                                 width: 12,
                               ),
                               Container(
-                                width: 250,
+                                width: 200,
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
@@ -123,7 +124,7 @@ class _WorkPageState extends State<WorkPage> {
                                             // maxLines: 2,
                                             // overflow: TextOverflow.ellipsis,
                                             style: TextStyle(
-                                                fontSize: 14,
+                                                fontSize: 10,
                                                 color: Colors.white),
                                           ),
                                         ),
@@ -131,16 +132,21 @@ class _WorkPageState extends State<WorkPage> {
                                     Text(
                                       data['workPosition'],
                                       style: const TextStyle(
-                                          fontSize: 20, color: Colors.purple),
+                                          fontSize: 18, color: Colors.purple),
+                                    ),
+                                    SizedBox(
+                                      height: 8,
                                     ),
                                     Text(
                                       'รับสมัคร' +
                                           data['workType'] +
+                                          '\n' +
                                           'จำนวน' +
                                           '\t' +
                                           data['amount'].toString() +
                                           '\t' +
                                           'คน',
+                                      style: TextStyle(fontSize: 13),
                                     ),
                                     Text(
                                       'เงินเดือน/เบี้ยเลี้ยง' +
@@ -148,6 +154,7 @@ class _WorkPageState extends State<WorkPage> {
                                           data['salary'] +
                                           '\t' +
                                           'บาท',
+                                      style: TextStyle(fontSize: 13),
                                     ),
                                     Text(
                                       data['province'] + '\t' + data['area'],
@@ -158,34 +165,24 @@ class _WorkPageState extends State<WorkPage> {
                             ],
                           ),
                           Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            // ignore: prefer_const_literals_to_create_immutables
-                            children: [
-                              const SizedBox(
-                                width: 40,
-                              ),
-                            ],
-                          ),
-                          Row(
                             mainAxisAlignment: MainAxisAlignment.end,
                             // ignore: prefer_const_literals_to_create_immutables
                             children: [
                               FlatButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  route(DataWork(
+                                    docid: data['docid'],
+                                  ));
+                                  print(
+                                      '******************************* ${data['docid']}');
+                                },
                                 child: const Text(
                                   'ดูรายละเอียด >>>',
                                   style: TextStyle(
                                       fontSize: 12, color: Colors.grey),
                                 ),
                               ),
-                              const SizedBox(
-                                width: 20,
-                                height: 20,
-                              ),
                             ],
-                          ),
-                          const SizedBox(
-                            height: 5,
                           ),
                         ],
                       ),
@@ -207,5 +204,9 @@ class _WorkPageState extends State<WorkPage> {
   //     });
   //   });
   // }
-  
+  Future<Null> route(Widget routeName) async {
+    MaterialPageRoute materialPageRoute =
+        MaterialPageRoute(builder: (BuildContext context) => routeName);
+    await Navigator.of(context).push(materialPageRoute);
+  }
 }
