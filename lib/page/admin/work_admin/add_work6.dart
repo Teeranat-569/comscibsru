@@ -11,9 +11,20 @@ class AddWork6 extends StatefulWidget {
 }
 
 class _AddWork6State extends State<AddWork6> {
-  dynamic _chosenValue, amount, mission, dateTimestop, dateThai;
+  dynamic amount,
+      mission,
+      dateTimestop,
+      dateThai,
+      name,
+      phone,
+      email,
+      address,
+      province;
   var textEditController = TextEditingController();
   var textEditController2 = TextEditingController();
+  var textEditController3 = TextEditingController();
+  var textEditController4 = TextEditingController();
+  var textEditController5 = TextEditingController();
   bool bonus = false;
   bool social = false;
   bool health = false;
@@ -37,30 +48,56 @@ class _AddWork6State extends State<AddWork6> {
                   height: 15,
                 ),
                 Text(
-                  'ขเอมูลติดต่อกลับ',
+                  'ข้อมูลติดต่อกลับ',
                   style: TextStyle(fontSize: 22),
                 ),
                 SizedBox(
                   height: 10,
                 ),
+                nameform(),
+                phoneform(),
+                emailform(),
+                SizedBox(
+                  height: 15,
+                ),
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SizedBox(
+                      width: 15,
+                    ),
+                    Text(
+                      'ที่อยู่ที่สามารถติดต่อได้',
+                      style: TextStyle(fontSize: 18),
+                    ),
+                  ],
+                ),
+                addressform(),
+                SizedBox(
+                  width: 15,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Text(
-                      'จำนวนที่รับ',
+                      'ที่อยู่ที่สามารถติดต่อได้',
                       style: TextStyle(fontSize: 15),
                     ),
-                    amountform(),
                     Text(
-                      'คน',
+                      'ที่อยู่ที่สามารถติดต่อได้',
                       style: TextStyle(fontSize: 15),
                     ),
                   ],
                 ),
-                SizedBox(
-                  height: 15,
+                  Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                 provinceform().
+                    Text(
+                      'ที่อยู่ที่สามารถติดต่อได้',
+                      style: TextStyle(fontSize: 15),
+                    ),
+                  ],
                 ),
-                dateStopform(),
                 Row(mainAxisAlignment: MainAxisAlignment.end, children: [
                   buttonNext(),
                   SizedBox(
@@ -75,74 +112,107 @@ class _AddWork6State extends State<AddWork6> {
     );
   }
 
-  Widget dropDown() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        const Text(
-          'เพศ : ',
-          style: TextStyle(
-            color: Colors.black,
-            fontSize: 16,
-            fontWeight: FontWeight.w500,
-          ),
-        ),
-        SizedBox(),
-        Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10),
-            color: Colors.grey[200],
-          ),
-          child: Padding(
-            padding: const EdgeInsets.only(left: 10, right: 10),
-            child: DropdownButton<String>(
-              focusColor: Colors.white,
-              value: _chosenValue,
-              style: TextStyle(color: Colors.white),
-              iconEnabledColor: Colors.black,
-              items: <String>['ชาย', 'หญิง']
-                  .map<DropdownMenuItem<String>>((String value) {
-                return DropdownMenuItem<String>(
-                  value: value,
-                  child: Text(
-                    value,
-                    style: const TextStyle(
-                        color: Colors.black, fontFamily: 'Mitr'),
-                  ),
-                );
-              }).toList(),
-              hint: const Center(
-                child: Text(
-                  "เลือกเพศ",
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 16,
-                      fontWeight: FontWeight.w500,
-                      fontFamily: 'Mitr'),
-                ),
+  Widget nameform() {
+    return Padding(
+      padding: const EdgeInsets.only(left: 15, right: 15),
+      child: TextField(
+          onChanged: (value) => name = value.trim(),
+          controller: textEditController,
+          decoration: InputDecoration(
+            filled: true,
+            fillColor: Colors.grey[200],
+            border: const OutlineInputBorder(
+              borderRadius: BorderRadius.all(
+                Radius.circular(10.0),
               ),
-              onChanged: (dynamic value) {
-                setState(() {
-                  _chosenValue = value;
-                  print(_chosenValue);
-                  print('66666666666' + value);
-                });
-              },
             ),
-          ),
-        ),
-      ],
+            labelText: 'ชื่อ - นามสกุล',
+            labelStyle: const TextStyle(
+              fontSize: 16.0,
+              fontWeight: FontWeight.bold,
+            ),
+          )),
     );
   }
 
-  Widget amountform() {
+  Widget phoneform() {
+    return Padding(
+      padding: const EdgeInsets.all(15.0),
+      child: TextField(
+          onChanged: (value) => phone = value.trim(),
+          controller: textEditController2,
+          decoration: InputDecoration(
+            filled: true,
+            fillColor: Colors.grey[200],
+            border: const OutlineInputBorder(
+              borderRadius: BorderRadius.all(
+                Radius.circular(10.0),
+              ),
+            ),
+            labelText: 'เบอร์โทร',
+            labelStyle: const TextStyle(
+              fontSize: 16.0,
+              fontWeight: FontWeight.bold,
+            ),
+          )),
+    );
+  }
+
+  Widget emailform() {
+    return Padding(
+      padding: const EdgeInsets.only(left: 15, right: 15),
+      child: TextField(
+          onChanged: (value) => email = value.trim(),
+          controller: textEditController3,
+          decoration: InputDecoration(
+            filled: true,
+            fillColor: Colors.grey[200],
+            border: const OutlineInputBorder(
+              borderRadius: BorderRadius.all(
+                Radius.circular(10.0),
+              ),
+            ),
+            labelText: 'E-mail',
+            labelStyle: const TextStyle(
+              fontSize: 16.0,
+              fontWeight: FontWeight.bold,
+            ),
+          )),
+    );
+  }
+
+  Widget addressform() {
+    return Padding(
+      padding: const EdgeInsets.only(left: 15, right: 15),
+      child: TextField(
+          maxLines: 4,
+          onChanged: (value) => address = value.trim(),
+          controller: textEditController4,
+          decoration: InputDecoration(
+            filled: true,
+            fillColor: Colors.grey[200],
+            border: const OutlineInputBorder(
+              borderRadius: BorderRadius.all(
+                Radius.circular(10.0),
+              ),
+            ),
+            // labelText: 'ที่อยู่ที่สามารถติดต่อได้',
+            // labelStyle: const TextStyle(
+            //   fontSize: 16.0,
+            //   fontWeight: FontWeight.bold,
+            // ),
+          )),
+    );
+  }
+
+  Widget provinceform() {
     return Container(
-      width: 100,
+      width: 200,
       child: Padding(
         padding: const EdgeInsets.all(10.0),
         child: TextField(
-            onChanged: (value) => amount = value.trim(),
-            controller: textEditController,
+            onChanged: (value) => province = value.trim(),
+            controller: textEditController5,
             decoration: InputDecoration(
               filled: true,
               fillColor: Colors.grey[200],
@@ -157,52 +227,6 @@ class _AddWork6State extends State<AddWork6> {
               //   fontWeight: FontWeight.bold,
               // ),
             )),
-      ),
-    );
-  }
-
-  Widget dateStopform() {
-    return Padding(
-      padding: const EdgeInsets.all(15.0),
-      child: DateTimePicker(
-        decoration: InputDecoration(
-          filled: true,
-          fillColor: Colors.grey[200],
-          border: const OutlineInputBorder(
-            borderRadius: BorderRadius.all(
-              Radius.circular(10.0),
-            ),
-          ),
-          labelText: 'เลือกเวลาการปิดรับสมัคร',
-          labelStyle: const TextStyle(
-            fontSize: 16.0,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        initialValue: dateTimestop,
-        firstDate: DateTime(2000),
-        lastDate: DateTime(2100),
-        // dateLabelText: 'เวลาการปิดรับสมัคร',
-        onChanged: (val) {
-          print('jjjjjjjjjjjjjjjjjjj' + val);
-          setState(() {
-            dateTimestop = val;
-            DateTime tempDate = DateTime.parse(dateTimestop);
-            print('gggggggggggggggggggggggggggggggggggggg $tempDate');
-            // DateTime formatdaten = DateTime.parse(nn);
-            var dateTimeWarning = DateFormat.yMMMMEEEEd();
-            print('ttttttttttttttttttttttt' + dateTimeWarning.toString());
-            dateThai = dateTimeWarning.formatInBuddhistCalendarThai(tempDate);
-            print('deddddddddddddddddddddddddddddddddddd $dateThai');
-          });
-        },
-        validator: (val) {
-          print(val);
-          return null;
-        },
-        onSaved: (val) {
-          print(val);
-        },
       ),
     );
   }
