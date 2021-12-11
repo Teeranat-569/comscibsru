@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'add_work5.dart';
+
 class AddWork4 extends StatefulWidget {
   const AddWork4({Key? key}) : super(key: key);
 
@@ -27,7 +29,7 @@ class _AddWork4State extends State<AddWork4> {
         body: SingleChildScrollView(
           child: Container(
             width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.height,
+            // height: MediaQuery.of(context).size.height,
             child: Column(
               children: [
                 SizedBox(
@@ -37,18 +39,6 @@ class _AddWork4State extends State<AddWork4> {
                   'เบี้ยเลี้ยง/เงินเดือน',
                   style: TextStyle(fontSize: 15),
                 ),
-
-                // Text(
-                //   'คุณสมบัติ',
-                //   style: TextStyle(fontSize: 20),
-                // ),
-                // SizedBox(
-                //   height: 20,
-                // ),
-                // dropDown(),
-                // SizedBox(
-                //   height: 15,
-                // ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -68,74 +58,145 @@ class _AddWork4State extends State<AddWork4> {
                 ),
                 Column(
                   children: [
-                    Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          Checkbox(
-                            value: bonus,
-                            onChanged: (value) {
-                              setState(() {
-                                bonus = value!;
-                                print('kkkkkkkk$bonus');
-                              });
-                            },
-                          ),
-                          Text("โบนัส"),
-                          Checkbox(
-                            value: social,
-                            onChanged: (value) {
-                              setState(() {
-                                social = value!;
-                                print('kkkkkkkk$social');
-                              });
-                            },
-                          ),
-                          Text("Mon"),
-                          Checkbox(
-                            value: bonus,
-                            onChanged: (value) {
-                              setState(() {
-                                bonus = value!;
-                                print('kkkkkkkk$bonus');
-                              });
-                            },
-                          ),
-                          Text("Mon"),
-                        ]),
-                    Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          Checkbox(
-                            value: bonus,
-                            onChanged: (value) {
-                              setState(() {
-                                bonus = value!;
-                                print('kkkkkkkk$bonus');
-                              });
-                            },
-                          ),
-                          Text("Mon"),
-                          Checkbox(
-                            value: bonus,
-                            onChanged: (value) {
-                              setState(() {
-                                bonus = value!;
-                                print('kkkkkkkk$bonus');
-                              });
-                            },
-                          ),
-                          Text("Mon"),
-                          Checkbox(
-                            value: bonus,
-                            onChanged: (value) {
-                              setState(() {
-                                bonus = value!;
-                                print('kkkkkkkk$bonus');
-                              });
-                            },
-                          ),
-                          Text("Mon"),
-                        ]),
+                    Row(mainAxisAlignment: MainAxisAlignment.center, children: <
+                        Widget>[
+                      Checkbox(
+                        value: bonus,
+                        onChanged: (value) {
+                          setState(() {
+                            bonus = value!;
+                            print('kkkkkkkk$bonus');
+                            bonus == true
+                                ? ScaffoldMessenger.of(context).showSnackBar(
+                                    const SnackBar(
+                                        content: Text('เลือกสวัสดิการ โบนัส')))
+                                : ScaffoldMessenger.of(context).showSnackBar(
+                                    const SnackBar(
+                                        content:
+                                            Text('ไม่เลือกสวัสดิการ โบนัส')));
+                          });
+                        },
+                      ),
+                      Text("โบนัส"),
+                      Checkbox(
+                        value: social,
+                        onChanged: (value) {
+                          setState(() {
+                            social = value!;
+                            print('kkkkkkkk$social');
+
+                            social == true
+                                ? ScaffoldMessenger.of(context).showSnackBar(
+                                    const SnackBar(
+                                        content:
+                                            Text('เลือกสวัสดิการ ประกันสังคม')))
+                                : ScaffoldMessenger.of(context).showSnackBar(
+                                    const SnackBar(
+                                        content: Text(
+                                            'ไม่เลือกสวัสดิการ ประกันสังคม')));
+                          });
+                        },
+                      ),
+                      Text("ประกันสังคม"),
+                      Checkbox(
+                        value: health,
+                        onChanged: (value) {
+                          setState(() {
+                            health = value!;
+                            print('kkkkkkkk$health');
+                            health == true
+                                ? ScaffoldMessenger.of(context).showSnackBar(
+                                    const SnackBar(
+                                        content: Text(
+                                            'เลือกสวัสดิการ ประกันสุขภาพ')))
+                                : ScaffoldMessenger.of(context).showSnackBar(
+                                    const SnackBar(
+                                        content: Text(
+                                            'ไม่เลือกสวัสดิการ ประกันสุขภาพ')));
+                          });
+                        },
+                      ),
+                      Text("ประกันสุขภาพ"),
+                    ]),
+                    Row(mainAxisAlignment: MainAxisAlignment.center, children: <
+                        Widget>[
+                      Checkbox(
+                        value: people,
+                        onChanged: (value) {
+                          setState(() {
+                            people = value!;
+                            print('kkkkkkkk$people');
+                            people == true
+                                ? ScaffoldMessenger.of(context).showSnackBar(
+                                    const SnackBar(
+                                        content:
+                                            Text('เลือกสวัสดิการ ประกันชีวิต')))
+                                : ScaffoldMessenger.of(context).showSnackBar(
+                                    const SnackBar(
+                                        content: Text(
+                                            'ไม่เลือกสวัสดิการ ประกันชีวิต')));
+                          });
+                        },
+                      ),
+                      const Text("ประกันชีวิต"),
+                      Checkbox(
+                        value: timecost,
+                        onChanged: (value) {
+                          setState(() {
+                            timecost = value!;
+                            print('kkkkkkkk$timecost');
+                            timecost == true
+                                ? ScaffoldMessenger.of(context).showSnackBar(
+                                    const SnackBar(
+                                        content:
+                                            Text('เลือกสวัสดิการ ค่าล่วงเวลา')))
+                                : ScaffoldMessenger.of(context).showSnackBar(
+                                    const SnackBar(
+                                        content: Text(
+                                            'ไม่เลือกสวัสดิการ ค่าล่วงเวลา')));
+                          });
+                        },
+                      ),
+                      const Text("ค่าล่วงเวลา"),
+                    ]),
+                    Row(mainAxisAlignment: MainAxisAlignment.center, children: <
+                        Widget>[
+                      Checkbox(
+                        value: hospital,
+                        onChanged: (value) {
+                          setState(() {
+                            hospital = value!;
+                            print('kkkkkkkk$hospital');
+                            hospital == true
+                                ? ScaffoldMessenger.of(context).showSnackBar(
+                                    const SnackBar(
+                                        content: Text(
+                                            'เลือกสวัสดิการ ค่ารักษาพยาบาล')))
+                                : ScaffoldMessenger.of(context).showSnackBar(
+                                    const SnackBar(
+                                        content: Text(
+                                            'ไม่เลือกสวัสดิการ ค่ารักษาพยาบาล')));
+                          });
+                        },
+                      ),
+                      Text("ค่ารักษาพยาบาล"),
+                      Checkbox(
+                        value: covid,
+                        onChanged: (value) {
+                          setState(() {
+                            covid = value!;
+                            print('kkkkkkkk$covid');
+                            covid == true
+                                ? const SnackBar(
+                                    content: Text('เลือกสวัสดิการ ประกันโควิด'))
+                                : const SnackBar(
+                                    content:
+                                        Text('ไม่เลือกสวัสดิการ ประกันโควิด'));
+                          });
+                        },
+                      ),
+                      Text("ประกันโควิด"),
+                    ]),
                   ],
                 ),
                 Row(
@@ -144,7 +205,7 @@ class _AddWork4State extends State<AddWork4> {
                       width: 15,
                     ),
                     Text(
-                      'คุณสมบัติเพิ่มเติม',
+                      'สวัสดิการเพิ่มเติม',
                       style: TextStyle(fontSize: 15),
                     ),
                   ],
@@ -254,7 +315,7 @@ class _AddWork4State extends State<AddWork4> {
     return Padding(
       padding: const EdgeInsets.all(15.0),
       child: TextField(
-          maxLines: 12,
+          maxLines: 6,
           textDirection: TextDirection.ltr,
           onChanged: (value) => mission = value.trim(),
           controller: textEditController2,
@@ -280,7 +341,7 @@ class _AddWork4State extends State<AddWork4> {
               fontWeight: FontWeight.bold,
             )),
         onPressed: () async {
-          // route(AddWork2());
+          route(AddWork5());
         },
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(14.0),

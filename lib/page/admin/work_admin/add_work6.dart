@@ -1,18 +1,26 @@
+import 'package:date_time_picker/date_time_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import 'package:buddhist_datetime_dateformat_sns/buddhist_datetime_dateformat_sns.dart';
 
-import 'add_work4.dart';
-
-class AddWork3 extends StatefulWidget {
-  const AddWork3({Key? key}) : super(key: key);
+class AddWork6 extends StatefulWidget {
+  const AddWork6({Key? key}) : super(key: key);
 
   @override
-  _AddWork3State createState() => _AddWork3State();
+  _AddWork6State createState() => _AddWork6State();
 }
 
-class _AddWork3State extends State<AddWork3> {
-  dynamic _chosenValue, age, mission, exp;
+class _AddWork6State extends State<AddWork6> {
+  dynamic _chosenValue, amount, mission, dateTimestop, dateThai;
   var textEditController = TextEditingController();
   var textEditController2 = TextEditingController();
+  bool bonus = false;
+  bool social = false;
+  bool health = false;
+  bool timecost = false;
+  bool hospital = false;
+  bool covid = false;
+  bool people = false;
 
   @override
   Widget build(BuildContext context) {
@@ -22,32 +30,29 @@ class _AddWork3State extends State<AddWork3> {
         body: SingleChildScrollView(
           child: Container(
             width: MediaQuery.of(context).size.width,
+            // height: MediaQuery.of(context).size.height,
             child: Column(
               children: [
                 SizedBox(
-                  height: 10,
+                  height: 15,
                 ),
                 Text(
-                  'คุณสมบัติ',
-                  style: TextStyle(fontSize: 20),
+                  'ขเอมูลติดต่อกลับ',
+                  style: TextStyle(fontSize: 22),
                 ),
                 SizedBox(
-                  height: 20,
-                ),
-                dropDown(),
-                SizedBox(
-                  height: 15,
+                  height: 10,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      'อายุ',
+                      'จำนวนที่รับ',
                       style: TextStyle(fontSize: 15),
                     ),
-                    ageform(),
+                    amountform(),
                     Text(
-                      'ปี',
+                      'คน',
                       style: TextStyle(fontSize: 15),
                     ),
                   ],
@@ -55,35 +60,7 @@ class _AddWork3State extends State<AddWork3> {
                 SizedBox(
                   height: 15,
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      'ประสบการณ์',
-                      style: TextStyle(fontSize: 15),
-                    ),
-                    expform(),
-                    Text(
-                      'ปี',
-                      style: TextStyle(fontSize: 15),
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  height: 15,
-                ),
-                Row(
-                  children: [
-                    SizedBox(
-                      width: 15,
-                    ),
-                    Text(
-                      'คุณสมบัติเพิ่มเติม',
-                      style: TextStyle(fontSize: 15),
-                    ),
-                  ],
-                ),
-                missionform(),
+                dateStopform(),
                 Row(mainAxisAlignment: MainAxisAlignment.end, children: [
                   buttonNext(),
                   SizedBox(
@@ -158,13 +135,13 @@ class _AddWork3State extends State<AddWork3> {
     );
   }
 
-  Widget ageform() {
+  Widget amountform() {
     return Container(
       width: 100,
       child: Padding(
         padding: const EdgeInsets.all(10.0),
         child: TextField(
-            onChanged: (value) => age = value.trim(),
+            onChanged: (value) => amount = value.trim(),
             controller: textEditController,
             decoration: InputDecoration(
               filled: true,
@@ -184,49 +161,49 @@ class _AddWork3State extends State<AddWork3> {
     );
   }
 
-  Widget expform() {
-    return Container(
-      width: 100,
-      child: Padding(
-        padding: const EdgeInsets.all(10.0),
-        child: TextField(
-            onChanged: (value) => exp = value.trim(),
-            controller: textEditController,
-            decoration: InputDecoration(
-              filled: true,
-              fillColor: Colors.grey[200],
-              border: const OutlineInputBorder(
-                borderRadius: BorderRadius.all(
-                  Radius.circular(10.0),
-                ),
-              ),
-              // labelText: 'ตำแหน่งงาน',
-              // labelStyle: const TextStyle(
-              //   fontSize: 16.0,
-              //   fontWeight: FontWeight.bold,
-              // ),
-            )),
-      ),
-    );
-  }
-
-  Widget missionform() {
+  Widget dateStopform() {
     return Padding(
       padding: const EdgeInsets.all(15.0),
-      child: TextField(
-          maxLines: 12,
-          textDirection: TextDirection.ltr,
-          onChanged: (value) => mission = value.trim(),
-          controller: textEditController2,
-          decoration: InputDecoration(
-            filled: true,
-            fillColor: Colors.grey[200],
-            border: const OutlineInputBorder(
-              borderRadius: BorderRadius.all(
-                Radius.circular(10.0),
-              ),
+      child: DateTimePicker(
+        decoration: InputDecoration(
+          filled: true,
+          fillColor: Colors.grey[200],
+          border: const OutlineInputBorder(
+            borderRadius: BorderRadius.all(
+              Radius.circular(10.0),
             ),
-          )),
+          ),
+          labelText: 'เลือกเวลาการปิดรับสมัคร',
+          labelStyle: const TextStyle(
+            fontSize: 16.0,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        initialValue: dateTimestop,
+        firstDate: DateTime(2000),
+        lastDate: DateTime(2100),
+        // dateLabelText: 'เวลาการปิดรับสมัคร',
+        onChanged: (val) {
+          print('jjjjjjjjjjjjjjjjjjj' + val);
+          setState(() {
+            dateTimestop = val;
+            DateTime tempDate = DateTime.parse(dateTimestop);
+            print('gggggggggggggggggggggggggggggggggggggg $tempDate');
+            // DateTime formatdaten = DateTime.parse(nn);
+            var dateTimeWarning = DateFormat.yMMMMEEEEd();
+            print('ttttttttttttttttttttttt' + dateTimeWarning.toString());
+            dateThai = dateTimeWarning.formatInBuddhistCalendarThai(tempDate);
+            print('deddddddddddddddddddddddddddddddddddd $dateThai');
+          });
+        },
+        validator: (val) {
+          print(val);
+          return null;
+        },
+        onSaved: (val) {
+          print(val);
+        },
+      ),
     );
   }
 
@@ -240,7 +217,7 @@ class _AddWork3State extends State<AddWork3> {
               fontWeight: FontWeight.bold,
             )),
         onPressed: () async {
-          route(AddWork4());
+          // route(AddWork2());
         },
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(14.0),
