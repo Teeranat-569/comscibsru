@@ -74,1231 +74,1201 @@ class _DataWorkState extends State<DataWork> {
                         width: MediaQuery.of(context).size.width,
                         child: Column(
                           children: [
-                            Padding(
-                              padding: const EdgeInsets.all(15.0),
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(20.0),
-                                  // color: Colors.grey.shade200,
-                                ),
-                                width: MediaQuery.of(context).size.width,
-                                // ignore: deprecated_member_use
-                                child: Column(
-                                  children: [
-                                    const SizedBox(
-                                      height: 5,
-                                    ),
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceEvenly,
-                                      children: [
-                                        // Icon(
-                                        //   Icons.tab,
-                                        //   color: Colors.blue[200],
-                                        // ),
-                                        Container(
-                                          width: 120,
-                                          child: Column(
+                            Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20.0),
+                                // color: Colors.grey.shade200,
+                              ),
+                              width: MediaQuery.of(context).size.width,
+                              // ignore: deprecated_member_use
+                              child: Column(
+                                children: [
+                                  const SizedBox(
+                                    height: 5,
+                                  ),
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly,
+                                    children: [
+                                      // Icon(
+                                      //   Icons.tab,
+                                      //   color: Colors.blue[200],
+                                      // ),
+                                      Container(
+                                        width: 120,
+                                        child: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceEvenly,
+                                          children: [
+                                            if (pathPIC == null ||
+                                                pathPIC == '')
+                                              CircularProgressIndicator()
+                                            else
+                                              CircleAvatar(
+                                                backgroundColor: Colors.white,
+                                                radius: 50,
+                                                child: ClipOval(
+                                                  child: Image.network(
+                                                    pathPIC,
+                                                    height: 100,
+                                                    width: 100,
+                                                    fit: BoxFit.cover,
+                                                  ),
+                                                ),
+                                              ),
+                                          ],
+                                        ),
+                                      ),
+                                      const SizedBox(
+                                        width: 12,
+                                      ),
+                                      Container(
+                                        width: 200,
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            if (status == 'open')
+                                              Container(
+                                                // color: Colors.green,
+                                                decoration: BoxDecoration(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          10.0),
+                                                  color: Colors.green,
+                                                ),
+                                                child: const Padding(
+                                                  padding: EdgeInsets.all(8.0),
+                                                  child: Text(
+                                                    'เปิดรับสมัคร',
+                                                    // maxLines: 2,
+                                                    // overflow: TextOverflow.ellipsis,
+                                                    style: TextStyle(
+                                                        fontSize: 10,
+                                                        color: Colors.white),
+                                                  ),
+                                                ),
+                                              ),
+                                            lineProgress(
+                                              position,
+                                              const TextStyle(
+                                                  fontSize: 18,
+                                                  color: Colors.purple),
+                                            ),
+                                            lineProgress(companyName,
+                                                TextStyle(fontSize: 14)),
+                                          ],
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  SizedBox(
+                                    height: 15,
+                                  ),
+                                  Row(
+                                    children: [
+                                      SizedBox(
+                                        width: 15,
+                                      ),
+                                      Container(
+                                        // color: Colors.green,
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(20.0),
+                                          color: Colors.purple,
+                                        ),
+                                        child: const Padding(
+                                          padding: EdgeInsets.all(8.0),
+                                          child: Text(
+                                            'เกี่ยวกับบริษัท',
+                                            // maxLines: 2,
+                                            // overflow: TextOverflow.ellipsis,
+                                            style: TextStyle(
+                                                fontSize: 14,
+                                                color: Colors.white),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  Row(
+                                    children: [
+                                      SizedBox(
+                                        width: 15,
+                                      ),
+                                      Container(
+                                        width: 340,
+                                        child: lineProgressIMG(
+                                          aboutCompany,
+                                          TextStyle(fontSize: 12),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.all(10.0),
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                        borderRadius:
+                                            BorderRadius.circular(20.0),
+                                        color: Colors.grey.shade200,
+                                      ),
+                                      width: MediaQuery.of(context).size.width,
+                                      // ignore: deprecated_member_use
+                                      child: Column(
+                                        children: [
+                                          const SizedBox(
+                                            height: 5,
+                                          ),
+                                          Row(
                                             mainAxisAlignment:
                                                 MainAxisAlignment.spaceEvenly,
                                             children: [
-                                              if (pathPIC == null ||
-                                                  pathPIC == '')
-                                                CircularProgressIndicator()
-                                              else
-                                                CircleAvatar(
-                                                  backgroundColor: Colors.white,
-                                                  radius: 50,
-                                                  child: ClipOval(
-                                                    child: Image.network(
-                                                      pathPIC,
-                                                      height: 100,
-                                                      width: 100,
-                                                      fit: BoxFit.cover,
-                                                    ),
-                                                  ),
-                                                ),
-                                            ],
-                                          ),
-                                        ),
-                                        const SizedBox(
-                                          width: 12,
-                                        ),
-                                        Container(
-                                          width: 200,
-                                          child: Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              if (status == 'open')
-                                                Container(
-                                                  // color: Colors.green,
-                                                  decoration: BoxDecoration(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            10.0),
-                                                    color: Colors.green,
-                                                  ),
-                                                  child: const Padding(
+                                              Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Padding(
                                                     padding:
-                                                        EdgeInsets.all(8.0),
+                                                        const EdgeInsets.all(
+                                                            8.0),
                                                     child: Text(
-                                                      'เปิดรับสมัคร',
-                                                      // maxLines: 2,
-                                                      // overflow: TextOverflow.ellipsis,
+                                                      'รับสมัคร' +
+                                                          '$worktype' +
+                                                          'จำนวน' +
+                                                          '\t' +
+                                                          amount.toString() +
+                                                          '\t' +
+                                                          'คน',
                                                       style: TextStyle(
-                                                          fontSize: 10,
-                                                          color: Colors.white),
+                                                          fontSize: 13),
                                                     ),
                                                   ),
-                                                ),
-                                              lineProgress(
-                                                position,
-                                                const TextStyle(
-                                                    fontSize: 18,
-                                                    color: Colors.purple),
+                                                ],
                                               ),
-                                              lineProgress(companyName,
-                                                  TextStyle(fontSize: 14)),
                                             ],
                                           ),
-                                        ),
-                                      ],
-                                    ),
-                                    SizedBox(
-                                      height: 15,
-                                    ),
-                                    Row(
-                                      children: [
-                                        SizedBox(
-                                          width: 15,
-                                        ),
-                                        Container(
-                                          // color: Colors.green,
-                                          decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(20.0),
-                                            color: Colors.purple,
-                                          ),
-                                          child: const Padding(
-                                            padding: EdgeInsets.all(8.0),
-                                            child: Text(
-                                              'เกี่ยวกับบริษัท',
-                                              // maxLines: 2,
-                                              // overflow: TextOverflow.ellipsis,
-                                              style: TextStyle(
-                                                  fontSize: 14,
-                                                  color: Colors.white),
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                    Row(
-                                      children: [
-                                        SizedBox(
-                                          width: 15,
-                                        ),
-                                        Container(
-                                          width: 340,
-                                          child: lineProgressIMG(
-                                            aboutCompany,
-                                            TextStyle(fontSize: 14),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.all(10.0),
-                                      child: Container(
-                                        decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(20.0),
-                                          color: Colors.grey.shade200,
-                                        ),
-                                        width:
-                                            MediaQuery.of(context).size.width,
-                                        // ignore: deprecated_member_use
-                                        child: Column(
-                                          children: [
-                                            const SizedBox(
-                                              height: 5,
-                                            ),
-                                            Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.spaceEvenly,
-                                              children: [
-                                                Column(
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                  children: [
-                                                    Padding(
-                                                      padding:
-                                                          const EdgeInsets.all(
-                                                              8.0),
-                                                      child: Text(
-                                                        'รับสมัคร' +
-                                                            '$worktype' +
-                                                            'จำนวน' +
-                                                            '\t' +
-                                                            amount.toString() +
-                                                            '\t' +
-                                                            'คน',
-                                                        style: TextStyle(
-                                                            fontSize: 13),
-                                                      ),
-                                                    ),
-                                                    // Text(
-                                                    //   'เงินเดือน/เบี้ยเลี้ยง' +
-                                                    //       '\t' +
-                                                    //       salary +
-                                                    //       '\t' +
-                                                    //       'บาท',
-                                                    //   style: TextStyle(fontSize: 13),
-                                                    // ),
-                                                    // Text(
-                                                    //   province + '\t' + area,
-                                                    // ),
-                                                  ],
-                                                ),
-                                              ],
-                                            ),
-                                          ],
-                                        ),
+                                        ],
                                       ),
                                     ),
-                                    Padding(
-                                      padding: const EdgeInsets.all(10.0),
-                                      child: Container(
-                                        decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(20.0),
-                                          color: Colors.grey.shade200,
-                                        ),
-                                        width:
-                                            MediaQuery.of(context).size.width,
-                                        // ignore: deprecated_member_use
-                                        child: Column(
-                                          children: [
-                                            const SizedBox(
-                                              height: 5,
-                                            ),
-                                            Row(
-                                              children: [
-                                                Column(
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                  children: [
-                                                    Row(
-                                                      crossAxisAlignment:
-                                                          CrossAxisAlignment
-                                                              .start,
-                                                      children: [
-                                                        Container(
-                                                          // color: Colors.green,
-                                                          decoration:
-                                                              BoxDecoration(
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        20.0),
-                                                            color:
-                                                                Colors.purple,
-                                                          ),
-                                                          child: const Padding(
-                                                            padding:
-                                                                EdgeInsets.all(
-                                                                    8.0),
-                                                            child: Text(
-                                                              'คุณสมบัติ',
-                                                              // maxLines: 2,
-                                                              // overflow: TextOverflow.ellipsis,
-                                                              style: TextStyle(
-                                                                  fontSize: 14,
-                                                                  color: Colors
-                                                                      .white),
-                                                            ),
-                                                          ),
-                                                        ),
-                                                        SizedBox(
-                                                          width: 10,
-                                                        ),
-                                                        Container(
-                                                          width: 250,
-                                                          child: Column(
-                                                            crossAxisAlignment:
-                                                                CrossAxisAlignment
-                                                                    .start,
-                                                            children: [
-                                                              Row(
-                                                                children: [
-                                                                  Text(
-                                                                    'เพศ : ',
-                                                                    // maxLines: 2,
-                                                                    // overflow: TextOverflow.ellipsis,
-                                                                    style: TextStyle(
-                                                                        fontSize:
-                                                                            14,
-                                                                        color: Colors
-                                                                            .black),
-                                                                  ),
-                                                                  lineProgress(
-                                                                      gender,
-                                                                      TextStyle())
-                                                                ],
-                                                              ),
-                                                              Row(
-                                                                children: [
-                                                                  Text(
-                                                                    'อายุ : ',
-                                                                    // maxLines: 2,
-                                                                    // overflow: TextOverflow.ellipsis,
-                                                                    style: TextStyle(
-                                                                        fontSize:
-                                                                            14,
-                                                                        color: Colors
-                                                                            .black),
-                                                                  ),
-                                                                  lineProgress(
-                                                                      age,
-                                                                      TextStyle()),
-                                                                  Text(
-                                                                    ' ปี',
-                                                                    // maxLines: 2,
-                                                                    // overflow: TextOverflow.ellipsis,
-                                                                    style: TextStyle(
-                                                                        fontSize:
-                                                                            14,
-                                                                        color: Colors
-                                                                            .black),
-                                                                  ),
-                                                                ],
-                                                              ),
-                                                              Row(
-                                                                children: [
-                                                                  Text(
-                                                                    'ประสบการณ์ : ',
-                                                                    // maxLines: 2,
-                                                                    // overflow: TextOverflow.ellipsis,
-                                                                    style: TextStyle(
-                                                                        fontSize:
-                                                                            14,
-                                                                        color: Colors
-                                                                            .black),
-                                                                  ),
-                                                                  lineProgress(
-                                                                      exp,
-                                                                      TextStyle()),
-                                                                  Text(
-                                                                    ' ปี',
-                                                                    // maxLines: 2,
-                                                                    // overflow: TextOverflow.ellipsis,
-                                                                    style: TextStyle(
-                                                                        fontSize:
-                                                                            14,
-                                                                        color: Colors
-                                                                            .black),
-                                                                  ),
-                                                                ],
-                                                              ),
-                                                              Row(
-                                                                children: [
-                                                                  Text(
-                                                                    'คุณสมบัติเพิ่มเติม : ',
-                                                                    // maxLines: 2,
-                                                                    // overflow: TextOverflow.ellipsis,
-                                                                    style: TextStyle(
-                                                                        fontSize:
-                                                                            14,
-                                                                        color: Colors
-                                                                            .black),
-                                                                  ),
-                                                                ],
-                                                              ),
-                                                              Container(
-                                                                width: 300,
-                                                                child: lineProgressIMG3(
-                                                                    more3,
-                                                                    TextStyle()),
-                                                              ),
-                                                            ],
-                                                          ),
-                                                        ),
-                                                      ],
-                                                    ),
-
-                                                    // Text(
-                                                    //   'เงินเดือน/เบี้ยเลี้ยง' +
-                                                    //       '\t' +
-                                                    //       salary +
-                                                    //       '\t' +
-                                                    //       'บาท',
-                                                    //   style: TextStyle(fontSize: 13),
-                                                    // ),
-                                                    // Text(
-                                                    //   province + '\t' + area,
-                                                    // ),
-                                                  ],
-                                                ),
-                                              ],
-                                            ),
-                                          ],
-                                        ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.all(10.0),
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                        borderRadius:
+                                            BorderRadius.circular(20.0),
+                                        color: Colors.grey.shade200,
                                       ),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.all(10.0),
-                                      child: Container(
-                                        decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(20.0),
-                                          color: Colors.grey.shade200,
-                                        ),
-                                        width:
-                                            MediaQuery.of(context).size.width,
-                                        // ignore: deprecated_member_use
-                                        child: Column(
-                                          children: [
-                                            const SizedBox(
-                                              height: 5,
-                                            ),
-                                            Column(
-                                              children: [
-                                                Column(
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                  children: [
-                                                    Container(
-                                                      // color: Colors.green,
-                                                      decoration: BoxDecoration(
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(20.0),
-                                                        color: Colors.purple,
-                                                      ),
-                                                      child: const Padding(
-                                                        padding:
-                                                            EdgeInsets.all(8.0),
-                                                        child: Text(
-                                                          'หน้าที่ความรับผิดชอบ',
-                                                          // maxLines: 2,
-                                                          // overflow: TextOverflow.ellipsis,
-                                                          style: TextStyle(
-                                                              fontSize: 14,
-                                                              color:
-                                                                  Colors.white),
+                                      width: MediaQuery.of(context).size.width,
+                                      // ignore: deprecated_member_use
+                                      child: Column(
+                                        children: [
+                                          const SizedBox(
+                                            height: 5,
+                                          ),
+                                          Row(
+                                            children: [
+                                              Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Row(
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
+                                                    children: [
+                                                      Container(
+                                                        // color: Colors.green,
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      20.0),
+                                                          color: Colors.purple,
+                                                        ),
+                                                        child: const Padding(
+                                                          padding:
+                                                              EdgeInsets.all(
+                                                                  8.0),
+                                                          child: Text(
+                                                            'คุณสมบัติ',
+                                                            // maxLines: 2,
+                                                            // overflow: TextOverflow.ellipsis,
+                                                            style: TextStyle(
+                                                                fontSize: 14,
+                                                                color: Colors
+                                                                    .white),
+                                                          ),
                                                         ),
                                                       ),
-                                                    ),
-                                                    SizedBox(
-                                                      width: 10,
-                                                    ),
-                                                    Column(
-                                                      crossAxisAlignment:
-                                                          CrossAxisAlignment
-                                                              .start,
-                                                      children: [
-                                                        lineProgressIMG(mission,
-                                                            TextStyle()),
-                                                      ],
-                                                    ),
-                                                  ],
-                                                ),
-
-                                                // Text(
-                                                //   'เงินเดือน/เบี้ยเลี้ยง' +
-                                                //       '\t' +
-                                                //       salary +
-                                                //       '\t' +
-                                                //       'บาท',
-                                                //   style: TextStyle(fontSize: 13),
-                                                // ),
-                                                // Text(
-                                                //   province + '\t' + area,
-                                                // ),
-                                              ],
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.all(15.0),
-                                      child: Container(
-                                        decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(20.0),
-                                          color: Colors.grey.shade200,
-                                        ),
-                                        width:
-                                            MediaQuery.of(context).size.width,
-                                        // ignore: deprecated_member_use
-                                        child: Column(
-                                          children: [
-                                            const SizedBox(
-                                              height: 5,
-                                            ),
-                                            Row(
-                                              children: [
-                                                Column(
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                  children: [
-                                                    Row(
-                                                      crossAxisAlignment:
-                                                          CrossAxisAlignment
-                                                              .start,
-                                                      children: [
-                                                        Container(
-                                                          // color: Colors.green,
-                                                          decoration:
-                                                              BoxDecoration(
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        20.0),
-                                                            color:
-                                                                Colors.purple,
-                                                          ),
-                                                          child: const Padding(
-                                                            padding:
-                                                                EdgeInsets.all(
-                                                                    8.0),
-                                                            child: Text(
-                                                              'สวัสดิการ',
-                                                              // maxLines: 2,
-                                                              // overflow: TextOverflow.ellipsis,
-                                                              style: TextStyle(
-                                                                  fontSize: 14,
-                                                                  color: Colors
-                                                                      .white),
-                                                            ),
-                                                          ),
-                                                        ),
-                                                        SizedBox(
-                                                          width: 10,
-                                                        ),
-                                                        Column(
+                                                      SizedBox(
+                                                        width: 10,
+                                                      ),
+                                                      Container(
+                                                        width: 250,
+                                                        child: Column(
                                                           crossAxisAlignment:
                                                               CrossAxisAlignment
                                                                   .start,
                                                           children: [
                                                             Row(
                                                               children: [
-                                                                // Text(
-                                                                //   'โบนัส',
-                                                                //   // maxLines: 2,
-                                                                //   // overflow: TextOverflow.ellipsis,
-                                                                //   style: TextStyle(
-                                                                //       fontSize:
-                                                                //           14,
-                                                                //       color: Colors
-                                                                //           .black),
-                                                                // ),
-                                                                if (bonus ==
-                                                                    'true')
-                                                                  Container(
-                                                                    // color: Colors.green,
-                                                                    decoration:
-                                                                        BoxDecoration(
-                                                                      borderRadius:
-                                                                          BorderRadius.circular(
-                                                                              20.0),
+                                                                const Text(
+                                                                  'เพศ : ',
+                                                                  style: TextStyle(
+                                                                      fontSize:
+                                                                          12,
                                                                       color: Colors
-                                                                          .pink,
-                                                                    ),
-                                                                    child: Row(
-                                                                      children: [
-                                                                        Icon(Icons
-                                                                            .check),
-                                                                        const Padding(
-                                                                          padding:
-                                                                              EdgeInsets.all(8.0),
-                                                                          child:
-                                                                              Text(
-                                                                            'โบนัส',
-                                                                            // maxLines: 2,
-                                                                            // overflow: TextOverflow.ellipsis,
-                                                                            style:
-                                                                                TextStyle(fontSize: 14, color: Colors.white),
-                                                                          ),
-                                                                        ),
-                                                                      ],
-                                                                    ),
-                                                                  )
-                                                                else
-                                                                  Container(
-                                                                    // color: Colors.green,
-                                                                    decoration:
-                                                                        BoxDecoration(
-                                                                      borderRadius:
-                                                                          BorderRadius.circular(
-                                                                              20.0),
-                                                                      color: Colors
-                                                                          .grey,
-                                                                    ),
-                                                                    child:
-                                                                        const Padding(
-                                                                      padding:
-                                                                          EdgeInsets.all(
-                                                                              8.0),
-                                                                      child:
-                                                                          Text(
-                                                                        'โบนัส',
-                                                                        // maxLines: 2,
-                                                                        // overflow: TextOverflow.ellipsis,
-                                                                        style: TextStyle(
-                                                                            fontSize:
-                                                                                14,
-                                                                            color:
-                                                                                Colors.white),
-                                                                      ),
-                                                                    ),
-                                                                  )
+                                                                          .black),
+                                                                ),
+                                                                lineProgress(
+                                                                    gender,
+                                                                    const TextStyle(
+                                                                      fontSize:
+                                                                          12,
+                                                                    ))
                                                               ],
                                                             ),
                                                             Row(
                                                               children: [
-                                                                if (social ==
-                                                                    'true')
-                                                                  Container(
-                                                                    // color: Colors.green,
-                                                                    decoration:
-                                                                        BoxDecoration(
-                                                                      borderRadius:
-                                                                          BorderRadius.circular(
-                                                                              20.0),
+                                                                const Text(
+                                                                  'อายุ : ',
+                                                                  // maxLines: 2,
+                                                                  // overflow: TextOverflow.ellipsis,
+                                                                  style: TextStyle(
+                                                                      fontSize:
+                                                                          12,
                                                                       color: Colors
-                                                                          .pink,
-                                                                    ),
-                                                                    child: Row(
-                                                                      children: [
-                                                                        Icon(Icons
-                                                                            .check),
-                                                                        const Padding(
-                                                                          padding:
-                                                                              EdgeInsets.all(8.0),
-                                                                          child:
-                                                                              Text(
-                                                                            'ประกันสังคม',
-                                                                            // maxLines: 2,
-                                                                            // overflow: TextOverflow.ellipsis,
-                                                                            style:
-                                                                                TextStyle(fontSize: 14, color: Colors.white),
-                                                                          ),
-                                                                        ),
-                                                                      ],
-                                                                    ),
-                                                                  )
-                                                                else
-                                                                  Container(
-                                                                    // color: Colors.green,
-                                                                    decoration:
-                                                                        BoxDecoration(
-                                                                      borderRadius:
-                                                                          BorderRadius.circular(
-                                                                              20.0),
+                                                                          .black),
+                                                                ),
+                                                                lineProgress(
+                                                                    age,
+                                                                    const TextStyle(
+                                                                      fontSize:
+                                                                          12,
+                                                                    )),
+                                                                const Text(
+                                                                  ' ปี',
+                                                                  // maxLines: 2,
+                                                                  // overflow: TextOverflow.ellipsis,
+                                                                  style: TextStyle(
+                                                                      fontSize:
+                                                                          12,
                                                                       color: Colors
-                                                                          .grey,
-                                                                    ),
-                                                                    child:
-                                                                        const Padding(
-                                                                      padding:
-                                                                          EdgeInsets.all(
-                                                                              8.0),
-                                                                      child:
-                                                                          Text(
-                                                                        'ประกันสังคม',
-                                                                        // maxLines: 2,
-                                                                        // overflow: TextOverflow.ellipsis,
-                                                                        style: TextStyle(
-                                                                            fontSize:
-                                                                                14,
-                                                                            color:
-                                                                                Colors.white),
-                                                                      ),
-                                                                    ),
-                                                                  )
+                                                                          .black),
+                                                                ),
                                                               ],
                                                             ),
                                                             Row(
                                                               children: [
-                                                                if (health ==
-                                                                    'true')
-                                                                  Container(
-                                                                    // color: Colors.green,
-                                                                    decoration:
-                                                                        BoxDecoration(
-                                                                      borderRadius:
-                                                                          BorderRadius.circular(
-                                                                              20.0),
+                                                                Text(
+                                                                  'ประสบการณ์ : ',
+                                                                  // maxLines: 2,
+                                                                  // overflow: TextOverflow.ellipsis,
+                                                                  style: TextStyle(
+                                                                      fontSize:
+                                                                          12,
                                                                       color: Colors
-                                                                          .pink,
-                                                                    ),
-                                                                    child: Row(
-                                                                      children: [
-                                                                        Icon(Icons
-                                                                            .check),
-                                                                        const Padding(
-                                                                          padding:
-                                                                              EdgeInsets.all(8.0),
-                                                                          child:
-                                                                              Text(
-                                                                            'ประกันสุขภาพ',
-                                                                            // maxLines: 2,
-                                                                            // overflow: TextOverflow.ellipsis,
-                                                                            style:
-                                                                                TextStyle(fontSize: 14, color: Colors.white),
-                                                                          ),
-                                                                        ),
-                                                                      ],
-                                                                    ),
-                                                                  )
-                                                                else
-                                                                  Container(
-                                                                    // color: Colors.green,
-                                                                    decoration:
-                                                                        BoxDecoration(
-                                                                      borderRadius:
-                                                                          BorderRadius.circular(
-                                                                              20.0),
+                                                                          .black),
+                                                                ),
+                                                                lineProgress(
+                                                                    exp,
+                                                                    TextStyle(
+                                                                      fontSize:
+                                                                          12,
+                                                                    )),
+                                                                Text(
+                                                                  ' ปี',
+                                                                  // maxLines: 2,
+                                                                  // overflow: TextOverflow.ellipsis,
+                                                                  style: TextStyle(
+                                                                      fontSize:
+                                                                          12,
                                                                       color: Colors
-                                                                          .grey,
-                                                                    ),
-                                                                    child:
-                                                                        const Padding(
-                                                                      padding:
-                                                                          EdgeInsets.all(
-                                                                              8.0),
-                                                                      child:
-                                                                          Text(
-                                                                        'ประกันสุขภาพ',
-                                                                        // maxLines: 2,
-                                                                        // overflow: TextOverflow.ellipsis,
-                                                                        style: TextStyle(
-                                                                            fontSize:
-                                                                                14,
-                                                                            color:
-                                                                                Colors.white),
-                                                                      ),
-                                                                    ),
-                                                                  )
+                                                                          .black),
+                                                                ),
                                                               ],
                                                             ),
                                                             Row(
                                                               children: [
-                                                                if (timecost ==
-                                                                    'true')
-                                                                  Container(
-                                                                    // color: Colors.green,
-                                                                    decoration:
-                                                                        BoxDecoration(
-                                                                      borderRadius:
-                                                                          BorderRadius.circular(
-                                                                              20.0),
+                                                                Text(
+                                                                  'คุณสมบัติเพิ่มเติม : ',
+                                                                  // maxLines: 2,
+                                                                  // overflow: TextOverflow.ellipsis,
+                                                                  style: TextStyle(
+                                                                      fontSize:
+                                                                          12,
                                                                       color: Colors
-                                                                          .pink,
-                                                                    ),
-                                                                    child: Row(
-                                                                      children: [
-                                                                        Icon(Icons
-                                                                            .check),
-                                                                        const Padding(
-                                                                          padding:
-                                                                              EdgeInsets.all(8.0),
-                                                                          child:
-                                                                              Text(
-                                                                            'ค่าล่วงเวลา',
-                                                                            // maxLines: 2,
-                                                                            // overflow: TextOverflow.ellipsis,
-                                                                            style:
-                                                                                TextStyle(fontSize: 14, color: Colors.white),
-                                                                          ),
-                                                                        ),
-                                                                      ],
-                                                                    ),
-                                                                  )
-                                                                else
-                                                                  Container(
-                                                                    // color: Colors.green,
-                                                                    decoration:
-                                                                        BoxDecoration(
-                                                                      borderRadius:
-                                                                          BorderRadius.circular(
-                                                                              20.0),
-                                                                      color: Colors
-                                                                          .grey,
-                                                                    ),
-                                                                    child:
-                                                                        const Padding(
-                                                                      padding:
-                                                                          EdgeInsets.all(
-                                                                              8.0),
-                                                                      child:
-                                                                          Text(
-                                                                        'ค่าล่วงเวลา',
-                                                                        // maxLines: 2,
-                                                                        // overflow: TextOverflow.ellipsis,
-                                                                        style: TextStyle(
-                                                                            fontSize:
-                                                                                14,
-                                                                            color:
-                                                                                Colors.white),
-                                                                      ),
-                                                                    ),
-                                                                  )
+                                                                          .black),
+                                                                ),
                                                               ],
                                                             ),
-                                                            Row(
-                                                              children: [
-                                                                if (hospital ==
-                                                                    'true')
-                                                                  Container(
-                                                                    // color: Colors.green,
-                                                                    decoration:
-                                                                        BoxDecoration(
-                                                                      borderRadius:
-                                                                          BorderRadius.circular(
-                                                                              20.0),
-                                                                      color: Colors
-                                                                          .pink,
-                                                                    ),
-                                                                    child: Row(
-                                                                      children: [
-                                                                        Icon(Icons
-                                                                            .check),
-                                                                        const Padding(
-                                                                          padding:
-                                                                              EdgeInsets.all(8.0),
-                                                                          child:
-                                                                              Text(
-                                                                            'ค่ารักษาพยาบาล',
-                                                                            // maxLines: 2,
-                                                                            // overflow: TextOverflow.ellipsis,
-                                                                            style:
-                                                                                TextStyle(fontSize: 14, color: Colors.white),
-                                                                          ),
-                                                                        ),
-                                                                      ],
-                                                                    ),
-                                                                  )
-                                                                else
-                                                                  Container(
-                                                                    // color: Colors.green,
-                                                                    decoration:
-                                                                        BoxDecoration(
-                                                                      borderRadius:
-                                                                          BorderRadius.circular(
-                                                                              20.0),
-                                                                      color: Colors
-                                                                          .grey,
-                                                                    ),
-                                                                    child:
-                                                                        const Padding(
-                                                                      padding:
-                                                                          EdgeInsets.all(
-                                                                              8.0),
-                                                                      child:
-                                                                          Text(
-                                                                        'ค่ารักษาพยาบาล',
-                                                                        // maxLines: 2,
-                                                                        // overflow: TextOverflow.ellipsis,
-                                                                        style: TextStyle(
-                                                                            fontSize:
-                                                                                14,
-                                                                            color:
-                                                                                Colors.white),
-                                                                      ),
-                                                                    ),
-                                                                  )
-                                                              ],
-                                                            ),
-                                                            Row(
-                                                              children: [
-                                                                if (covid ==
-                                                                    'true')
-                                                                  Container(
-                                                                    // color: Colors.green,
-                                                                    decoration:
-                                                                        BoxDecoration(
-                                                                      borderRadius:
-                                                                          BorderRadius.circular(
-                                                                              20.0),
-                                                                      color: Colors
-                                                                          .pink,
-                                                                    ),
-                                                                    child: Row(
-                                                                      children: [
-                                                                        Icon(Icons
-                                                                            .check),
-                                                                        const Padding(
-                                                                          padding:
-                                                                              EdgeInsets.all(8.0),
-                                                                          child:
-                                                                              Text(
-                                                                            'ประกันโควิด',
-                                                                            // maxLines: 2,
-                                                                            // overflow: TextOverflow.ellipsis,
-                                                                            style:
-                                                                                TextStyle(fontSize: 14, color: Colors.white),
-                                                                          ),
-                                                                        ),
-                                                                      ],
-                                                                    ),
-                                                                  )
-                                                                else
-                                                                  Container(
-                                                                    // color: Colors.green,
-                                                                    decoration:
-                                                                        BoxDecoration(
-                                                                      borderRadius:
-                                                                          BorderRadius.circular(
-                                                                              20.0),
-                                                                      color: Colors
-                                                                          .grey,
-                                                                    ),
-                                                                    child:
-                                                                        const Padding(
-                                                                      padding:
-                                                                          EdgeInsets.all(
-                                                                              8.0),
-                                                                      child:
-                                                                          Text(
-                                                                        'ประกันโควิด',
-                                                                        // maxLines: 2,
-                                                                        // overflow: TextOverflow.ellipsis,
-                                                                        style: TextStyle(
-                                                                            fontSize:
-                                                                                14,
-                                                                            color:
-                                                                                Colors.white),
-                                                                      ),
-                                                                    ),
-                                                                  )
-                                                              ],
-                                                            ),
-                                                            Row(
-                                                              children: [
-                                                                if (people ==
-                                                                    'true')
-                                                                  Container(
-                                                                    // color: Colors.green,
-                                                                    decoration:
-                                                                        BoxDecoration(
-                                                                      borderRadius:
-                                                                          BorderRadius.circular(
-                                                                              20.0),
-                                                                      color: Colors
-                                                                          .pink,
-                                                                    ),
-                                                                    child: Row(
-                                                                      children: [
-                                                                        Icon(Icons
-                                                                            .check),
-                                                                        const Padding(
-                                                                          padding:
-                                                                              EdgeInsets.all(8.0),
-                                                                          child:
-                                                                              Text(
-                                                                            'ประกันชีวิต',
-                                                                            // maxLines: 2,
-                                                                            // overflow: TextOverflow.ellipsis,
-                                                                            style:
-                                                                                TextStyle(fontSize: 14, color: Colors.white),
-                                                                          ),
-                                                                        ),
-                                                                      ],
-                                                                    ),
-                                                                  )
-                                                                else
-                                                                  Container(
-                                                                    // color: Colors.green,
-                                                                    decoration:
-                                                                        BoxDecoration(
-                                                                      borderRadius:
-                                                                          BorderRadius.circular(
-                                                                              20.0),
-                                                                      color: Colors
-                                                                          .grey,
-                                                                    ),
-                                                                    child:
-                                                                        const Padding(
-                                                                      padding:
-                                                                          EdgeInsets.all(
-                                                                              8.0),
-                                                                      child:
-                                                                          Text(
-                                                                        'ประกันชีวิต',
-                                                                        // maxLines: 2,
-                                                                        // overflow: TextOverflow.ellipsis,
-                                                                        style: TextStyle(
-                                                                            fontSize:
-                                                                                14,
-                                                                            color:
-                                                                                Colors.white),
-                                                                      ),
-                                                                    ),
-                                                                  )
-                                                              ],
+                                                            Container(
+                                                              width: 300,
+                                                              child:
+                                                                  lineProgressIMG3(
+                                                                      more3,
+                                                                      TextStyle(
+                                                                        fontSize:
+                                                                            12,
+                                                                      )),
                                                             ),
                                                           ],
                                                         ),
-                                                      ],
-                                                    ),
-                                                  ],
-                                                ),
-                                              ],
-                                            ),
-                                            Row(
-                                              children: [
-                                                Text('สวัสดิการเพิ่มเติม :'),
-                                              ],
-                                            ),
-                                            lineProgress(more4, TextStyle())
-                                          ],
-                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ],
+                                              ),
+                                            ],
+                                          ),
+                                        ],
                                       ),
                                     ),
-                                    Padding(
-                                      padding: const EdgeInsets.all(15.0),
-                                      child: Container(
-                                        decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(20.0),
-                                          color: Colors.grey.shade200,
-                                        ),
-                                        width:
-                                            MediaQuery.of(context).size.width,
-                                        // ignore: deprecated_member_use
-                                        child: Column(
-                                          children: [
-                                            const SizedBox(
-                                              height: 5,
-                                            ),
-                                            Row(
-                                              children: [
-                                                Column(
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                  children: [
-                                                    Row(
-                                                      crossAxisAlignment:
-                                                          CrossAxisAlignment
-                                                              .start,
-                                                      children: [
-                                                        Container(
-                                                          // color: Colors.green,
-                                                          decoration:
-                                                              BoxDecoration(
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        20.0),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.all(10.0),
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                        borderRadius:
+                                            BorderRadius.circular(20.0),
+                                        color: Colors.grey.shade200,
+                                      ),
+                                      width: MediaQuery.of(context).size.width,
+                                      // ignore: deprecated_member_use
+                                      child: Column(
+                                        children: [
+                                          const SizedBox(
+                                            height: 5,
+                                          ),
+                                          Column(
+                                            children: [
+                                              Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Container(
+                                                    // color: Colors.green,
+                                                    decoration: BoxDecoration(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              20.0),
+                                                      color: Colors.purple,
+                                                    ),
+                                                    child: const Padding(
+                                                      padding:
+                                                          EdgeInsets.all(8.0),
+                                                      child: Text(
+                                                        'หน้าที่ความรับผิดชอบ',
+                                                        // maxLines: 2,
+                                                        // overflow: TextOverflow.ellipsis,
+                                                        style: TextStyle(
+                                                            fontSize: 14,
                                                             color:
-                                                                Colors.purple,
-                                                          ),
-                                                          child: const Padding(
-                                                            padding:
-                                                                EdgeInsets.all(
-                                                                    8.0),
-                                                            child: Text(
-                                                              'ข้อมูลติดต่อกลับ',
-                                                              // maxLines: 2,
-                                                              // overflow: TextOverflow.ellipsis,
-                                                              style: TextStyle(
-                                                                  fontSize: 14,
-                                                                  color: Colors
-                                                                      .white),
-                                                            ),
-                                                          ),
-                                                        ),
-                                                        SizedBox(
-                                                          width: 10,
-                                                        ),
-                                                      ],
+                                                                Colors.white),
+                                                      ),
                                                     ),
-                                                  ],
-                                                ),
-                                              ],
-                                            ),
-                                            Row(
-                                              children: [
-                                                // Text(
-                                                //   'ข้อมูลติดต่อกลับ',
-                                                //   // maxLines: 2,
-                                                //   // overflow: TextOverflow.ellipsis,
-                                                //   style: TextStyle(
-                                                //     fontSize: 14,
-                                                //   ),
-                                                // ),
-                                                lineProgress(name, TextStyle()),
-                                                // lineProgress(name, TextStyle()),
-                                                // lineProgress(name, TextStyle()),
-                                                // lineProgress(name, TextStyle()),
-                                                // lineProgress(name, TextStyle()),
-                                                // lineProgress(name, TextStyle()),
-                                              ],
-                                            ),
-                                            Row(
-                                              children: [
-                                                // Text(
-                                                //   'เบอร์ ',
-                                                //   // maxLines: 2,
-                                                //   // overflow: TextOverflow.ellipsis,
-                                                //   style: TextStyle(
-                                                //     fontSize: 14,
-                                                //   ),
-                                                // ),
-                                                lineProgress(
-                                                    phone, TextStyle()),
-                                                // lineProgress(name, TextStyle()),
-                                                // lineProgress(name, TextStyle()),
-                                                // lineProgress(name, TextStyle()),
-                                                // lineProgress(name, TextStyle()),
-                                                // lineProgress(name, TextStyle()),
-                                              ],
-                                            ),
-                                            Row(
-                                              children: [
-                                                // Text(
-                                                //   'เบอร์ ',
-                                                //   // maxLines: 2,
-                                                //   // overflow: TextOverflow.ellipsis,
-                                                //   style: TextStyle(
-                                                //     fontSize: 14,
-                                                //   ),
-                                                // ),
-                                                lineProgress(
-                                                    email, TextStyle()),
-                                                // lineProgress(name, TextStyle()),
-                                                // lineProgress(name, TextStyle()),
-                                                // lineProgress(name, TextStyle()),
-                                                // lineProgress(name, TextStyle()),
-                                                // lineProgress(name, TextStyle()),
-                                              ],
-                                            ),
-                                            Row(
-                                              children: [
-                                                // Text(
-                                                //   'เบอร์ ',
-                                                //   // maxLines: 2,
-                                                //   // overflow: TextOverflow.ellipsis,
-                                                //   style: TextStyle(
-                                                //     fontSize: 14,
-                                                //   ),
-                                                // ),
-                                                Container(
-                                                  width: 300,
-                                                  child: lineProgress(
-                                                      address, TextStyle()),
-                                                ),
-                                                // lineProgress(name, TextStyle()),
-                                                // lineProgress(name, TextStyle()),
-                                                // lineProgress(name, TextStyle()),
-                                                // lineProgress(name, TextStyle()),
-                                                // lineProgress(name, TextStyle()),
-                                              ],
-                                            ),
-                                            Row(
-                                              children: [
-                                                // Text(
-                                                //   'เบอร์ ',
-                                                //   // maxLines: 2,
-                                                //   // overflow: TextOverflow.ellipsis,
-                                                //   style: TextStyle(
-                                                //     fontSize: 14,
-                                                //   ),
-                                                // ),
-                                                lineProgress(
-                                                    province, TextStyle()),
-                                                SizedBox(
-                                                  width: 5,
-                                                ),
-                                                lineProgress(area, TextStyle()),
-                                                // lineProgress(name, TextStyle()),
-                                                // lineProgress(name, TextStyle()),
-                                                // lineProgress(name, TextStyle()),
-                                                // lineProgress(name, TextStyle()),
-                                                // lineProgress(name, TextStyle()),
-                                              ],
-                                            )
-                                          ],
-                                        ),
+                                                  ),
+                                                  SizedBox(
+                                                    width: 10,
+                                                  ),
+                                                  Column(
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
+                                                    children: [
+                                                      lineProgressIMG(
+                                                          mission,
+                                                          TextStyle(
+                                                            fontSize: 12,
+                                                          )),
+                                                    ],
+                                                  ),
+                                                ],
+                                              ),
+                                            ],
+                                          ),
+                                        ],
                                       ),
                                     ),
-                                    Padding(
-                                      padding: const EdgeInsets.all(15.0),
-                                      child: Container(
-                                        decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(20.0),
-                                          color: Colors.grey.shade200,
-                                        ),
-                                        width:
-                                            MediaQuery.of(context).size.width,
-                                        // ignore: deprecated_member_use
-                                        child: Column(
-                                          children: [
-                                            const SizedBox(
-                                              height: 5,
-                                            ),
-                                            Row(
-                                              children: [
-                                                Column(
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                  children: [
-                                                    Row(
-                                                      crossAxisAlignment:
-                                                          CrossAxisAlignment
-                                                              .start,
-                                                      children: [
-                                                        Container(
-                                                          // color: Colors.green,
-                                                          decoration:
-                                                              BoxDecoration(
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        20.0),
-                                                            color:
-                                                                Colors.purple,
-                                                          ),
-                                                          child: const Padding(
-                                                            padding:
-                                                                EdgeInsets.all(
-                                                                    8.0),
-                                                            child: Text(
-                                                              'รายละเอียดเพิ่มเติม',
-                                                              // maxLines: 2,
-                                                              // overflow: TextOverflow.ellipsis,
-                                                              style: TextStyle(
-                                                                  fontSize: 14,
-                                                                  color: Colors
-                                                                      .white),
-                                                            ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.all(15.0),
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                        borderRadius:
+                                            BorderRadius.circular(20.0),
+                                        color: Colors.grey.shade200,
+                                      ),
+                                      width: MediaQuery.of(context).size.width,
+                                      // ignore: deprecated_member_use
+                                      child: Column(
+                                        children: [
+                                          const SizedBox(
+                                            height: 5,
+                                          ),
+                                          Row(
+                                            children: [
+                                              Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Row(
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
+                                                    children: [
+                                                      Container(
+                                                        // color: Colors.green,
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      20.0),
+                                                          color: Colors.purple,
+                                                        ),
+                                                        child: const Padding(
+                                                          padding:
+                                                              EdgeInsets.all(
+                                                                  8.0),
+                                                          child: Text(
+                                                            'สวัสดิการ',
+                                                            // maxLines: 2,
+                                                            // overflow: TextOverflow.ellipsis,
+                                                            style: TextStyle(
+                                                                fontSize: 14,
+                                                                color: Colors
+                                                                    .white),
                                                           ),
                                                         ),
-                                                        SizedBox(
-                                                          width: 10,
-                                                        ),
-                                                      ],
-                                                    ),
-                                                  ],
-                                                ),
-                                              ],
-                                            ),
-                                            Row(
-                                              children: [
-                                                lineProgress(more7, TextStyle())
-                                              ],
-                                            ),
-                                          ],
-                                        ),
+                                                      ),
+                                                      SizedBox(
+                                                        width: 10,
+                                                      ),
+                                                      Column(
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .start,
+                                                        children: [
+                                                          Row(
+                                                            children: [
+                                                              if (bonus ==
+                                                                  'true')
+                                                                Container(
+                                                                  // color: Colors.green,
+                                                                  decoration:
+                                                                      BoxDecoration(
+                                                                    borderRadius:
+                                                                        BorderRadius.circular(
+                                                                            20.0),
+                                                                    color: Colors
+                                                                        .pink,
+                                                                  ),
+                                                                  child: Row(
+                                                                    children: [
+                                                                      Icon(Icons
+                                                                          .check),
+                                                                      const Padding(
+                                                                        padding:
+                                                                            EdgeInsets.all(8.0),
+                                                                        child:
+                                                                            Text(
+                                                                          'โบนัส',
+                                                                          // maxLines: 2,
+                                                                          // overflow: TextOverflow.ellipsis,
+                                                                          style: TextStyle(
+                                                                              fontSize: 12,
+                                                                              color: Colors.white),
+                                                                        ),
+                                                                      ),
+                                                                    ],
+                                                                  ),
+                                                                )
+                                                              else
+                                                                Container(
+                                                                  // color: Colors.green,
+                                                                  decoration:
+                                                                      BoxDecoration(
+                                                                    borderRadius:
+                                                                        BorderRadius.circular(
+                                                                            20.0),
+                                                                    color: Colors
+                                                                        .grey,
+                                                                  ),
+                                                                  child:
+                                                                      const Padding(
+                                                                    padding:
+                                                                        EdgeInsets.all(
+                                                                            8.0),
+                                                                    child: Text(
+                                                                      'โบนัส',
+                                                                      // maxLines: 2,
+                                                                      // overflow: TextOverflow.ellipsis,
+                                                                      style: TextStyle(
+                                                                          fontSize:
+                                                                              12,
+                                                                          color:
+                                                                              Colors.white),
+                                                                    ),
+                                                                  ),
+                                                                )
+                                                            ],
+                                                          ),
+                                                          Row(
+                                                            children: [
+                                                              if (social ==
+                                                                  'true')
+                                                                Container(
+                                                                  // color: Colors.green,
+                                                                  decoration:
+                                                                      BoxDecoration(
+                                                                    borderRadius:
+                                                                        BorderRadius.circular(
+                                                                            20.0),
+                                                                    color: Colors
+                                                                        .pink,
+                                                                  ),
+                                                                  child: Row(
+                                                                    children: [
+                                                                      Icon(Icons
+                                                                          .check),
+                                                                      const Padding(
+                                                                        padding:
+                                                                            EdgeInsets.all(8.0),
+                                                                        child:
+                                                                            Text(
+                                                                          'ประกันสังคม',
+                                                                          // maxLines: 2,
+                                                                          // overflow: TextOverflow.ellipsis,
+                                                                          style: TextStyle(
+                                                                              fontSize: 12,
+                                                                              color: Colors.white),
+                                                                        ),
+                                                                      ),
+                                                                    ],
+                                                                  ),
+                                                                )
+                                                              else
+                                                                Container(
+                                                                  // color: Colors.green,
+                                                                  decoration:
+                                                                      BoxDecoration(
+                                                                    borderRadius:
+                                                                        BorderRadius.circular(
+                                                                            20.0),
+                                                                    color: Colors
+                                                                        .grey,
+                                                                  ),
+                                                                  child:
+                                                                      const Padding(
+                                                                    padding:
+                                                                        EdgeInsets.all(
+                                                                            8.0),
+                                                                    child: Text(
+                                                                      'ประกันสังคม',
+                                                                      // maxLines: 2,
+                                                                      // overflow: TextOverflow.ellipsis,
+                                                                      style: TextStyle(
+                                                                          fontSize:
+                                                                              12,
+                                                                          color:
+                                                                              Colors.white),
+                                                                    ),
+                                                                  ),
+                                                                )
+                                                            ],
+                                                          ),
+                                                          Row(
+                                                            children: [
+                                                              if (health ==
+                                                                  'true')
+                                                                Container(
+                                                                  // color: Colors.green,
+                                                                  decoration:
+                                                                      BoxDecoration(
+                                                                    borderRadius:
+                                                                        BorderRadius.circular(
+                                                                            20.0),
+                                                                    color: Colors
+                                                                        .pink,
+                                                                  ),
+                                                                  child: Row(
+                                                                    children: [
+                                                                      Icon(Icons
+                                                                          .check),
+                                                                      const Padding(
+                                                                        padding:
+                                                                            EdgeInsets.all(8.0),
+                                                                        child:
+                                                                            Text(
+                                                                          'ประกันสุขภาพ',
+                                                                          // maxLines: 2,
+                                                                          // overflow: TextOverflow.ellipsis,
+                                                                          style: TextStyle(
+                                                                              fontSize: 12,
+                                                                              color: Colors.white),
+                                                                        ),
+                                                                      ),
+                                                                    ],
+                                                                  ),
+                                                                )
+                                                              else
+                                                                Container(
+                                                                  // color: Colors.green,
+                                                                  decoration:
+                                                                      BoxDecoration(
+                                                                    borderRadius:
+                                                                        BorderRadius.circular(
+                                                                            20.0),
+                                                                    color: Colors
+                                                                        .grey,
+                                                                  ),
+                                                                  child:
+                                                                      const Padding(
+                                                                    padding:
+                                                                        EdgeInsets.all(
+                                                                            8.0),
+                                                                    child: Text(
+                                                                      'ประกันสุขภาพ',
+                                                                      // maxLines: 2,
+                                                                      // overflow: TextOverflow.ellipsis,
+                                                                      style: TextStyle(
+                                                                          fontSize:
+                                                                              12,
+                                                                          color:
+                                                                              Colors.white),
+                                                                    ),
+                                                                  ),
+                                                                )
+                                                            ],
+                                                          ),
+                                                          Row(
+                                                            children: [
+                                                              if (timecost ==
+                                                                  'true')
+                                                                Container(
+                                                                  // color: Colors.green,
+                                                                  decoration:
+                                                                      BoxDecoration(
+                                                                    borderRadius:
+                                                                        BorderRadius.circular(
+                                                                            20.0),
+                                                                    color: Colors
+                                                                        .pink,
+                                                                  ),
+                                                                  child: Row(
+                                                                    children: [
+                                                                      Icon(Icons
+                                                                          .check),
+                                                                      const Padding(
+                                                                        padding:
+                                                                            EdgeInsets.all(8.0),
+                                                                        child:
+                                                                            Text(
+                                                                          'ค่าล่วงเวลา',
+                                                                          // maxLines: 2,
+                                                                          // overflow: TextOverflow.ellipsis,
+                                                                          style: TextStyle(
+                                                                              fontSize: 12,
+                                                                              color: Colors.white),
+                                                                        ),
+                                                                      ),
+                                                                    ],
+                                                                  ),
+                                                                )
+                                                              else
+                                                                Container(
+                                                                  // color: Colors.green,
+                                                                  decoration:
+                                                                      BoxDecoration(
+                                                                    borderRadius:
+                                                                        BorderRadius.circular(
+                                                                            20.0),
+                                                                    color: Colors
+                                                                        .grey,
+                                                                  ),
+                                                                  child:
+                                                                      const Padding(
+                                                                    padding:
+                                                                        EdgeInsets.all(
+                                                                            8.0),
+                                                                    child: Text(
+                                                                      'ค่าล่วงเวลา',
+                                                                      // maxLines: 2,
+                                                                      // overflow: TextOverflow.ellipsis,
+                                                                      style: TextStyle(
+                                                                          fontSize:
+                                                                              12,
+                                                                          color:
+                                                                              Colors.white),
+                                                                    ),
+                                                                  ),
+                                                                )
+                                                            ],
+                                                          ),
+                                                          Row(
+                                                            children: [
+                                                              if (hospital ==
+                                                                  'true')
+                                                                Container(
+                                                                  // color: Colors.green,
+                                                                  decoration:
+                                                                      BoxDecoration(
+                                                                    borderRadius:
+                                                                        BorderRadius.circular(
+                                                                            20.0),
+                                                                    color: Colors
+                                                                        .pink,
+                                                                  ),
+                                                                  child: Row(
+                                                                    children: [
+                                                                      Icon(Icons
+                                                                          .check),
+                                                                      const Padding(
+                                                                        padding:
+                                                                            EdgeInsets.all(8.0),
+                                                                        child:
+                                                                            Text(
+                                                                          'ค่ารักษาพยาบาล',
+                                                                          // maxLines: 2,
+                                                                          // overflow: TextOverflow.ellipsis,
+                                                                          style: TextStyle(
+                                                                              fontSize: 12,
+                                                                              color: Colors.white),
+                                                                        ),
+                                                                      ),
+                                                                    ],
+                                                                  ),
+                                                                )
+                                                              else
+                                                                Container(
+                                                                  // color: Colors.green,
+                                                                  decoration:
+                                                                      BoxDecoration(
+                                                                    borderRadius:
+                                                                        BorderRadius.circular(
+                                                                            20.0),
+                                                                    color: Colors
+                                                                        .grey,
+                                                                  ),
+                                                                  child:
+                                                                      const Padding(
+                                                                    padding:
+                                                                        EdgeInsets.all(
+                                                                            8.0),
+                                                                    child: Text(
+                                                                      'ค่ารักษาพยาบาล',
+                                                                      // maxLines: 2,
+                                                                      // overflow: TextOverflow.ellipsis,
+                                                                      style: TextStyle(
+                                                                          fontSize:
+                                                                              12,
+                                                                          color:
+                                                                              Colors.white),
+                                                                    ),
+                                                                  ),
+                                                                )
+                                                            ],
+                                                          ),
+                                                          Row(
+                                                            children: [
+                                                              if (covid ==
+                                                                  'true')
+                                                                Container(
+                                                                  // color: Colors.green,
+                                                                  decoration:
+                                                                      BoxDecoration(
+                                                                    borderRadius:
+                                                                        BorderRadius.circular(
+                                                                            20.0),
+                                                                    color: Colors
+                                                                        .pink,
+                                                                  ),
+                                                                  child: Row(
+                                                                    children: [
+                                                                      Icon(Icons
+                                                                          .check),
+                                                                      const Padding(
+                                                                        padding:
+                                                                            EdgeInsets.all(8.0),
+                                                                        child:
+                                                                            Text(
+                                                                          'ประกันโควิด',
+                                                                          // maxLines: 2,
+                                                                          // overflow: TextOverflow.ellipsis,
+                                                                          style: TextStyle(
+                                                                              fontSize: 12,
+                                                                              color: Colors.white),
+                                                                        ),
+                                                                      ),
+                                                                    ],
+                                                                  ),
+                                                                )
+                                                              else
+                                                                Container(
+                                                                  // color: Colors.green,
+                                                                  decoration:
+                                                                      BoxDecoration(
+                                                                    borderRadius:
+                                                                        BorderRadius.circular(
+                                                                            20.0),
+                                                                    color: Colors
+                                                                        .grey,
+                                                                  ),
+                                                                  child:
+                                                                      const Padding(
+                                                                    padding:
+                                                                        EdgeInsets.all(
+                                                                            8.0),
+                                                                    child: Text(
+                                                                      'ประกันโควิด',
+                                                                      // maxLines: 2,
+                                                                      // overflow: TextOverflow.ellipsis,
+                                                                      style: TextStyle(
+                                                                          fontSize:
+                                                                              12,
+                                                                          color:
+                                                                              Colors.white),
+                                                                    ),
+                                                                  ),
+                                                                )
+                                                            ],
+                                                          ),
+                                                          Row(
+                                                            children: [
+                                                              if (people ==
+                                                                  'true')
+                                                                Container(
+                                                                  // color: Colors.green,
+                                                                  decoration:
+                                                                      BoxDecoration(
+                                                                    borderRadius:
+                                                                        BorderRadius.circular(
+                                                                            20.0),
+                                                                    color: Colors
+                                                                        .pink,
+                                                                  ),
+                                                                  child: Row(
+                                                                    children: const [
+                                                                      Icon(Icons
+                                                                          .check),
+                                                                      Padding(
+                                                                        padding:
+                                                                            EdgeInsets.all(8.0),
+                                                                        child:
+                                                                            Text(
+                                                                          'ประกันชีวิต',
+                                                                          // maxLines: 2,
+                                                                          // overflow: TextOverflow.ellipsis,
+                                                                          style: TextStyle(
+                                                                              fontSize: 14,
+                                                                              color: Colors.white),
+                                                                        ),
+                                                                      ),
+                                                                    ],
+                                                                  ),
+                                                                )
+                                                              else
+                                                                Container(
+                                                                  // color: Colors.green,
+                                                                  decoration:
+                                                                      BoxDecoration(
+                                                                    borderRadius:
+                                                                        BorderRadius.circular(
+                                                                            20.0),
+                                                                    color: Colors
+                                                                        .grey,
+                                                                  ),
+                                                                  child:
+                                                                      const Padding(
+                                                                    padding:
+                                                                        EdgeInsets.all(
+                                                                            8.0),
+                                                                    child: Text(
+                                                                      'ประกันชีวิต',
+                                                                      // maxLines: 2,
+                                                                      // overflow: TextOverflow.ellipsis,
+                                                                      style: TextStyle(
+                                                                          fontSize:
+                                                                              12,
+                                                                          color:
+                                                                              Colors.white),
+                                                                    ),
+                                                                  ),
+                                                                )
+                                                            ],
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ],
+                                              ),
+                                            ],
+                                          ),
+                                          Row(
+                                            children: [
+                                              Text('สวัสดิการเพิ่มเติม :'),
+                                            ],
+                                          ),
+                                          lineProgress(
+                                              more4,
+                                              TextStyle(
+                                                fontSize: 12,
+                                              ))
+                                        ],
                                       ),
                                     ),
-                                  ],
-                                ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.all(15.0),
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                        borderRadius:
+                                            BorderRadius.circular(20.0),
+                                        color: Colors.grey.shade200,
+                                      ),
+                                      width: MediaQuery.of(context).size.width,
+                                      // ignore: deprecated_member_use
+                                      child: Column(
+                                        children: [
+                                          const SizedBox(
+                                            height: 5,
+                                          ),
+                                          Row(
+                                            children: [
+                                              Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Row(
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
+                                                    children: [
+                                                      Container(
+                                                        // color: Colors.green,
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      20.0),
+                                                          color: Colors.purple,
+                                                        ),
+                                                        child: const Padding(
+                                                          padding:
+                                                              EdgeInsets.all(
+                                                                  8.0),
+                                                          child: Text(
+                                                            'ข้อมูลติดต่อกลับ',
+                                                            // maxLines: 2,
+                                                            // overflow: TextOverflow.ellipsis,
+                                                            style: TextStyle(
+                                                                fontSize: 14,
+                                                                color: Colors
+                                                                    .white),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                      SizedBox(
+                                                        width: 10,
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ],
+                                              ),
+                                            ],
+                                          ),
+                                          Row(
+                                            children: [
+                                              lineProgress(
+                                                  name,
+                                                  TextStyle(
+                                                    fontSize: 12,
+                                                  )),
+                                            ],
+                                          ),
+                                          Row(
+                                            children: [
+                                              // Text(
+                                              //   'เบอร์ ',
+                                              //   // maxLines: 2,
+                                              //   // overflow: TextOverflow.ellipsis,
+                                              //   style: TextStyle(
+                                              //     fontSize: 14,
+                                              //   ),
+                                              // ),
+                                              lineProgress(
+                                                  phone,
+                                                  TextStyle(
+                                                    fontSize: 12,
+                                                  )),
+                                              // lineProgress(name, TextStyle()),
+                                              // lineProgress(name, TextStyle()),
+                                              // lineProgress(name, TextStyle()),
+                                              // lineProgress(name, TextStyle()),
+                                              // lineProgress(name, TextStyle()),
+                                            ],
+                                          ),
+                                          Row(
+                                            children: [
+                                              // Text(
+                                              //   'เบอร์ ',
+                                              //   // maxLines: 2,
+                                              //   // overflow: TextOverflow.ellipsis,
+                                              //   style: TextStyle(
+                                              //     fontSize: 14,
+                                              //   ),
+                                              // ),
+                                              lineProgress(
+                                                  email,
+                                                  TextStyle(
+                                                    fontSize: 12,
+                                                  )),
+                                              // lineProgress(name, TextStyle()),
+                                              // lineProgress(name, TextStyle()),
+                                              // lineProgress(name, TextStyle()),
+                                              // lineProgress(name, TextStyle()),
+                                              // lineProgress(name, TextStyle()),
+                                            ],
+                                          ),
+                                          Row(
+                                            children: [
+                                              // Text(
+                                              //   'เบอร์ ',
+                                              //   // maxLines: 2,
+                                              //   // overflow: TextOverflow.ellipsis,
+                                              //   style: TextStyle(
+                                              //     fontSize: 14,
+                                              //   ),
+                                              // ),
+                                              Container(
+                                                width: 300,
+                                                child: lineProgress(
+                                                    address,
+                                                    TextStyle(
+                                                      fontSize: 12,
+                                                    )),
+                                              ),
+                                              // lineProgress(name, TextStyle()),
+                                              // lineProgress(name, TextStyle()),
+                                              // lineProgress(name, TextStyle()),
+                                              // lineProgress(name, TextStyle()),
+                                              // lineProgress(name, TextStyle()),
+                                            ],
+                                          ),
+                                          Row(
+                                            children: [
+                                              // Text(
+                                              //   'เบอร์ ',
+                                              //   // maxLines: 2,
+                                              //   // overflow: TextOverflow.ellipsis,
+                                              //   style: TextStyle(
+                                              //     fontSize: 14,
+                                              //   ),
+                                              // ),
+                                              lineProgress(
+                                                  province,
+                                                  TextStyle(
+                                                    fontSize: 12,
+                                                  )),
+                                              SizedBox(
+                                                width: 5,
+                                              ),
+                                              lineProgress(
+                                                  area,
+                                                  TextStyle(
+                                                    fontSize: 12,
+                                                  )),
+                                              // lineProgress(name, TextStyle()),
+                                              // lineProgress(name, TextStyle()),
+                                              // lineProgress(name, TextStyle()),
+                                              // lineProgress(name, TextStyle()),
+                                              // lineProgress(name, TextStyle()),
+                                            ],
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.all(15.0),
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                        borderRadius:
+                                            BorderRadius.circular(20.0),
+                                        color: Colors.grey.shade200,
+                                      ),
+                                      width: MediaQuery.of(context).size.width,
+                                      // ignore: deprecated_member_use
+                                      child: Column(
+                                        children: [
+                                          const SizedBox(
+                                            height: 5,
+                                          ),
+                                          Row(
+                                            children: [
+                                              Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Row(
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
+                                                    children: [
+                                                      Container(
+                                                        // color: Colors.green,
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      20.0),
+                                                          color: Colors.purple,
+                                                        ),
+                                                        child: const Padding(
+                                                          padding:
+                                                              EdgeInsets.all(
+                                                                  8.0),
+                                                          child: Text(
+                                                            'รายละเอียดเพิ่มเติม',
+                                                            // maxLines: 2,
+                                                            // overflow: TextOverflow.ellipsis,
+                                                            style: TextStyle(
+                                                                fontSize: 14,
+                                                                color: Colors
+                                                                    .white),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                      SizedBox(
+                                                        width: 10,
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ],
+                                              ),
+                                            ],
+                                          ),
+                                          Row(
+                                            children: [
+                                              lineProgress(
+                                                  more7,
+                                                  TextStyle(
+                                                    fontSize: 12,
+                                                  ))
+                                            ],
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ],
                               ),
                             ),
 
@@ -1368,28 +1338,22 @@ class _DataWorkState extends State<DataWork> {
   Widget lineProgressIMG(data, TextStyle style) {
     return data == null
         ? LinearProgressIndicator()
-        : Card(
-            color: Colors.grey[200],
-            child: Text(
-              data,
-              style: style,
-              maxLines: 5,
-              overflow: TextOverflow.ellipsis,
-            ),
+        : Text(
+            data,
+            style: style,
+            maxLines: 5,
+            overflow: TextOverflow.ellipsis,
           );
   }
 
   Widget lineProgressIMG3(data, TextStyle style) {
     return data == null
         ? LinearProgressIndicator()
-        : Card(
-            color: Colors.grey[200],
-            child: Text(
-              data,
-              style: style,
-              maxLines: 5,
-              overflow: TextOverflow.ellipsis,
-            ),
+        : Text(
+            data,
+            style: style,
+            maxLines: 5,
+            overflow: TextOverflow.ellipsis,
           );
   }
 

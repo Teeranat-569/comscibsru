@@ -27,12 +27,7 @@ class _WorkPageState extends State<WorkPage> {
 
         if (snapshot.connectionState == ConnectionState.waiting) {
           return Scaffold(
-            body: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
-                CircularProgressIndicator(),
-              ],
-            ),
+            body: Center(child: CircularProgressIndicator()),
           );
         }
 
@@ -96,13 +91,13 @@ class _WorkPageState extends State<WorkPage> {
                                       data['companyName'],
                                       // maxLines: 3,
                                       // overflow: TextOverflow.ellipsis,
-                                      style: const TextStyle(fontSize: 14),
+                                      style: const TextStyle(fontSize: 12),
                                     ),
                                   ],
                                 ),
                               ),
                               const SizedBox(
-                                width: 12,
+                                width: 10,
                               ),
                               Container(
                                 width: 200,
@@ -146,7 +141,7 @@ class _WorkPageState extends State<WorkPage> {
                                           data['amount'].toString() +
                                           '\t' +
                                           'คน',
-                                      style: TextStyle(fontSize: 13),
+                                      style: TextStyle(fontSize: 12),
                                     ),
                                     Text(
                                       'เงินเดือน/เบี้ยเลี้ยง' +
@@ -154,10 +149,11 @@ class _WorkPageState extends State<WorkPage> {
                                           data['salary'] +
                                           '\t' +
                                           'บาท',
-                                      style: TextStyle(fontSize: 13),
+                                      style: TextStyle(fontSize: 12),
                                     ),
                                     Text(
                                       data['province'] + '\t' + data['area'],
+                                      style: TextStyle(fontSize: 12),
                                     ),
                                   ],
                                 ),
