@@ -39,7 +39,7 @@ class _Editmore4State extends State<Editmore4> {
                     .update({
                   'more4': nameForm,
                 });
-                route(EditDataWorkPage());
+                route(EditDataWorkPage(docid: widget.docid));
                 Fluttertoast.showToast(
                   msg: "แก้ไขสำเร็จ",
                   toastLength: Toast.LENGTH_SHORT,

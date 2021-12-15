@@ -310,34 +310,34 @@ class _AddWork4State extends State<AddWork4> {
           print('exp: ${widget.exp},');
           print(' gender:${widget.gender},');
           print(' more3 : ${widget.more3},');
-          print('bonus: ${bonus.toString()},');
-          print(' social: ${social.toString()},');
-          print(' health:${health.toString()},');
-          print('  timeCost:${timecost.toString()},');
-          print(' hospital: ${hospital.toString()},');
-          print('covid: ${covid.toString()},');
-          print('people: ${people.toString()},');
+          print('bonus: ${bonus},');
+          print(' social: ${social},');
+          print(' health:${health},');
+          print('  timeCost:${timecost},');
+          print(' hospital: ${hospital},');
+          print('covid: ${covid},');
+          print('people: ${people},');
           print(' more4 : ${more4},');
           print('salary: ${salary},');
           print('path:${widget.pathPIC},');
           route(AddWork5(
             aboutCompany: widget.aboutCompany,
             age: widget.age,
-            bonus: bonus.toString(),
+            bonus: bonus,
             companyName: widget.companyName,
-            covid: covid.toString(),
+            covid: covid,
             exp: widget.exp,
             gender: widget.gender,
-            health: health.toString(),
-            hospital: hospital.toString(),
+            health: health,
+            hospital: hospital,
             mission: widget.mission,
             more3: widget.more3,
-            people: people.toString(),
+            people: people,
             position: widget.position,
-            social: social.toString(),
+            social: social,
             worktype: widget.worktype,
             more4: more4,
-            timecost: timecost.toString(),
+            timecost: timecost,
             salary: salary,
             pathPIC: widget.pathPIC,
           ));

@@ -39,7 +39,7 @@ class _EditAddressState extends State<EditAddress> {
                     .update({
                   'address': nameForm,
                 });
-                route(EditDataWorkPage());
+                route(EditDataWorkPage(docid: widget.docid));
                 Fluttertoast.showToast(
                   msg: "แก้ไขสำเร็จ",
                   toastLength: Toast.LENGTH_SHORT,

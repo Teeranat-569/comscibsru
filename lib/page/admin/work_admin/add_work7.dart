@@ -20,14 +20,6 @@ class AddWork7 extends StatefulWidget {
       gender,
       age,
       exp,
-      more3,
-      bonus,
-      social,
-      health,
-      timecost,
-      hospital,
-      covid,
-      people,
       more4,
       amount,
       dateStop,
@@ -38,7 +30,10 @@ class AddWork7 extends StatefulWidget {
       province,
       salary,
       pathPIC,
-      area;
+      area,
+      more3;
+  bool bonus, social, health, timecost, hospital, covid, people;
+
   AddWork7(
       {Key? key,
       this.mission,
@@ -50,16 +45,16 @@ class AddWork7 extends StatefulWidget {
       this.exp,
       this.gender,
       this.more3,
-      this.bonus,
-      this.covid,
-      this.health,
-      this.hospital,
-      this.people,
-      this.social,
+      required this.bonus,
+      required this.covid,
+      required this.health,
+      required this.hospital,
+      required this.people,
+      required this.social,
       this.more4,
       this.amount,
       this.dateStop,
-      this.timecost,
+      required this.timecost,
       this.address,
       this.area,
       this.email,
@@ -273,9 +268,10 @@ class _AddWork7State extends State<AddWork7> {
         .ref('company/$fileName')
         .getDownloadURL();
     setState(() {
-      img = url.toString(); print('7777777777777777777777777777$img');
+      img = url.toString();
+      print('7777777777777777777777777777$img');
     });
-   
+
     // Within your widgets:
     // Image.network(downloadURL);
   }

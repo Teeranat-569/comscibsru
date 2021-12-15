@@ -4,19 +4,19 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 // ignore: must_be_immutable
-class EditAbout extends StatefulWidget {
+class EditStatus extends StatefulWidget {
   String docid, position;
-  EditAbout({Key? key, required this.docid, required this.position})
+  EditStatus({Key? key, required this.docid, required this.position})
       : super(key: key);
   @override
-  _EditAboutState createState() => _EditAboutState();
+  _EditStatusState createState() => _EditStatusState();
 }
 
-_EditAboutState createState() => _EditAboutState();
+_EditStatusState createState() => _EditStatusState();
 
-class _EditAboutState extends State<EditAbout> {
+class _EditStatusState extends State<EditStatus> {
   final textFill = GlobalKey<FormState>();
-  dynamic nameForm;
+  dynamic nameForm, _chosenValue;
   var textEditController = TextEditingController();
   var collection = FirebaseFirestore.instance.collection('work');
 
@@ -25,7 +25,7 @@ class _EditAboutState extends State<EditAbout> {
     return Scaffold(
         appBar: AppBar(
           centerTitle: true,
-          title: const Text('แก้ไขเกี่ยวกับบริษัท'),
+          title: const Text('แก้ไขรูปแบบงาน'),
           backgroundColor: Colors.pink[900],
         ),
         floatingActionButton: Column(
@@ -37,7 +37,7 @@ class _EditAboutState extends State<EditAbout> {
                     .doc(widget
                         .docid) // <-- Doc ID where data should be updated.
                     .update({
-                  'aboutCompany': nameForm,
+                  'status': _chosenValue,
                 });
                 route(EditDataWorkPage(docid: widget.docid));
                 Fluttertoast.showToast(
@@ -66,13 +66,73 @@ class _EditAboutState extends State<EditAbout> {
                 const SizedBox(
                   height: 10.0,
                 ),
-                Text('เกี่ยวกับบริษัท'),
-                nameform(),
+                // Text('รูปแบบงาน'),
+                dropDown(),
                 const SizedBox(
                   height: 10.0,
                 ),
               ])),
         )));
+  }
+
+  Widget dropDown() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        const Text(
+          'สถานะ : ',
+          style: TextStyle(
+            color: Colors.black,
+            fontSize: 16,
+            fontWeight: FontWeight.w500,
+          ),
+        ),
+        // const SizedBox(),
+        Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10),
+            color: Colors.grey[200],
+          ),
+          child: Padding(
+            padding: const EdgeInsets.only(left: 10, right: 10),
+            child: DropdownButton<String>(
+              focusColor: Colors.white,
+              value: _chosenValue,
+              style: const TextStyle(color: Colors.white),
+              iconEnabledColor: Colors.black,
+              items: <String>['เปิดรับสมัคร', 'ด่วน', 'ปิดรับสมัคร']
+                  .map<DropdownMenuItem<String>>((String value) {
+                return DropdownMenuItem<String>(
+                  value: value,
+                  child: Text(
+                    value,
+                    style: const TextStyle(
+                        color: Colors.black, fontFamily: 'Mitr'),
+                  ),
+                );
+              }).toList(),
+              hint: const Center(
+                child: Text(
+                  "เลือกสถานะ",
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 16,
+                      fontWeight: FontWeight.w500,
+                      fontFamily: 'Mitr'),
+                ),
+              ),
+              onChanged: (dynamic value) {
+                setState(() {
+                  _chosenValue = value;
+                  print(_chosenValue);
+                  print('66666666666' + value);
+                });
+              },
+            ),
+          ),
+        ),
+      ],
+    );
   }
 
   Widget nameform() {

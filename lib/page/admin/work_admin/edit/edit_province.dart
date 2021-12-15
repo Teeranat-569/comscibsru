@@ -44,7 +44,7 @@ class _EditProvinceState extends State<EditProvince> {
                   'province': nameForm,
                   'area': areaForm,
                 });
-                route(EditDataWorkPage());
+                route(EditDataWorkPage(docid: widget.docid));
                 Fluttertoast.showToast(
                   msg: "แก้ไขสำเร็จ",
                   toastLength: Toast.LENGTH_SHORT,

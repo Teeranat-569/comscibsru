@@ -59,14 +59,14 @@ class _DataWorkState extends State<DataWork> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          title: Text('ประกาศรับสมัครงาน'),
+          title: const Text('ประกาศรับสมัครงาน'),
         ),
         body: SafeArea(
           child: Stack(
             children: [
               show
-                  ? Center(
-                      child: CircularProgressIndicator(
+                  ? const Center(
+                      child: const CircularProgressIndicator(
                       color: Colors.amber,
                     ))
                   : SingleChildScrollView(
@@ -102,7 +102,7 @@ class _DataWorkState extends State<DataWork> {
                                           children: [
                                             if (pathPIC == null ||
                                                 pathPIC == '')
-                                              CircularProgressIndicator()
+                                              const CircularProgressIndicator()
                                             else
                                               CircleAvatar(
                                                 backgroundColor: Colors.white,
@@ -128,7 +128,7 @@ class _DataWorkState extends State<DataWork> {
                                           crossAxisAlignment:
                                               CrossAxisAlignment.start,
                                           children: [
-                                            if (status == 'open')
+                                            if (status == 'เปิดรับสมัคร')
                                               Container(
                                                 // color: Colors.green,
                                                 decoration: BoxDecoration(
@@ -148,6 +148,48 @@ class _DataWorkState extends State<DataWork> {
                                                         color: Colors.white),
                                                   ),
                                                 ),
+                                              )
+                                            else if (status == 'ด่วน')
+                                              Container(
+                                                // color: Colors.green,
+                                                decoration: BoxDecoration(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          10.0),
+                                                  color: Colors.amber[900],
+                                                ),
+                                                child: const Padding(
+                                                  padding: EdgeInsets.all(8.0),
+                                                  child: Text(
+                                                    'รับสมัครด่วน',
+                                                    // maxLines: 2,
+                                                    // overflow: TextOverflow.ellipsis,
+                                                    style: TextStyle(
+                                                        fontSize: 10,
+                                                        color: Colors.white),
+                                                  ),
+                                                ),
+                                              )
+                                            else if (status == 'ปิดรับสมัคร')
+                                              Container(
+                                                // color: Colors.green,
+                                                decoration: BoxDecoration(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          10.0),
+                                                  color: Colors.red[900],
+                                                ),
+                                                child: const Padding(
+                                                  padding: EdgeInsets.all(8.0),
+                                                  child: Text(
+                                                    'ปิดรับสมัคร',
+                                                    // maxLines: 2,
+                                                    // overflow: TextOverflow.ellipsis,
+                                                    style: TextStyle(
+                                                        fontSize: 10,
+                                                        color: Colors.white),
+                                                  ),
+                                                ),
                                               ),
                                             lineProgress(
                                               position,
@@ -156,18 +198,18 @@ class _DataWorkState extends State<DataWork> {
                                                   color: Colors.purple),
                                             ),
                                             lineProgress(companyName,
-                                                TextStyle(fontSize: 14)),
+                                                const TextStyle(fontSize: 14)),
                                           ],
                                         ),
                                       ),
                                     ],
                                   ),
-                                  SizedBox(
+                                  const SizedBox(
                                     height: 15,
                                   ),
                                   Row(
                                     children: [
-                                      SizedBox(
+                                      const SizedBox(
                                         width: 15,
                                       ),
                                       Container(
@@ -193,14 +235,14 @@ class _DataWorkState extends State<DataWork> {
                                   ),
                                   Row(
                                     children: [
-                                      SizedBox(
+                                      const SizedBox(
                                         width: 15,
                                       ),
                                       Container(
                                         width: 340,
                                         child: lineProgressIMG(
                                           aboutCompany,
-                                          TextStyle(fontSize: 12),
+                                          const TextStyle(fontSize: 12),
                                         ),
                                       ),
                                     ],
@@ -240,7 +282,7 @@ class _DataWorkState extends State<DataWork> {
                                                           amount.toString() +
                                                           '\t' +
                                                           'คน',
-                                                      style: TextStyle(
+                                                      style: const TextStyle(
                                                           fontSize: 13),
                                                     ),
                                                   ),
@@ -303,7 +345,7 @@ class _DataWorkState extends State<DataWork> {
                                                           ),
                                                         ),
                                                       ),
-                                                      SizedBox(
+                                                      const SizedBox(
                                                         width: 10,
                                                       ),
                                                       Container(
@@ -363,7 +405,7 @@ class _DataWorkState extends State<DataWork> {
                                                             ),
                                                             Row(
                                                               children: [
-                                                                Text(
+                                                                const Text(
                                                                   'ประสบการณ์ : ',
                                                                   // maxLines: 2,
                                                                   // overflow: TextOverflow.ellipsis,
@@ -375,11 +417,11 @@ class _DataWorkState extends State<DataWork> {
                                                                 ),
                                                                 lineProgress(
                                                                     exp,
-                                                                    TextStyle(
+                                                                    const TextStyle(
                                                                       fontSize:
                                                                           12,
                                                                     )),
-                                                                Text(
+                                                                const Text(
                                                                   ' ปี',
                                                                   // maxLines: 2,
                                                                   // overflow: TextOverflow.ellipsis,
@@ -393,7 +435,7 @@ class _DataWorkState extends State<DataWork> {
                                                             ),
                                                             Row(
                                                               children: [
-                                                                Text(
+                                                                const Text(
                                                                   'คุณสมบัติเพิ่มเติม : ',
                                                                   // maxLines: 2,
                                                                   // overflow: TextOverflow.ellipsis,
@@ -407,13 +449,12 @@ class _DataWorkState extends State<DataWork> {
                                                             ),
                                                             Container(
                                                               width: 300,
-                                                              child:
-                                                                  lineProgressIMG3(
-                                                                      more3,
-                                                                      TextStyle(
-                                                                        fontSize:
-                                                                            12,
-                                                                      )),
+                                                              child: lineProgressIMG3(
+                                                                  more3,
+                                                                  const TextStyle(
+                                                                    fontSize:
+                                                                        12,
+                                                                  )),
                                                             ),
                                                           ],
                                                         ),
@@ -471,7 +512,7 @@ class _DataWorkState extends State<DataWork> {
                                                       ),
                                                     ),
                                                   ),
-                                                  SizedBox(
+                                                  const SizedBox(
                                                     width: 10,
                                                   ),
                                                   Column(
@@ -481,7 +522,7 @@ class _DataWorkState extends State<DataWork> {
                                                     children: [
                                                       lineProgressIMG(
                                                           mission,
-                                                          TextStyle(
+                                                          const TextStyle(
                                                             fontSize: 12,
                                                           )),
                                                     ],
@@ -545,7 +586,7 @@ class _DataWorkState extends State<DataWork> {
                                                           ),
                                                         ),
                                                       ),
-                                                      SizedBox(
+                                                      const SizedBox(
                                                         width: 10,
                                                       ),
                                                       Column(
@@ -556,7 +597,8 @@ class _DataWorkState extends State<DataWork> {
                                                           Row(
                                                             children: [
                                                               if (bonus ==
-                                                                  'true')
+                                                                      'true' ||
+                                                                  bonus)
                                                                 Container(
                                                                   // color: Colors.green,
                                                                   decoration:
@@ -569,8 +611,9 @@ class _DataWorkState extends State<DataWork> {
                                                                   ),
                                                                   child: Row(
                                                                     children: [
-                                                                      Icon(Icons
-                                                                          .check),
+                                                                      const Icon(
+                                                                          Icons
+                                                                              .check),
                                                                       const Padding(
                                                                         padding:
                                                                             EdgeInsets.all(8.0),
@@ -620,7 +663,9 @@ class _DataWorkState extends State<DataWork> {
                                                           Row(
                                                             children: [
                                                               if (social ==
-                                                                  'true')
+                                                                      'true' ||
+                                                                  social ==
+                                                                      true)
                                                                 Container(
                                                                   // color: Colors.green,
                                                                   decoration:
@@ -633,8 +678,9 @@ class _DataWorkState extends State<DataWork> {
                                                                   ),
                                                                   child: Row(
                                                                     children: [
-                                                                      Icon(Icons
-                                                                          .check),
+                                                                      const Icon(
+                                                                          Icons
+                                                                              .check),
                                                                       const Padding(
                                                                         padding:
                                                                             EdgeInsets.all(8.0),
@@ -684,7 +730,9 @@ class _DataWorkState extends State<DataWork> {
                                                           Row(
                                                             children: [
                                                               if (health ==
-                                                                  'true')
+                                                                      'true' ||
+                                                                  health ==
+                                                                      true)
                                                                 Container(
                                                                   // color: Colors.green,
                                                                   decoration:
@@ -697,8 +745,9 @@ class _DataWorkState extends State<DataWork> {
                                                                   ),
                                                                   child: Row(
                                                                     children: [
-                                                                      Icon(Icons
-                                                                          .check),
+                                                                      const Icon(
+                                                                          Icons
+                                                                              .check),
                                                                       const Padding(
                                                                         padding:
                                                                             EdgeInsets.all(8.0),
@@ -748,7 +797,9 @@ class _DataWorkState extends State<DataWork> {
                                                           Row(
                                                             children: [
                                                               if (timecost ==
-                                                                  'true')
+                                                                      'true' ||
+                                                                  timecost ==
+                                                                      true)
                                                                 Container(
                                                                   // color: Colors.green,
                                                                   decoration:
@@ -761,8 +812,9 @@ class _DataWorkState extends State<DataWork> {
                                                                   ),
                                                                   child: Row(
                                                                     children: [
-                                                                      Icon(Icons
-                                                                          .check),
+                                                                      const Icon(
+                                                                          Icons
+                                                                              .check),
                                                                       const Padding(
                                                                         padding:
                                                                             EdgeInsets.all(8.0),
@@ -812,7 +864,9 @@ class _DataWorkState extends State<DataWork> {
                                                           Row(
                                                             children: [
                                                               if (hospital ==
-                                                                  'true')
+                                                                      'true' ||
+                                                                  hospital ==
+                                                                      true)
                                                                 Container(
                                                                   // color: Colors.green,
                                                                   decoration:
@@ -825,8 +879,9 @@ class _DataWorkState extends State<DataWork> {
                                                                   ),
                                                                   child: Row(
                                                                     children: [
-                                                                      Icon(Icons
-                                                                          .check),
+                                                                      const Icon(
+                                                                          Icons
+                                                                              .check),
                                                                       const Padding(
                                                                         padding:
                                                                             EdgeInsets.all(8.0),
@@ -876,7 +931,8 @@ class _DataWorkState extends State<DataWork> {
                                                           Row(
                                                             children: [
                                                               if (covid ==
-                                                                  'true')
+                                                                      'true' ||
+                                                                  covid == true)
                                                                 Container(
                                                                   // color: Colors.green,
                                                                   decoration:
@@ -889,8 +945,9 @@ class _DataWorkState extends State<DataWork> {
                                                                   ),
                                                                   child: Row(
                                                                     children: [
-                                                                      Icon(Icons
-                                                                          .check),
+                                                                      const Icon(
+                                                                          Icons
+                                                                              .check),
                                                                       const Padding(
                                                                         padding:
                                                                             EdgeInsets.all(8.0),
@@ -940,7 +997,9 @@ class _DataWorkState extends State<DataWork> {
                                                           Row(
                                                             children: [
                                                               if (people ==
-                                                                  'true')
+                                                                      'true' ||
+                                                                  people ==
+                                                                      true)
                                                                 Container(
                                                                   // color: Colors.green,
                                                                   decoration:
@@ -961,8 +1020,6 @@ class _DataWorkState extends State<DataWork> {
                                                                         child:
                                                                             Text(
                                                                           'ประกันชีวิต',
-                                                                          // maxLines: 2,
-                                                                          // overflow: TextOverflow.ellipsis,
                                                                           style: TextStyle(
                                                                               fontSize: 14,
                                                                               color: Colors.white),
@@ -989,8 +1046,6 @@ class _DataWorkState extends State<DataWork> {
                                                                             8.0),
                                                                     child: Text(
                                                                       'ประกันชีวิต',
-                                                                      // maxLines: 2,
-                                                                      // overflow: TextOverflow.ellipsis,
                                                                       style: TextStyle(
                                                                           fontSize:
                                                                               12,
@@ -1011,12 +1066,13 @@ class _DataWorkState extends State<DataWork> {
                                           ),
                                           Row(
                                             children: [
-                                              Text('สวัสดิการเพิ่มเติม :'),
+                                              const Text(
+                                                  'สวัสดิการเพิ่มเติม :'),
                                             ],
                                           ),
                                           lineProgress(
                                               more4,
-                                              TextStyle(
+                                              const TextStyle(
                                                 fontSize: 12,
                                               ))
                                         ],
@@ -1065,8 +1121,6 @@ class _DataWorkState extends State<DataWork> {
                                                                   8.0),
                                                           child: Text(
                                                             'ข้อมูลติดต่อกลับ',
-                                                            // maxLines: 2,
-                                                            // overflow: TextOverflow.ellipsis,
                                                             style: TextStyle(
                                                                 fontSize: 14,
                                                                 color: Colors
@@ -1074,7 +1128,7 @@ class _DataWorkState extends State<DataWork> {
                                                           ),
                                                         ),
                                                       ),
-                                                      SizedBox(
+                                                      const SizedBox(
                                                         width: 10,
                                                       ),
                                                     ],
@@ -1087,108 +1141,56 @@ class _DataWorkState extends State<DataWork> {
                                             children: [
                                               lineProgress(
                                                   name,
-                                                  TextStyle(
+                                                  const TextStyle(
                                                     fontSize: 12,
                                                   )),
                                             ],
                                           ),
                                           Row(
                                             children: [
-                                              // Text(
-                                              //   'เบอร์ ',
-                                              //   // maxLines: 2,
-                                              //   // overflow: TextOverflow.ellipsis,
-                                              //   style: TextStyle(
-                                              //     fontSize: 14,
-                                              //   ),
-                                              // ),
                                               lineProgress(
                                                   phone,
-                                                  TextStyle(
+                                                  const TextStyle(
                                                     fontSize: 12,
                                                   )),
-                                              // lineProgress(name, TextStyle()),
-                                              // lineProgress(name, TextStyle()),
-                                              // lineProgress(name, TextStyle()),
-                                              // lineProgress(name, TextStyle()),
-                                              // lineProgress(name, TextStyle()),
                                             ],
                                           ),
                                           Row(
                                             children: [
-                                              // Text(
-                                              //   'เบอร์ ',
-                                              //   // maxLines: 2,
-                                              //   // overflow: TextOverflow.ellipsis,
-                                              //   style: TextStyle(
-                                              //     fontSize: 14,
-                                              //   ),
-                                              // ),
                                               lineProgress(
                                                   email,
-                                                  TextStyle(
+                                                  const TextStyle(
                                                     fontSize: 12,
                                                   )),
-                                              // lineProgress(name, TextStyle()),
-                                              // lineProgress(name, TextStyle()),
-                                              // lineProgress(name, TextStyle()),
-                                              // lineProgress(name, TextStyle()),
-                                              // lineProgress(name, TextStyle()),
                                             ],
                                           ),
                                           Row(
                                             children: [
-                                              // Text(
-                                              //   'เบอร์ ',
-                                              //   // maxLines: 2,
-                                              //   // overflow: TextOverflow.ellipsis,
-                                              //   style: TextStyle(
-                                              //     fontSize: 14,
-                                              //   ),
-                                              // ),
                                               Container(
                                                 width: 300,
                                                 child: lineProgress(
                                                     address,
-                                                    TextStyle(
+                                                    const TextStyle(
                                                       fontSize: 12,
                                                     )),
                                               ),
-                                              // lineProgress(name, TextStyle()),
-                                              // lineProgress(name, TextStyle()),
-                                              // lineProgress(name, TextStyle()),
-                                              // lineProgress(name, TextStyle()),
-                                              // lineProgress(name, TextStyle()),
                                             ],
                                           ),
                                           Row(
                                             children: [
-                                              // Text(
-                                              //   'เบอร์ ',
-                                              //   // maxLines: 2,
-                                              //   // overflow: TextOverflow.ellipsis,
-                                              //   style: TextStyle(
-                                              //     fontSize: 14,
-                                              //   ),
-                                              // ),
                                               lineProgress(
                                                   province,
-                                                  TextStyle(
+                                                  const TextStyle(
                                                     fontSize: 12,
                                                   )),
-                                              SizedBox(
+                                              const SizedBox(
                                                 width: 5,
                                               ),
                                               lineProgress(
                                                   area,
-                                                  TextStyle(
+                                                  const TextStyle(
                                                     fontSize: 12,
                                                   )),
-                                              // lineProgress(name, TextStyle()),
-                                              // lineProgress(name, TextStyle()),
-                                              // lineProgress(name, TextStyle()),
-                                              // lineProgress(name, TextStyle()),
-                                              // lineProgress(name, TextStyle()),
                                             ],
                                           )
                                         ],
@@ -1204,7 +1206,6 @@ class _DataWorkState extends State<DataWork> {
                                         color: Colors.grey.shade200,
                                       ),
                                       width: MediaQuery.of(context).size.width,
-                                      // ignore: deprecated_member_use
                                       child: Column(
                                         children: [
                                           const SizedBox(
@@ -1222,7 +1223,6 @@ class _DataWorkState extends State<DataWork> {
                                                             .start,
                                                     children: [
                                                       Container(
-                                                        // color: Colors.green,
                                                         decoration:
                                                             BoxDecoration(
                                                           borderRadius:
@@ -1237,8 +1237,6 @@ class _DataWorkState extends State<DataWork> {
                                                                   8.0),
                                                           child: Text(
                                                             'รายละเอียดเพิ่มเติม',
-                                                            // maxLines: 2,
-                                                            // overflow: TextOverflow.ellipsis,
                                                             style: TextStyle(
                                                                 fontSize: 14,
                                                                 color: Colors
@@ -1246,7 +1244,7 @@ class _DataWorkState extends State<DataWork> {
                                                           ),
                                                         ),
                                                       ),
-                                                      SizedBox(
+                                                      const SizedBox(
                                                         width: 10,
                                                       ),
                                                     ],
@@ -1259,7 +1257,7 @@ class _DataWorkState extends State<DataWork> {
                                             children: [
                                               lineProgress(
                                                   more7,
-                                                  TextStyle(
+                                                  const TextStyle(
                                                     fontSize: 12,
                                                   ))
                                             ],
@@ -1271,50 +1269,6 @@ class _DataWorkState extends State<DataWork> {
                                 ],
                               ),
                             ),
-
-                            // Container(),
-                            // RaisedButton(
-                            //   onPressed: () {
-                            //     print(
-                            //         '******************************* ${widget.docid}');
-                            //     get();
-                            //     print(' aboutCompany: ${aboutCompany}');
-                            //     print('  amount: ${amount}');
-                            //     print('  area: ${area}');
-                            //     print('companyName:${companyName},');
-                            //     print('mission: ${mission}');
-                            //     print('  picCompany: $pathPIC');
-                            //     print('province:${province},');
-                            //     print('salary: ${salary},');
-                            //     print(' status: open,');
-                            //     print(' workPosition: ${position},');
-                            //     print('workType: ${worktype},');
-                            //     print(' name: ${name},');
-                            //     print('  phone:${phone},');
-                            //     print('  email:${email}');
-                            //     print(' address: ${address},');
-                            //     print(' gender:${gender},');
-                            //     print(' dateStop: ${dateStop},');
-                            //     print(' more3 : ${more3},');
-                            //     print(' more4: ${more4},');
-                            //     print('  more7 : ${more7}');
-                            //     print('age: ${age},');
-                            //     print('exp: ${exp},');
-                            //     print('bonus: ${bonus},');
-                            //     print(' social: ${social},');
-                            //     print(' health:${health},');
-                            //     print('  timeCost:${timecost},');
-                            //     print(' hospital: ${hospital},');
-                            //     print('covid: ${covid},');
-                            //     print('people: ${people},');
-                            //     print('path:${pathPIC},');
-                            //   },
-                            // ),
-                            // if (name == null || name == '')
-                            //   LinearProgressIndicator()
-                            // else
-                            //   Text(name),
-                            // // lineProgress(dateStop,),
                           ],
                         ),
                       ),
@@ -1328,7 +1282,7 @@ class _DataWorkState extends State<DataWork> {
 
   Widget lineProgress(data, TextStyle style) {
     return data == null
-        ? LinearProgressIndicator()
+        ? const LinearProgressIndicator()
         : Text(
             data,
             style: style,
@@ -1337,7 +1291,7 @@ class _DataWorkState extends State<DataWork> {
 
   Widget lineProgressIMG(data, TextStyle style) {
     return data == null
-        ? LinearProgressIndicator()
+        ? const LinearProgressIndicator()
         : Text(
             data,
             style: style,
@@ -1348,7 +1302,7 @@ class _DataWorkState extends State<DataWork> {
 
   Widget lineProgressIMG3(data, TextStyle style) {
     return data == null
-        ? LinearProgressIndicator()
+        ? const LinearProgressIndicator()
         : Text(
             data,
             style: style,
@@ -1359,7 +1313,7 @@ class _DataWorkState extends State<DataWork> {
 
   Widget lineProgressIMG2(data, TextStyle style) {
     return data == null
-        ? LinearProgressIndicator()
+        ? const LinearProgressIndicator()
         : Flexible(
             child: Text(
               data,
@@ -1372,20 +1326,6 @@ class _DataWorkState extends State<DataWork> {
             ),
           );
   }
-
-  //   StreamBuilder(
-  //         stream: FirebaseFirestore.instance
-  //             .collection('YOUR COLLECTION NAME')
-  //             .doc(id) //ID OF DOCUMENT
-  //             .snapshots(),
-  //       builder: (context, snapshot) {
-  //       if (!snapshot.hasData) {
-  //         return new CircularProgressIndicator();
-  //       }
-  //       var document = snapshot.data;
-  //       return new Text('${document}');
-  //    }
-  // );
 
   Future<void> get() async {
     FirebaseFirestore.instance
@@ -1456,10 +1396,5 @@ class _DataWorkState extends State<DataWork> {
         show = false;
       });
     });
-
-//     => then(function(document) {
-//
-// }
-//     );
   }
 }

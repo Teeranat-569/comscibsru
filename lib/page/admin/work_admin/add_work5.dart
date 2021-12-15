@@ -13,17 +13,11 @@ class AddWork5 extends StatefulWidget {
       gender,
       age,
       exp,
-      more3,
-      bonus,
-      social,
-      health,
-      timecost,
-      hospital,
-      covid,
-      people,
-      salary,
-      pathPIC,
-      more4;
+      pathPIC,salary,
+      more4,
+      more3;
+  bool bonus, social, health, timecost, hospital, covid, people;
+
   AddWork5(
       {Key? key,
       this.mission,
@@ -35,16 +29,16 @@ class AddWork5 extends StatefulWidget {
       this.exp,
       this.gender,
       this.more3,
-      this.bonus,
-      this.covid,
-      this.health,
-      this.hospital,
-      this.people,
-      this.social,
-      this.more4,
-      this.salary,
-      this.pathPIC,
-      this.timecost})
+      required this.bonus,
+      required this.covid,
+      required this.health,
+      required this.hospital,
+      required this.people,
+      required this.social,
+      required this.more4,
+      required this.salary,
+      required this.pathPIC,
+      required this.timecost})
       : super(key: key);
 
   @override

@@ -17,9 +17,11 @@ import 'edit_more7.dart';
 import 'edit_name.dart';
 import 'edit_phone.dart';
 import 'edit_province.dart';
+import 'edit_status.dart';
 import 'edit_welfare.dart';
 import 'edit_worktype.dart';
 
+// ignore: must_be_immutable
 class EditDataWorkPage extends StatefulWidget {
   dynamic companyName,
       docid,
@@ -75,13 +77,6 @@ class _EditDataWorkPageState extends State<EditDataWorkPage> {
       age,
       exp,
       more3,
-      bonus,
-      social,
-      health,
-      timecost,
-      hospital,
-      covid,
-      people,
       more4,
       dateStop,
       name,
@@ -94,6 +89,8 @@ class _EditDataWorkPageState extends State<EditDataWorkPage> {
       status,
       more7,
       area;
+  late bool bonus, social, health, timecost, hospital, covid, people;
+
   bool show = true;
 
   @override
@@ -183,19 +180,65 @@ class _EditDataWorkPageState extends State<EditDataWorkPage> {
                                           crossAxisAlignment:
                                               CrossAxisAlignment.start,
                                           children: [
-                                            if (status == 'open')
+                                            Row(
+                                              children: [
+                                                Text('สถานะ : '),
+                                                if (status == 'เปิดรับสมัคร')
+                                                  Container(
+                                                    // color: Colors.green,
+                                                    decoration: BoxDecoration(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              10.0),
+                                                      color: Colors.green,
+                                                    ),
+                                                    child: const Padding(
+                                                      padding:
+                                                          EdgeInsets.all(8.0),
+                                                      child: Text(
+                                                        'เปิดรับสมัคร',
+                                                        // maxLines: 2,
+                                                        // overflow: TextOverflow.ellipsis,
+                                                        style: TextStyle(
+                                                            fontSize: 10,
+                                                            color:
+                                                                Colors.white),
+                                                      ),
+                                                    ),
+                                                  )else if (status == 'ด่วน')
                                               Container(
                                                 // color: Colors.green,
                                                 decoration: BoxDecoration(
                                                   borderRadius:
                                                       BorderRadius.circular(
                                                           10.0),
-                                                  color: Colors.green,
+                                                  color: Colors.amber[900],
                                                 ),
                                                 child: const Padding(
                                                   padding: EdgeInsets.all(8.0),
                                                   child: Text(
-                                                    'เปิดรับสมัคร',
+                                                    'รับสมัครด่วน',
+                                                    // maxLines: 2,
+                                                    // overflow: TextOverflow.ellipsis,
+                                                    style: TextStyle(
+                                                        fontSize: 10,
+                                                        color: Colors.white),
+                                                  ),
+                                                ),
+                                              )
+                                            else if (status == 'ปิดรับสมัคร')
+                                              Container(
+                                                // color: Colors.green,
+                                                decoration: BoxDecoration(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          10.0),
+                                                  color: Colors.red[900],
+                                                ),
+                                                child: const Padding(
+                                                  padding: EdgeInsets.all(8.0),
+                                                  child: Text(
+                                                    'ปิดรับสมัคร',
                                                     // maxLines: 2,
                                                     // overflow: TextOverflow.ellipsis,
                                                     style: TextStyle(
@@ -204,6 +247,37 @@ class _EditDataWorkPageState extends State<EditDataWorkPage> {
                                                   ),
                                                 ),
                                               ),
+                                                  
+                                                   Container(
+                                                  width: 50,
+                                                  child: FlatButton(
+                                                    onPressed: () {
+                                                      // myAlert(data['docid']);
+                                                      // // ignore: avoid_print
+                                                      // print('----------------------------------' +
+                                                      //     data['docid']);
+                                                      // // ignore: avoid_print
+                                                      // print(
+                                                      //     '----------------------------nnnnn------' +
+                                                      //         data['nameManual']);
+
+                                                      route(EditStatus(
+                                                        docid: widget.docid,
+                                                        position: position,
+                                                      ));
+                                                      print(
+                                                          '******************************* ${widget.docid}');
+                                                    },
+                                                    child: const Center(
+                                                        child: Icon(
+                                                      Icons.edit,
+                                                      size: 16,
+                                                      color: Colors.blue,
+                                                    )),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
                                             Row(
                                               children: [
                                                 lineProgress(
@@ -898,17 +972,25 @@ class _EditDataWorkPageState extends State<EditDataWorkPage> {
                                                             width: 50,
                                                             child: FlatButton(
                                                               onPressed: () {
-                                                                route(
-                                                                    EditWelfare(
-                                                                  docid: widget
-                                                                      .docid,
-                                                                  position: '',
-                                                                  bonus: bonus,covid: covid,health: health,
-                                                                  people: people,
-                                                                  social: social,
-                                                                  timecost: timecost,
-                                                                  
-                                                                ));
+                                                                route(EditWelfare(
+                                                                    docid: widget
+                                                                        .docid,
+                                                                    position:
+                                                                        '',
+                                                                    bonus:
+                                                                        bonus,
+                                                                    covid:
+                                                                        covid,
+                                                                    health:
+                                                                        health,
+                                                                    people:
+                                                                        people,
+                                                                    social:
+                                                                        social,
+                                                                    timecost:
+                                                                        timecost,
+                                                                    hospital:
+                                                                        hospital));
                                                                 print(
                                                                     '******************************* ${widget.docid}');
                                                               },
@@ -926,7 +1008,8 @@ class _EditDataWorkPageState extends State<EditDataWorkPage> {
                                                           Row(
                                                             children: [
                                                               if (bonus ==
-                                                                  'true')
+                                                                      'true' ||
+                                                                  bonus == true)
                                                                 Container(
                                                                   // color: Colors.green,
                                                                   decoration:
@@ -990,7 +1073,9 @@ class _EditDataWorkPageState extends State<EditDataWorkPage> {
                                                           Row(
                                                             children: [
                                                               if (social ==
-                                                                  'true')
+                                                                      'true' ||
+                                                                  social ==
+                                                                      true)
                                                                 Container(
                                                                   // color: Colors.green,
                                                                   decoration:
@@ -1054,7 +1139,9 @@ class _EditDataWorkPageState extends State<EditDataWorkPage> {
                                                           Row(
                                                             children: [
                                                               if (health ==
-                                                                  'true')
+                                                                      'true' ||
+                                                                  health ==
+                                                                      true)
                                                                 Container(
                                                                   // color: Colors.green,
                                                                   decoration:
@@ -1118,7 +1205,9 @@ class _EditDataWorkPageState extends State<EditDataWorkPage> {
                                                           Row(
                                                             children: [
                                                               if (timecost ==
-                                                                  'true')
+                                                                      'true' ||
+                                                                  timecost ==
+                                                                      true)
                                                                 Container(
                                                                   // color: Colors.green,
                                                                   decoration:
@@ -1182,7 +1271,9 @@ class _EditDataWorkPageState extends State<EditDataWorkPage> {
                                                           Row(
                                                             children: [
                                                               if (hospital ==
-                                                                  'true')
+                                                                      'true' ||
+                                                                  hospital ==
+                                                                      true)
                                                                 Container(
                                                                   // color: Colors.green,
                                                                   decoration:
@@ -1246,7 +1337,8 @@ class _EditDataWorkPageState extends State<EditDataWorkPage> {
                                                           Row(
                                                             children: [
                                                               if (covid ==
-                                                                  'true')
+                                                                      'true' ||
+                                                                  covid == true)
                                                                 Container(
                                                                   // color: Colors.green,
                                                                   decoration:
@@ -1310,7 +1402,9 @@ class _EditDataWorkPageState extends State<EditDataWorkPage> {
                                                           Row(
                                                             children: [
                                                               if (people ==
-                                                                  'true')
+                                                                      'true' ||
+                                                                  people ==
+                                                                      true)
                                                                 Container(
                                                                   // color: Colors.green,
                                                                   decoration:
@@ -1869,6 +1963,68 @@ class _EditDataWorkPageState extends State<EditDataWorkPage> {
 //
 // }
 //     );
+  }
+
+  Widget dropDown() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        const Text(
+          'รูปแบบงาน : ',
+          style: TextStyle(
+            color: Colors.black,
+            fontSize: 16,
+            fontWeight: FontWeight.w500,
+          ),
+        ),
+        const SizedBox(),
+        Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10),
+            color: Colors.grey[200],
+          ),
+          child: Padding(
+            padding: const EdgeInsets.only(left: 10, right: 10),
+            child: DropdownButton<String>(
+              focusColor: Colors.white,
+              value: status,
+              style: const TextStyle(color: Colors.white),
+              iconEnabledColor: Colors.black,
+              items: <String>['เปิดรับสมัคร', 'ด่วน', 'ปิดรับสมัคร']
+                  .map<DropdownMenuItem<String>>((String value) {
+                return DropdownMenuItem<String>(
+                  value: value,
+                  child: Text(
+                    value,
+                    style: const TextStyle(
+                        color: Colors.black, fontFamily: 'Mitr'),
+                  ),
+                );
+              }).toList(),
+              hint: const Center(
+                child: Text(
+                  "เลือกรูปแบบงาน",
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 16,
+                      fontWeight: FontWeight.w500,
+                      fontFamily: 'Mitr'),
+                ),
+              ),
+              onChanged: (dynamic value) {
+                setState(() {
+                  status = value;
+                  // ignore: avoid_print
+                  print(status);
+                  // ignore: avoid_print
+                  print('66666666666' + value);
+                });
+              },
+            ),
+          ),
+        ),
+      ],
+    );
   }
 
   Future<Null> route(Widget routeName) async {

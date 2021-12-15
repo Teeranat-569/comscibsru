@@ -5,7 +5,8 @@ import 'package:fluttertoast/fluttertoast.dart';
 
 // ignore: must_be_immutable
 class EditWelfare extends StatefulWidget {
-  dynamic docid, position, bonus, social, health, people, timecost, covid;
+  dynamic docid, position;
+  bool bonus, social, health, people, timecost, hospital, covid;
   EditWelfare(
       {Key? key,
       required this.docid,
@@ -15,6 +16,7 @@ class EditWelfare extends StatefulWidget {
       required this.health,
       required this.people,
       required this.social,
+      required this.hospital,
       required this.timecost})
       : super(key: key);
   @override
@@ -29,18 +31,12 @@ class _EditWelfareState extends State<EditWelfare> {
   var textEditController = TextEditingController();
   var collection = FirebaseFirestore.instance.collection('work');
 
-  var b ='${ widget.bonus}';
-  bool bonus = widget.bonus;
-
-  var val = 'True';
-bool b = val.toLowerCase() == 'true';
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
           centerTitle: true,
-          title: const Text('แก้ไขชื่อบริษัท'),
+          title: const Text('แก้ไขสวัสดิการ'),
           backgroundColor: Colors.pink[900],
         ),
         floatingActionButton: Column(
@@ -52,9 +48,15 @@ bool b = val.toLowerCase() == 'true';
                     .doc(widget
                         .docid) // <-- Doc ID where data should be updated.
                     .update({
-                  'companyName': nameForm,
+                  'bonus': widget.bonus,
+                  'social': widget.social,
+                  'health': widget.health,
+                  'people': widget.people,
+                  'timeCost': widget.timecost,
+                  'hospital': widget.hospital,
+                  'covid': widget.covid,
                 });
-                route(EditDataWorkPage());
+                route(EditDataWorkPage(docid: widget.docid,));
                 Fluttertoast.showToast(
                   msg: "แก้ไขสำเร็จ",
                   toastLength: Toast.LENGTH_SHORT,
@@ -82,151 +84,172 @@ bool b = val.toLowerCase() == 'true';
                   height: 10.0,
                 ),
                 // Text('')
-                nameform(),
+                // nameform(),
                 const SizedBox(
                   height: 10.0,
                 ),
                 Column(
                   children: [
-                    Row(mainAxisAlignment: MainAxisAlignment.center, children: <
-                        Widget>[
-                      Checkbox(
-                        value: bonus,
-                        onChanged: (value) {
-                          setState(() {
-                            bonus = value!;
-                            print('kkkkkkkk$bonus');
-                            bonus == true
-                                ? ScaffoldMessenger.of(context).showSnackBar(
-                                    const SnackBar(
-                                        content: Text('เลือกสวัสดิการ โบนัส')))
-                                : ScaffoldMessenger.of(context).showSnackBar(
-                                    const SnackBar(
-                                        content:
-                                            Text('ไม่เลือกสวัสดิการ โบนัส')));
-                          });
-                        },
-                      ),
-                      const Text("โบนัส"),
-                      Checkbox(
-                        value: social,
-                        onChanged: (value) {
-                          setState(() {
-                            social = value!;
-                            print('kkkkkkkk$social');
+                    Row(
+                      children: [
+                        Checkbox(
+                          value: widget.bonus,
+                          onChanged: (value) {
+                            setState(() {
+                              widget.bonus = value!;
+                              print('kkkkkkkk$widget.bonus');
+                              widget.bonus == true
+                                  ? ScaffoldMessenger.of(context).showSnackBar(
+                                      const SnackBar(
+                                          content:
+                                              Text('เลือกสวัสดิการ โบนัส')))
+                                  : ScaffoldMessenger.of(context).showSnackBar(
+                                      const SnackBar(
+                                          content:
+                                              Text('ไม่เลือกสวัสดิการ โบนัส')));
+                            });
+                          },
+                        ),
+                        const Text("โบนัส"),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        Checkbox(
+                          value: widget.social,
+                          onChanged: (value) {
+                            setState(() {
+                              widget.social = value!;
+                              print('kkkkkkkk$widget.social');
 
-                            social == true
-                                ? ScaffoldMessenger.of(context).showSnackBar(
-                                    const SnackBar(
-                                        content:
-                                            Text('เลือกสวัสดิการ ประกันสังคม')))
-                                : ScaffoldMessenger.of(context).showSnackBar(
-                                    const SnackBar(
-                                        content: Text(
-                                            'ไม่เลือกสวัสดิการ ประกันสังคม')));
-                          });
-                        },
-                      ),
-                      const Text("ประกันสังคม"),
-                      Checkbox(
-                        value: health,
-                        onChanged: (value) {
-                          setState(() {
-                            health = value!;
-                            print('kkkkkkkk$health');
-                            health == true
-                                ? ScaffoldMessenger.of(context).showSnackBar(
-                                    const SnackBar(
-                                        content: Text(
-                                            'เลือกสวัสดิการ ประกันสุขภาพ')))
-                                : ScaffoldMessenger.of(context).showSnackBar(
-                                    const SnackBar(
-                                        content: Text(
-                                            'ไม่เลือกสวัสดิการ ประกันสุขภาพ')));
-                          });
-                        },
-                      ),
-                      const Text("ประกันสุขภาพ"),
-                    ]),
-                    Row(mainAxisAlignment: MainAxisAlignment.center, children: <
-                        Widget>[
-                      Checkbox(
-                        value: people,
-                        onChanged: (value) {
-                          setState(() {
-                            people = value!;
-                            print('kkkkkkkk$people');
-                            people == true
-                                ? ScaffoldMessenger.of(context).showSnackBar(
-                                    const SnackBar(
-                                        content:
-                                            Text('เลือกสวัสดิการ ประกันชีวิต')))
-                                : ScaffoldMessenger.of(context).showSnackBar(
-                                    const SnackBar(
-                                        content: Text(
-                                            'ไม่เลือกสวัสดิการ ประกันชีวิต')));
-                          });
-                        },
-                      ),
-                      const Text("ประกันชีวิต"),
-                      Checkbox(
-                        value: timecost,
-                        onChanged: (value) {
-                          setState(() {
-                            timecost = value!;
-                            print('kkkkkkkk$timecost');
-                            timecost == true
-                                ? ScaffoldMessenger.of(context).showSnackBar(
-                                    const SnackBar(
-                                        content:
-                                            Text('เลือกสวัสดิการ ค่าล่วงเวลา')))
-                                : ScaffoldMessenger.of(context).showSnackBar(
-                                    const SnackBar(
-                                        content: Text(
-                                            'ไม่เลือกสวัสดิการ ค่าล่วงเวลา')));
-                          });
-                        },
-                      ),
-                      const Text("ค่าล่วงเวลา"),
-                    ]),
-                    Row(mainAxisAlignment: MainAxisAlignment.center, children: <
-                        Widget>[
-                      Checkbox(
-                        value: hospital,
-                        onChanged: (value) {
-                          setState(() {
-                            hospital = value!;
-                            print('kkkkkkkk$hospital');
-                            hospital == true
-                                ? ScaffoldMessenger.of(context).showSnackBar(
-                                    const SnackBar(
-                                        content: Text(
-                                            'เลือกสวัสดิการ ค่ารักษาพยาบาล')))
-                                : ScaffoldMessenger.of(context).showSnackBar(
-                                    const SnackBar(
-                                        content: Text(
-                                            'ไม่เลือกสวัสดิการ ค่ารักษาพยาบาล')));
-                          });
-                        },
-                      ),
-                      const Text("ค่ารักษาพยาบาล"),
-                      Checkbox(
-                        value: covid,
-                        onChanged: (value) {
-                          setState(() {
-                            covid = value!;
-                            print('kkkkkkkk$covid');
-                            covid == true
-                                ? const SnackBar(
-                                    content: Text('เลือกสวัสดิการ ประกันโควิด'))
-                                : const SnackBar(
-                                    content:
-                                        Text('ไม่เลือกสวัสดิการ ประกันโควิด'));
-                          });
-                        },
-                      ),
-                      const Text("ประกันโควิด"),
-                    ]),
+                              widget.social == true
+                                  ? ScaffoldMessenger.of(context).showSnackBar(
+                                      const SnackBar(
+                                          content: Text(
+                                              'เลือกสวัสดิการ ประกันสังคม')))
+                                  : ScaffoldMessenger.of(context).showSnackBar(
+                                      const SnackBar(
+                                          content: Text(
+                                              'ไม่เลือกสวัสดิการ ประกันสังคม')));
+                            });
+                          },
+                        ),
+                        const Text("ประกันสังคม"),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        Checkbox(
+                          value: widget.health,
+                          onChanged: (value) {
+                            setState(() {
+                              widget.health = value!;
+                              print('kkkkkkkk${widget.health}');
+                              widget.health == true
+                                  ? ScaffoldMessenger.of(context).showSnackBar(
+                                      const SnackBar(
+                                          content: Text(
+                                              'เลือกสวัสดิการ ประกันสุขภาพ')))
+                                  : ScaffoldMessenger.of(context).showSnackBar(
+                                      const SnackBar(
+                                          content: Text(
+                                              'ไม่เลือกสวัสดิการ ประกันสุขภาพ')));
+                            });
+                          },
+                        ),
+                        const Text("ประกันสุขภาพ"),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        Checkbox(
+                          value: widget.people,
+                          onChanged: (value) {
+                            setState(() {
+                              widget.people = value!;
+                              print('kkkkkkkk${widget.people}');
+                              widget.people == true
+                                  ? ScaffoldMessenger.of(context).showSnackBar(
+                                      const SnackBar(
+                                          content: Text(
+                                              'เลือกสวัสดิการ ประกันชีวิต')))
+                                  : ScaffoldMessenger.of(context).showSnackBar(
+                                      const SnackBar(
+                                          content: Text(
+                                              'ไม่เลือกสวัสดิการ ประกันชีวิต')));
+                            });
+                          },
+                        ),
+                        const Text("ประกันชีวิต"),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        Checkbox(
+                          value: widget.timecost,
+                          onChanged: (value) {
+                            setState(() {
+                              widget.timecost = value!;
+                              print('kkkkkkkk${widget.timecost}');
+                              widget.timecost == true
+                                  ? ScaffoldMessenger.of(context).showSnackBar(
+                                      const SnackBar(
+                                          content: Text(
+                                              'เลือกสวัสดิการ ค่าล่วงเวลา')))
+                                  : ScaffoldMessenger.of(context).showSnackBar(
+                                      const SnackBar(
+                                          content: Text(
+                                              'ไม่เลือกสวัสดิการ ค่าล่วงเวลา')));
+                            });
+                          },
+                        ),
+                        const Text("ค่าล่วงเวลา"),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        Checkbox(
+                          value: widget.hospital,
+                          onChanged: (value) {
+                            setState(() {
+                              widget.hospital = value!;
+                              print('kkkkkkkk${widget.hospital}');
+                              widget.hospital == true
+                                  ? ScaffoldMessenger.of(context).showSnackBar(
+                                      const SnackBar(
+                                          content: Text(
+                                              'เลือกสวัสดิการ ค่ารักษาพยาบาล')))
+                                  : ScaffoldMessenger.of(context).showSnackBar(
+                                      const SnackBar(
+                                          content: Text(
+                                              'ไม่เลือกสวัสดิการ ค่ารักษาพยาบาล')));
+                            });
+                          },
+                        ),
+                        const Text("ค่ารักษาพยาบาล"),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        Checkbox(
+                          value: widget.covid,
+                          onChanged: (value) {
+                            setState(() {
+                              widget.covid = value!;
+                              print('kkkkkkkk${widget.covid}');
+                              widget.covid == true
+                                  ? const SnackBar(
+                                      content:
+                                          Text('เลือกสวัสดิการ ประกันโควิด'))
+                                  : const SnackBar(
+                                      content: Text(
+                                          'ไม่เลือกสวัสดิการ ประกันโควิด'));
+                            });
+                          },
+                        ),
+                        const Text("ประกันโควิด"),
+                      ],
+                    ),
                   ],
                 ),
               ])),

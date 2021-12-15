@@ -39,7 +39,7 @@ class _EditAmountState extends State<EditAmount> {
                     .update({
                   'amount': nameForm,
                 });
-                route(EditDataWorkPage());
+                route(EditDataWorkPage(docid: widget.docid));
                 Fluttertoast.showToast(
                   msg: "แก้ไขสำเร็จ",
                   toastLength: Toast.LENGTH_SHORT,

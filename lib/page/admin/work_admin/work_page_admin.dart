@@ -48,6 +48,13 @@ class _WorkPageAdminState extends State<WorkPageAdmin> {
           child: Scaffold(
             appBar: AppBar(
               title: const Text('ประกาศรับสมัครงาน'),
+              actions: [
+                IconButton(
+                    onPressed: () {
+                      route(AddWork());
+                    },
+                    icon: Icon(Icons.add))
+              ],
             ),
             body: Container(
               // color: Colors.purple[50],
@@ -117,7 +124,7 @@ class _WorkPageAdminState extends State<WorkPageAdmin> {
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    if (statuss == 'open')
+                                    if (statuss == 'เปิดรับสม้คร')
                                       Container(
                                         // color: Colors.green,
                                         decoration: BoxDecoration(
@@ -129,6 +136,46 @@ class _WorkPageAdminState extends State<WorkPageAdmin> {
                                           padding: EdgeInsets.all(8.0),
                                           child: Text(
                                             'เปิดรับสมัคร',
+                                            // maxLines: 2,
+                                            // overflow: TextOverflow.ellipsis,
+                                            style: TextStyle(
+                                                fontSize: 10,
+                                                color: Colors.white),
+                                          ),
+                                        ),
+                                      )
+                                    else if (statuss == 'ด่วน')
+                                      Container(
+                                        // color: Colors.green,
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(10.0),
+                                          color: Colors.amber[900],
+                                        ),
+                                        child: const Padding(
+                                          padding: EdgeInsets.all(8.0),
+                                          child: Text(
+                                            'รับสมัครด่วน',
+                                            // maxLines: 2,
+                                            // overflow: TextOverflow.ellipsis,
+                                            style: TextStyle(
+                                                fontSize: 10,
+                                                color: Colors.white),
+                                          ),
+                                        ),
+                                      )
+                                    else if (statuss == 'ปิดรับสมัคร')
+                                      Container(
+                                        // color: Colors.green,
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(10.0),
+                                          color: Colors.red[900],
+                                        ),
+                                        child: const Padding(
+                                          padding: EdgeInsets.all(8.0),
+                                          child: Text(
+                                            'ปิดรับสมัคร',
                                             // maxLines: 2,
                                             // overflow: TextOverflow.ellipsis,
                                             style: TextStyle(
@@ -173,36 +220,38 @@ class _WorkPageAdminState extends State<WorkPageAdmin> {
                               ),
                             ],
                           ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            // ignore: prefer_const_literals_to_create_immutables
-                            children: [
-                              FlatButton(
-                                onPressed: () {
-                                  route(DataWorkPage(
-                                    docid: data['docid'],
-                                  ));
-                                  print(
-                                      '******************************* ${data['docid']}');
-                                },
-                                child: const Text(
-                                  'ดูรายละเอียด >>>',
-                                  style: TextStyle(
-                                      fontSize: 12, color: Colors.grey),
-                                ),
-                              ),
-                            ],
-                          ),
+                          // Row(
+                          //   mainAxisAlignment: MainAxisAlignment.end,
+                          //   // ignore: prefer_const_literals_to_create_immutables
+                          //   children: [
+                          //     FlatButton(
+                          //       onPressed: () {
+                          //         route(DataWorkPage(
+                          //           docid: data['docid'],
+                          //         ));
+                          //         print(
+                          //             '******************************* ${data['docid']}');
+                          //       },
+                          //       child: const Text(
+                          //         'ดูรายละเอียด >>>',
+                          //         style: TextStyle(
+                          //             fontSize: 12, color: Colors.grey),
+                          //       ),
+                          //     ),
+                          //   ],
+                          // ),
                           Column(
                             children: [
-                              Row(mainAxisAlignment: MainAxisAlignment.center,
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   FlatButton(
                                     onPressed: () {
                                       myAlert(data['docid']);
                                       // ignore: avoid_print
-                                      print('----------------------------------' +
-                                          data['docid']);
+                                      print(
+                                          '----------------------------------' +
+                                              data['docid']);
                                       // ignore: avoid_print
                                       print(
                                           '----------------------------nnnnn------' +
@@ -214,7 +263,7 @@ class _WorkPageAdminState extends State<WorkPageAdmin> {
                                       color: Colors.red,
                                     )),
                                   ),
-                                   FlatButton(
+                                  FlatButton(
                                     onPressed: () {
                                       // myAlert(data['docid']);
                                       // // ignore: avoid_print
@@ -225,11 +274,11 @@ class _WorkPageAdminState extends State<WorkPageAdmin> {
                                       //     '----------------------------nnnnn------' +
                                       //         data['nameManual']);
 
-                                        route(EditDataWorkPage(
-                                    docid: data['docid'],
-                                  ));
-                                  print(
-                                      '******************************* ${data['docid']}');
+                                      route(EditDataWorkPage(
+                                        docid: data['docid'],
+                                      ));
+                                      print(
+                                          '******************************* ${data['docid']}');
                                     },
                                     child: const Center(
                                         child: Icon(

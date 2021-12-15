@@ -164,7 +164,7 @@ class _DataWorkPageState extends State<DataWorkPage> {
                                           crossAxisAlignment:
                                               CrossAxisAlignment.start,
                                           children: [
-                                            if (status == 'open')
+                                            if (status == 'เปิดรับสมัคร')
                                               Container(
                                                 // color: Colors.green,
                                                 decoration: BoxDecoration(
@@ -177,6 +177,48 @@ class _DataWorkPageState extends State<DataWorkPage> {
                                                   padding: EdgeInsets.all(8.0),
                                                   child: Text(
                                                     'เปิดรับสมัคร',
+                                                    // maxLines: 2,
+                                                    // overflow: TextOverflow.ellipsis,
+                                                    style: TextStyle(
+                                                        fontSize: 10,
+                                                        color: Colors.white),
+                                                  ),
+                                                ),
+                                              )
+                                            else if (status == 'ด่วน')
+                                              Container(
+                                                // color: Colors.green,
+                                                decoration: BoxDecoration(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          10.0),
+                                                  color: Colors.amber[900],
+                                                ),
+                                                child: const Padding(
+                                                  padding: EdgeInsets.all(8.0),
+                                                  child: Text(
+                                                    'รับสมัครด่วน',
+                                                    // maxLines: 2,
+                                                    // overflow: TextOverflow.ellipsis,
+                                                    style: TextStyle(
+                                                        fontSize: 10,
+                                                        color: Colors.white),
+                                                  ),
+                                                ),
+                                              )
+                                            else if (status == 'ปิดรับสมัคร')
+                                              Container(
+                                                // color: Colors.green,
+                                                decoration: BoxDecoration(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          10.0),
+                                                  color: Colors.red[900],
+                                                ),
+                                                child: const Padding(
+                                                  padding: EdgeInsets.all(8.0),
+                                                  child: Text(
+                                                    'ปิดรับสมัคร',
                                                     // maxLines: 2,
                                                     // overflow: TextOverflow.ellipsis,
                                                     style: TextStyle(
@@ -592,7 +634,8 @@ class _DataWorkPageState extends State<DataWorkPage> {
                                                           Row(
                                                             children: [
                                                               if (bonus ==
-                                                                  'true')
+                                                                      'true' ||
+                                                                  bonus == true)
                                                                 Container(
                                                                   // color: Colors.green,
                                                                   decoration:
@@ -656,7 +699,9 @@ class _DataWorkPageState extends State<DataWorkPage> {
                                                           Row(
                                                             children: [
                                                               if (social ==
-                                                                  'true')
+                                                                      'true' ||
+                                                                  social ==
+                                                                      true)
                                                                 Container(
                                                                   // color: Colors.green,
                                                                   decoration:
@@ -720,7 +765,9 @@ class _DataWorkPageState extends State<DataWorkPage> {
                                                           Row(
                                                             children: [
                                                               if (health ==
-                                                                  'true')
+                                                                      'true' ||
+                                                                  health ==
+                                                                      true)
                                                                 Container(
                                                                   // color: Colors.green,
                                                                   decoration:
@@ -784,7 +831,9 @@ class _DataWorkPageState extends State<DataWorkPage> {
                                                           Row(
                                                             children: [
                                                               if (timecost ==
-                                                                  'true')
+                                                                      'true' ||
+                                                                  timecost ==
+                                                                      true)
                                                                 Container(
                                                                   // color: Colors.green,
                                                                   decoration:
@@ -848,7 +897,9 @@ class _DataWorkPageState extends State<DataWorkPage> {
                                                           Row(
                                                             children: [
                                                               if (hospital ==
-                                                                  'true')
+                                                                      'true' ||
+                                                                  hospital ==
+                                                                      true)
                                                                 Container(
                                                                   // color: Colors.green,
                                                                   decoration:
@@ -912,7 +963,8 @@ class _DataWorkPageState extends State<DataWorkPage> {
                                                           Row(
                                                             children: [
                                                               if (covid ==
-                                                                  'true')
+                                                                      'true' ||
+                                                                  covid == true)
                                                                 Container(
                                                                   // color: Colors.green,
                                                                   decoration:
@@ -976,7 +1028,9 @@ class _DataWorkPageState extends State<DataWorkPage> {
                                                           Row(
                                                             children: [
                                                               if (people ==
-                                                                  'true')
+                                                                      'true' ||
+                                                                  people ==
+                                                                      true)
                                                                 Container(
                                                                   // color: Colors.green,
                                                                   decoration:
