@@ -1,7 +1,26 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:comsci/page/admin/work_admin/edit/edit_position.dart';
 import 'package:flutter/material.dart';
 
-class DataWorkPage extends StatefulWidget {
+import 'edit_about.dart';
+import 'edit_address.dart';
+import 'edit_age.dart';
+import 'edit_amount.dart';
+import 'edit_companyname.dart';
+import 'edit_email.dart';
+import 'edit_exp.dart';
+import 'edit_gender.dart';
+import 'edit_mission.dart';
+import 'edit_more3.dart';
+import 'edit_more4.dart';
+import 'edit_more7.dart';
+import 'edit_name.dart';
+import 'edit_phone.dart';
+import 'edit_province.dart';
+import 'edit_welfare.dart';
+import 'edit_worktype.dart';
+
+class EditDataWorkPage extends StatefulWidget {
   dynamic companyName,
       docid,
       aboutCompany,
@@ -18,7 +37,7 @@ class DataWorkPage extends StatefulWidget {
       eMail,
       province,
       area;
-  DataWorkPage(
+  EditDataWorkPage(
       {Key? key,
       this.aboutCompany,
       this.address,
@@ -39,14 +58,14 @@ class DataWorkPage extends StatefulWidget {
       : super(key: key);
 
   @override
-  _DataWorkPageState createState() => _DataWorkPageState();
+  _EditDataWorkPageState createState() => _EditDataWorkPageState();
 }
 
-class _DataWorkPageState extends State<DataWorkPage> {
+class _EditDataWorkPageState extends State<EditDataWorkPage> {
   dynamic statuss, amount;
   final Stream<QuerySnapshot> _usersStream =
       FirebaseFirestore.instance.collection('work').snapshots();
-
+  var textEditController = TextEditingController();
   dynamic position,
       mission,
       companyName,
@@ -159,7 +178,7 @@ class _DataWorkPageState extends State<DataWorkPage> {
                                         width: 12,
                                       ),
                                       Container(
-                                        width: 200,
+                                        width: 220,
                                         child: Column(
                                           crossAxisAlignment:
                                               CrossAxisAlignment.start,
@@ -185,14 +204,78 @@ class _DataWorkPageState extends State<DataWorkPage> {
                                                   ),
                                                 ),
                                               ),
-                                            lineProgress(
-                                              position,
-                                              const TextStyle(
-                                                  fontSize: 18,
-                                                  color: Colors.purple),
+                                            Row(
+                                              children: [
+                                                lineProgress(
+                                                  position,
+                                                  const TextStyle(
+                                                      fontSize: 16,
+                                                      color: Colors.purple),
+                                                ),
+                                                Container(
+                                                  width: 50,
+                                                  child: FlatButton(
+                                                    onPressed: () {
+                                                      // myAlert(data['docid']);
+                                                      // // ignore: avoid_print
+                                                      // print('----------------------------------' +
+                                                      //     data['docid']);
+                                                      // // ignore: avoid_print
+                                                      // print(
+                                                      //     '----------------------------nnnnn------' +
+                                                      //         data['nameManual']);
+
+                                                      route(EditPosition(
+                                                        docid: widget.docid,
+                                                        position: position,
+                                                      ));
+                                                      print(
+                                                          '******************************* ${widget.docid}');
+                                                    },
+                                                    child: const Center(
+                                                        child: Icon(
+                                                      Icons.edit,
+                                                      size: 16,
+                                                      color: Colors.blue,
+                                                    )),
+                                                  ),
+                                                ),
+                                              ],
                                             ),
-                                            lineProgress(companyName,
-                                                TextStyle(fontSize: 14)),
+                                            Row(
+                                              children: [
+                                                lineProgress(companyName,
+                                                    TextStyle(fontSize: 14)),
+                                                Container(
+                                                  width: 20,
+                                                  child: FlatButton(
+                                                    onPressed: () {
+                                                      // myAlert(data['docid']);
+                                                      // // ignore: avoid_print
+                                                      // print('----------------------------------' +
+                                                      //     data['docid']);
+                                                      // // ignore: avoid_print
+                                                      // print(
+                                                      //     '----------------------------nnnnn------' +
+                                                      //         data['nameManual']);
+
+                                                      route(EditCompanyName(
+                                                        docid: widget.docid,
+                                                        position: companyName,
+                                                      ));
+                                                      print(
+                                                          '******************************* ${widget.docid}');
+                                                    },
+                                                    child: const Center(
+                                                        child: Icon(
+                                                      Icons.edit,
+                                                      size: 16,
+                                                      color: Colors.blue,
+                                                    )),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
                                           ],
                                         ),
                                       ),
@@ -223,6 +306,34 @@ class _DataWorkPageState extends State<DataWorkPage> {
                                                 fontSize: 14,
                                                 color: Colors.white),
                                           ),
+                                        ),
+                                      ),
+                                      Container(
+                                        width: 50,
+                                        child: FlatButton(
+                                          onPressed: () {
+                                            // myAlert(data['docid']);
+                                            // // ignore: avoid_print
+                                            // print('----------------------------------' +
+                                            //     data['docid']);
+                                            // // ignore: avoid_print
+                                            // print(
+                                            //     '----------------------------nnnnn------' +
+                                            //         data['nameManual']);
+
+                                            route(EditAbout(
+                                              docid: widget.docid,
+                                              position: aboutCompany,
+                                            ));
+                                            print(
+                                                '******************************* ${widget.docid}');
+                                          },
+                                          child: const Center(
+                                              child: Icon(
+                                            Icons.edit,
+                                            size: 16,
+                                            color: Colors.blue,
+                                          )),
                                         ),
                                       ),
                                     ],
@@ -256,28 +367,94 @@ class _DataWorkPageState extends State<DataWorkPage> {
                                           const SizedBox(
                                             height: 5,
                                           ),
-                                          Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceEvenly,
+                                          Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
                                             children: [
-                                              Column(
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
+                                              Row(
                                                 children: [
                                                   Padding(
                                                     padding:
                                                         const EdgeInsets.all(
                                                             8.0),
                                                     child: Text(
-                                                      'รับสมัคร' +
-                                                          '$worktype' +
-                                                          'จำนวน' +
+                                                      'รับสมัคร' + '$worktype',
+                                                      style: TextStyle(
+                                                          fontSize: 16),
+                                                    ),
+                                                  ),
+                                                  Container(
+                                                    width: 50,
+                                                    child: FlatButton(
+                                                      onPressed: () {
+                                                        // myAlert(data['docid']);
+                                                        // // ignore: avoid_print
+                                                        // print('----------------------------------' +
+                                                        //     data['docid']);
+                                                        // // ignore: avoid_print
+                                                        // print(
+                                                        //     '----------------------------nnnnn------' +
+                                                        //         data['nameManual']);
+
+                                                        route(EditWorkType(
+                                                          docid: widget.docid,
+                                                          position: worktype,
+                                                        ));
+                                                        print(
+                                                            '******************************* ${widget.docid}');
+                                                      },
+                                                      child: const Center(
+                                                          child: Icon(
+                                                        Icons.edit,
+                                                        size: 16,
+                                                        color: Colors.blue,
+                                                      )),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                              Row(
+                                                children: [
+                                                  Padding(
+                                                    padding:
+                                                        const EdgeInsets.all(
+                                                            8.0),
+                                                    child: Text(
+                                                      'จำนวน' +
                                                           '\t' +
                                                           amount.toString() +
                                                           '\t' +
                                                           'คน',
                                                       style: TextStyle(
-                                                          fontSize: 13),
+                                                          fontSize: 16),
+                                                    ),
+                                                  ),
+                                                  Container(
+                                                    width: 50,
+                                                    child: FlatButton(
+                                                      onPressed: () {
+                                                        // myAlert(data['docid']);
+                                                        // // ignore: avoid_print
+                                                        // print('----------------------------------' +
+                                                        //     data['docid']);
+                                                        // // ignore: avoid_print
+                                                        // print(
+                                                        //     '----------------------------nnnnn------' +
+                                                        //         data['nameManual']);
+
+                                                        route(EditAmount(
+                                                          docid: widget.docid,
+                                                          position: amount,
+                                                        ));
+                                                        print(
+                                                            '******************************* ${widget.docid}');
+                                                      },
+                                                      child: const Center(
+                                                          child: Icon(
+                                                        Icons.edit,
+                                                        size: 16,
+                                                        color: Colors.blue,
+                                                      )),
                                                     ),
                                                   ),
                                                 ],
@@ -364,7 +541,33 @@ class _DataWorkPageState extends State<DataWorkPage> {
                                                                     const TextStyle(
                                                                       fontSize:
                                                                           12,
-                                                                    ))
+                                                                    )),
+                                                                Container(
+                                                                  width: 50,
+                                                                  child:
+                                                                      FlatButton(
+                                                                    onPressed:
+                                                                        () {
+                                                                      route(
+                                                                          EditGender(
+                                                                        docid: widget
+                                                                            .docid,
+                                                                        position:
+                                                                            gender,
+                                                                      ));
+                                                                      print(
+                                                                          '******************************* ${widget.docid}');
+                                                                    },
+                                                                    child: const Center(
+                                                                        child: Icon(
+                                                                      Icons
+                                                                          .edit,
+                                                                      size: 16,
+                                                                      color: Colors
+                                                                          .blue,
+                                                                    )),
+                                                                  ),
+                                                                ),
                                                               ],
                                                             ),
                                                             Row(
@@ -395,14 +598,38 @@ class _DataWorkPageState extends State<DataWorkPage> {
                                                                       color: Colors
                                                                           .black),
                                                                 ),
+                                                                Container(
+                                                                  width: 50,
+                                                                  child:
+                                                                      FlatButton(
+                                                                    onPressed:
+                                                                        () {
+                                                                      route(
+                                                                          EditAge(
+                                                                        docid: widget
+                                                                            .docid,
+                                                                        position:
+                                                                            age,
+                                                                      ));
+                                                                      print(
+                                                                          '******************************* ${widget.docid}');
+                                                                    },
+                                                                    child: const Center(
+                                                                        child: Icon(
+                                                                      Icons
+                                                                          .edit,
+                                                                      size: 16,
+                                                                      color: Colors
+                                                                          .blue,
+                                                                    )),
+                                                                  ),
+                                                                ),
                                                               ],
                                                             ),
                                                             Row(
                                                               children: [
                                                                 Text(
                                                                   'ประสบการณ์ : ',
-                                                                  // maxLines: 2,
-                                                                  // overflow: TextOverflow.ellipsis,
                                                                   style: TextStyle(
                                                                       fontSize:
                                                                           12,
@@ -417,13 +644,37 @@ class _DataWorkPageState extends State<DataWorkPage> {
                                                                     )),
                                                                 Text(
                                                                   ' ปี',
-                                                                  // maxLines: 2,
-                                                                  // overflow: TextOverflow.ellipsis,
                                                                   style: TextStyle(
                                                                       fontSize:
                                                                           12,
                                                                       color: Colors
                                                                           .black),
+                                                                ),
+                                                                Container(
+                                                                  width: 50,
+                                                                  child:
+                                                                      FlatButton(
+                                                                    onPressed:
+                                                                        () {
+                                                                      route(
+                                                                          EditExp(
+                                                                        docid: widget
+                                                                            .docid,
+                                                                        position:
+                                                                            exp,
+                                                                      ));
+                                                                      print(
+                                                                          '******************************* ${widget.docid}');
+                                                                    },
+                                                                    child: const Center(
+                                                                        child: Icon(
+                                                                      Icons
+                                                                          .edit,
+                                                                      size: 16,
+                                                                      color: Colors
+                                                                          .blue,
+                                                                    )),
+                                                                  ),
                                                                 ),
                                                               ],
                                                             ),
@@ -431,13 +682,37 @@ class _DataWorkPageState extends State<DataWorkPage> {
                                                               children: [
                                                                 Text(
                                                                   'คุณสมบัติเพิ่มเติม : ',
-                                                                  // maxLines: 2,
-                                                                  // overflow: TextOverflow.ellipsis,
                                                                   style: TextStyle(
                                                                       fontSize:
                                                                           12,
                                                                       color: Colors
                                                                           .black),
+                                                                ),
+                                                                Container(
+                                                                  width: 50,
+                                                                  child:
+                                                                      FlatButton(
+                                                                    onPressed:
+                                                                        () {
+                                                                      route(
+                                                                          Editmore3(
+                                                                        docid: widget
+                                                                            .docid,
+                                                                        position:
+                                                                            more3,
+                                                                      ));
+                                                                      print(
+                                                                          '******************************* ${widget.docid}');
+                                                                    },
+                                                                    child: const Center(
+                                                                        child: Icon(
+                                                                      Icons
+                                                                          .edit,
+                                                                      size: 16,
+                                                                      color: Colors
+                                                                          .blue,
+                                                                    )),
+                                                                  ),
                                                                 ),
                                                               ],
                                                             ),
@@ -485,27 +760,57 @@ class _DataWorkPageState extends State<DataWorkPage> {
                                                 crossAxisAlignment:
                                                     CrossAxisAlignment.start,
                                                 children: [
-                                                  Container(
-                                                    // color: Colors.green,
-                                                    decoration: BoxDecoration(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              20.0),
-                                                      color: Colors.purple,
-                                                    ),
-                                                    child: const Padding(
-                                                      padding:
-                                                          EdgeInsets.all(8.0),
-                                                      child: Text(
-                                                        'หน้าที่ความรับผิดชอบ',
-                                                        // maxLines: 2,
-                                                        // overflow: TextOverflow.ellipsis,
-                                                        style: TextStyle(
-                                                            fontSize: 14,
-                                                            color:
-                                                                Colors.white),
+                                                  Row(
+                                                    children: [
+                                                      Container(
+                                                        // color: Colors.green,
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      20.0),
+                                                          color: Colors.purple,
+                                                        ),
+                                                        child: Row(
+                                                          children: [
+                                                            const Padding(
+                                                              padding:
+                                                                  EdgeInsets
+                                                                      .all(8.0),
+                                                              child: Text(
+                                                                'หน้าที่ความรับผิดชอบ',
+                                                                style: TextStyle(
+                                                                    fontSize:
+                                                                        14,
+                                                                    color: Colors
+                                                                        .white),
+                                                              ),
+                                                            ),
+                                                          ],
+                                                        ),
                                                       ),
-                                                    ),
+                                                      Container(
+                                                        width: 50,
+                                                        child: FlatButton(
+                                                          onPressed: () {
+                                                            route(EditMission(
+                                                              docid:
+                                                                  widget.docid,
+                                                              position: mission,
+                                                            ));
+                                                            print(
+                                                                '******************************* ${widget.docid}');
+                                                          },
+                                                          child: const Center(
+                                                              child: Icon(
+                                                            Icons.edit,
+                                                            size: 16,
+                                                            color: Colors.blue,
+                                                          )),
+                                                        ),
+                                                      ),
+                                                    ],
                                                   ),
                                                   SizedBox(
                                                     width: 10,
@@ -589,6 +894,35 @@ class _DataWorkPageState extends State<DataWorkPage> {
                                                             CrossAxisAlignment
                                                                 .start,
                                                         children: [
+                                                          Container(
+                                                            width: 50,
+                                                            child: FlatButton(
+                                                              onPressed: () {
+                                                                route(
+                                                                    EditWelfare(
+                                                                  docid: widget
+                                                                      .docid,
+                                                                  position: '',
+                                                                  bonus: bonus,covid: covid,health: health,
+                                                                  people: people,
+                                                                  social: social,
+                                                                  timecost: timecost,
+                                                                  
+                                                                ));
+                                                                print(
+                                                                    '******************************* ${widget.docid}');
+                                                              },
+                                                              child:
+                                                                  const Center(
+                                                                      child:
+                                                                          Icon(
+                                                                Icons.edit,
+                                                                size: 16,
+                                                                color:
+                                                                    Colors.blue,
+                                                              )),
+                                                            ),
+                                                          ),
                                                           Row(
                                                             children: [
                                                               if (bonus ==
@@ -997,8 +1331,6 @@ class _DataWorkPageState extends State<DataWorkPage> {
                                                                         child:
                                                                             Text(
                                                                           'ประกันชีวิต',
-                                                                          // maxLines: 2,
-                                                                          // overflow: TextOverflow.ellipsis,
                                                                           style: TextStyle(
                                                                               fontSize: 14,
                                                                               color: Colors.white),
@@ -1025,8 +1357,6 @@ class _DataWorkPageState extends State<DataWorkPage> {
                                                                             8.0),
                                                                     child: Text(
                                                                       'ประกันชีวิต',
-                                                                      // maxLines: 2,
-                                                                      // overflow: TextOverflow.ellipsis,
                                                                       style: TextStyle(
                                                                           fontSize:
                                                                               12,
@@ -1048,6 +1378,25 @@ class _DataWorkPageState extends State<DataWorkPage> {
                                           Row(
                                             children: [
                                               Text('สวัสดิการเพิ่มเติม :'),
+                                              Container(
+                                                width: 50,
+                                                child: FlatButton(
+                                                  onPressed: () {
+                                                    route(Editmore4(
+                                                      docid: widget.docid,
+                                                      position: more4,
+                                                    ));
+                                                    print(
+                                                        '******************************* ${widget.docid}');
+                                                  },
+                                                  child: const Center(
+                                                      child: Icon(
+                                                    Icons.edit,
+                                                    size: 16,
+                                                    color: Colors.blue,
+                                                  )),
+                                                ),
+                                              ),
                                             ],
                                           ),
                                           lineProgress(
@@ -1101,8 +1450,6 @@ class _DataWorkPageState extends State<DataWorkPage> {
                                                                   8.0),
                                                           child: Text(
                                                             'ข้อมูลติดต่อกลับ',
-                                                            // maxLines: 2,
-                                                            // overflow: TextOverflow.ellipsis,
                                                             style: TextStyle(
                                                                 fontSize: 14,
                                                                 color: Colors
@@ -1126,87 +1473,116 @@ class _DataWorkPageState extends State<DataWorkPage> {
                                                   TextStyle(
                                                     fontSize: 12,
                                                   )),
+                                              Container(
+                                                width: 50,
+                                                child: FlatButton(
+                                                  onPressed: () {
+                                                    route(EditName(
+                                                      docid: widget.docid,
+                                                      position: name,
+                                                    ));
+                                                    print(
+                                                        '******************************* ${widget.docid}');
+                                                  },
+                                                  child: const Center(
+                                                      child: Icon(
+                                                    Icons.edit,
+                                                    size: 16,
+                                                    color: Colors.blue,
+                                                  )),
+                                                ),
+                                              ),
                                             ],
                                           ),
                                           Row(
                                             children: [
-                                              // Text(
-                                              //   'เบอร์ ',
-                                              //   // maxLines: 2,
-                                              //   // overflow: TextOverflow.ellipsis,
-                                              //   style: TextStyle(
-                                              //     fontSize: 14,
-                                              //   ),
-                                              // ),
                                               lineProgress(
                                                   phone,
                                                   TextStyle(
                                                     fontSize: 12,
                                                   )),
-                                              // lineProgress(name, TextStyle()),
-                                              // lineProgress(name, TextStyle()),
-                                              // lineProgress(name, TextStyle()),
-                                              // lineProgress(name, TextStyle()),
-                                              // lineProgress(name, TextStyle()),
+                                              Container(
+                                                width: 50,
+                                                child: FlatButton(
+                                                  onPressed: () {
+                                                    route(EditPhone(
+                                                      docid: widget.docid,
+                                                      position: phone,
+                                                    ));
+                                                    print(
+                                                        '******************************* ${widget.docid}');
+                                                  },
+                                                  child: const Center(
+                                                      child: Icon(
+                                                    Icons.edit,
+                                                    size: 16,
+                                                    color: Colors.blue,
+                                                  )),
+                                                ),
+                                              ),
                                             ],
                                           ),
                                           Row(
                                             children: [
-                                              // Text(
-                                              //   'เบอร์ ',
-                                              //   // maxLines: 2,
-                                              //   // overflow: TextOverflow.ellipsis,
-                                              //   style: TextStyle(
-                                              //     fontSize: 14,
-                                              //   ),
-                                              // ),
                                               lineProgress(
                                                   email,
                                                   TextStyle(
                                                     fontSize: 12,
                                                   )),
-                                              // lineProgress(name, TextStyle()),
-                                              // lineProgress(name, TextStyle()),
-                                              // lineProgress(name, TextStyle()),
-                                              // lineProgress(name, TextStyle()),
-                                              // lineProgress(name, TextStyle()),
+                                              Container(
+                                                width: 50,
+                                                child: FlatButton(
+                                                  onPressed: () {
+                                                    route(EditEmail(
+                                                      docid: widget.docid,
+                                                      position: email,
+                                                    ));
+                                                    print(
+                                                        '******************************* ${widget.docid}');
+                                                  },
+                                                  child: const Center(
+                                                      child: Icon(
+                                                    Icons.edit,
+                                                    size: 16,
+                                                    color: Colors.blue,
+                                                  )),
+                                                ),
+                                              ),
                                             ],
                                           ),
                                           Row(
                                             children: [
-                                              // Text(
-                                              //   'เบอร์ ',
-                                              //   // maxLines: 2,
-                                              //   // overflow: TextOverflow.ellipsis,
-                                              //   style: TextStyle(
-                                              //     fontSize: 14,
-                                              //   ),
-                                              // ),
                                               Container(
-                                                width: 300,
+                                                width: 280,
                                                 child: lineProgress(
                                                     address,
                                                     TextStyle(
                                                       fontSize: 12,
                                                     )),
                                               ),
-                                              // lineProgress(name, TextStyle()),
-                                              // lineProgress(name, TextStyle()),
-                                              // lineProgress(name, TextStyle()),
-                                              // lineProgress(name, TextStyle()),
-                                              // lineProgress(name, TextStyle()),
+                                              Container(
+                                                width: 50,
+                                                child: FlatButton(
+                                                  onPressed: () {
+                                                    route(EditAddress(
+                                                      docid: widget.docid,
+                                                      position: address,
+                                                    ));
+                                                    print(
+                                                        '******************************* ${widget.docid}');
+                                                  },
+                                                  child: const Center(
+                                                      child: Icon(
+                                                    Icons.edit,
+                                                    size: 16,
+                                                    color: Colors.blue,
+                                                  )),
+                                                ),
+                                              ),
                                             ],
                                           ),
                                           Row(
                                             children: [
-                                              // Text(
-                                              //   'เบอร์ ',
-                                              //   // maxLines: 2,
-                                              //   // overflow: TextOverflow.ellipsis,
-                                              //   style: TextStyle(
-                                              //     fontSize: 14,
-                                              //   ),
-                                              // ),
                                               lineProgress(
                                                   province,
                                                   TextStyle(
@@ -1220,11 +1596,26 @@ class _DataWorkPageState extends State<DataWorkPage> {
                                                   TextStyle(
                                                     fontSize: 12,
                                                   )),
-                                              // lineProgress(name, TextStyle()),
-                                              // lineProgress(name, TextStyle()),
-                                              // lineProgress(name, TextStyle()),
-                                              // lineProgress(name, TextStyle()),
-                                              // lineProgress(name, TextStyle()),
+                                              Container(
+                                                width: 50,
+                                                child: FlatButton(
+                                                  onPressed: () {
+                                                    route(EditProvince(
+                                                      docid: widget.docid,
+                                                      position: province,
+                                                      area: area,
+                                                    ));
+                                                    print(
+                                                        '******************************* ${widget.docid}');
+                                                  },
+                                                  child: const Center(
+                                                      child: Icon(
+                                                    Icons.edit,
+                                                    size: 16,
+                                                    color: Colors.blue,
+                                                  )),
+                                                ),
+                                              ),
                                             ],
                                           )
                                         ],
@@ -1267,23 +1658,48 @@ class _DataWorkPageState extends State<DataWorkPage> {
                                                                       20.0),
                                                           color: Colors.purple,
                                                         ),
-                                                        child: const Padding(
-                                                          padding:
-                                                              EdgeInsets.all(
-                                                                  8.0),
-                                                          child: Text(
-                                                            'รายละเอียดเพิ่มเติม',
-                                                            // maxLines: 2,
-                                                            // overflow: TextOverflow.ellipsis,
-                                                            style: TextStyle(
-                                                                fontSize: 14,
-                                                                color: Colors
-                                                                    .white),
-                                                          ),
+                                                        child: Row(
+                                                          children: [
+                                                            const Padding(
+                                                              padding:
+                                                                  EdgeInsets
+                                                                      .all(8.0),
+                                                              child: Text(
+                                                                'รายละเอียดเพิ่มเติม',
+                                                                // maxLines: 2,
+                                                                // overflow: TextOverflow.ellipsis,
+                                                                style: TextStyle(
+                                                                    fontSize:
+                                                                        14,
+                                                                    color: Colors
+                                                                        .white),
+                                                              ),
+                                                            ),
+                                                          ],
                                                         ),
                                                       ),
                                                       SizedBox(
                                                         width: 10,
+                                                      ),
+                                                      Container(
+                                                        width: 50,
+                                                        child: FlatButton(
+                                                          onPressed: () {
+                                                            route(Editmore7(
+                                                              docid:
+                                                                  widget.docid,
+                                                              position: more7,
+                                                            ));
+                                                            print(
+                                                                '******************************* ${widget.docid}');
+                                                          },
+                                                          child: const Center(
+                                                              child: Icon(
+                                                            Icons.edit,
+                                                            size: 16,
+                                                            color: Colors.blue,
+                                                          )),
+                                                        ),
                                                       ),
                                                     ],
                                                   ),
@@ -1307,50 +1723,6 @@ class _DataWorkPageState extends State<DataWorkPage> {
                                 ],
                               ),
                             ),
-
-                            // Container(),
-                            // RaisedButton(
-                            //   onPressed: () {
-                            //     print(
-                            //         '******************************* ${widget.docid}');
-                            //     get();
-                            //     print(' aboutCompany: ${aboutCompany}');
-                            //     print('  amount: ${amount}');
-                            //     print('  area: ${area}');
-                            //     print('companyName:${companyName},');
-                            //     print('mission: ${mission}');
-                            //     print('  picCompany: $pathPIC');
-                            //     print('province:${province},');
-                            //     print('salary: ${salary},');
-                            //     print(' status: open,');
-                            //     print(' workPosition: ${position},');
-                            //     print('workType: ${worktype},');
-                            //     print(' name: ${name},');
-                            //     print('  phone:${phone},');
-                            //     print('  email:${email}');
-                            //     print(' address: ${address},');
-                            //     print(' gender:${gender},');
-                            //     print(' dateStop: ${dateStop},');
-                            //     print(' more3 : ${more3},');
-                            //     print(' more4: ${more4},');
-                            //     print('  more7 : ${more7}');
-                            //     print('age: ${age},');
-                            //     print('exp: ${exp},');
-                            //     print('bonus: ${bonus},');
-                            //     print(' social: ${social},');
-                            //     print(' health:${health},');
-                            //     print('  timeCost:${timecost},');
-                            //     print(' hospital: ${hospital},');
-                            //     print('covid: ${covid},');
-                            //     print('people: ${people},');
-                            //     print('path:${pathPIC},');
-                            //   },
-                            // ),
-                            // if (name == null || name == '')
-                            //   LinearProgressIndicator()
-                            // else
-                            //   Text(name),
-                            // // lineProgress(dateStop,),
                           ],
                         ),
                       ),
@@ -1497,5 +1869,11 @@ class _DataWorkPageState extends State<DataWorkPage> {
 //
 // }
 //     );
+  }
+
+  Future<Null> route(Widget routeName) async {
+    MaterialPageRoute materialPageRoute =
+        MaterialPageRoute(builder: (BuildContext context) => routeName);
+    await Navigator.of(context).push(materialPageRoute);
   }
 }

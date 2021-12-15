@@ -101,7 +101,8 @@ class _AddWorkState extends State<AddWork> {
   Widget companyNameform() {
     return Padding(
       padding: const EdgeInsets.all(15.0),
-      child: TextField(
+      child: 
+      TextField(
           onChanged: (value) => companyName = value.trim(),
           controller: textEditController,
           decoration: InputDecoration(
