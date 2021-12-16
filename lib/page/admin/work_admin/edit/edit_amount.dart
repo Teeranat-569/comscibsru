@@ -66,7 +66,7 @@ class _EditAmountState extends State<EditAmount> {
                 const SizedBox(
                   height: 10.0,
                 ),
-                Text('จำนวนที่รับสมัคร'),
+                const Text('จำนวนที่รับสมัคร'),
                 nameform(),
                 const SizedBox(
                   height: 10.0,

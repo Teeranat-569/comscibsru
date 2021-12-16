@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:comsci/page/admin/work_admin/edit/edit_picture.dart';
 import 'package:comsci/page/admin/work_admin/edit/edit_position.dart';
 import 'package:flutter/material.dart';
 
@@ -7,6 +8,7 @@ import 'edit_address.dart';
 import 'edit_age.dart';
 import 'edit_amount.dart';
 import 'edit_companyname.dart';
+import 'edit_datestop.dart';
 import 'edit_email.dart';
 import 'edit_exp.dart';
 import 'edit_gender.dart';
@@ -101,23 +103,16 @@ class _EditDataWorkPageState extends State<EditDataWorkPage> {
 
   @override
   Widget build(BuildContext context) {
-    FirebaseFirestore.instance
-        .collection('work')
-        .doc(widget.docid)
-        .get()
-        .then((value) {
-      print('+++++++++++++++++++++++++++++++++++${value['name']}');
-    });
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          title: Text('ประกาศรับสมัครงาน'),
+          title: const Text('แก้ไขประกาศรับสมัครงาน'),
         ),
         body: SafeArea(
           child: Stack(
             children: [
               show
-                  ? Center(
+                  ? const Center(
                       child: CircularProgressIndicator(
                       color: Colors.amber,
                     ))
@@ -129,7 +124,6 @@ class _EditDataWorkPageState extends State<EditDataWorkPage> {
                             Container(
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(20.0),
-                                // color: Colors.grey.shade200,
                               ),
                               width: MediaQuery.of(context).size.width,
                               // ignore: deprecated_member_use
@@ -142,10 +136,6 @@ class _EditDataWorkPageState extends State<EditDataWorkPage> {
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceEvenly,
                                     children: [
-                                      // Icon(
-                                      //   Icons.tab,
-                                      //   color: Colors.blue[200],
-                                      // ),
                                       Container(
                                         width: 120,
                                         child: Column(
@@ -154,7 +144,18 @@ class _EditDataWorkPageState extends State<EditDataWorkPage> {
                                           children: [
                                             if (pathPIC == null ||
                                                 pathPIC == '')
-                                              CircularProgressIndicator()
+                                              CircleAvatar(
+                                                backgroundColor: Colors.white,
+                                                radius: 50,
+                                                child: ClipOval(
+                                                  child: Image.asset(
+                                                    'images/image.png',
+                                                    height: 100,
+                                                    width: 100,
+                                                    fit: BoxFit.cover,
+                                                  ),
+                                                ),
+                                              )
                                             else
                                               CircleAvatar(
                                                 backgroundColor: Colors.white,
@@ -168,6 +169,30 @@ class _EditDataWorkPageState extends State<EditDataWorkPage> {
                                                   ),
                                                 ),
                                               ),
+                                            Container(
+                                              width: 50,
+                                              decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(30.0),
+                                                color: Colors.grey.shade200,
+                                              ),
+                                              child: FlatButton(
+                                                onPressed: () {
+                                                  route(EditPicture(
+                                                    docid: widget.docid,
+                                                    position: position,
+                                                  ));
+                                                  print(
+                                                      '******************************* ${widget.docid}');
+                                                },
+                                                child: const Center(
+                                                    child: Icon(
+                                                  Icons.edit,
+                                                  size: 16,
+                                                  color: Colors.blue,
+                                                )),
+                                              ),
+                                            ),
                                           ],
                                         ),
                                       ),
@@ -182,7 +207,7 @@ class _EditDataWorkPageState extends State<EditDataWorkPage> {
                                           children: [
                                             Row(
                                               children: [
-                                                Text('สถานะ : '),
+                                                const Text('สถานะ : '),
                                                 if (status == 'เปิดรับสมัคร')
                                                   Container(
                                                     // color: Colors.green,
@@ -197,70 +222,58 @@ class _EditDataWorkPageState extends State<EditDataWorkPage> {
                                                           EdgeInsets.all(8.0),
                                                       child: Text(
                                                         'เปิดรับสมัคร',
-                                                        // maxLines: 2,
-                                                        // overflow: TextOverflow.ellipsis,
                                                         style: TextStyle(
                                                             fontSize: 10,
                                                             color:
                                                                 Colors.white),
                                                       ),
                                                     ),
-                                                  )else if (status == 'ด่วน')
-                                              Container(
-                                                // color: Colors.green,
-                                                decoration: BoxDecoration(
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          10.0),
-                                                  color: Colors.amber[900],
-                                                ),
-                                                child: const Padding(
-                                                  padding: EdgeInsets.all(8.0),
-                                                  child: Text(
-                                                    'รับสมัครด่วน',
-                                                    // maxLines: 2,
-                                                    // overflow: TextOverflow.ellipsis,
-                                                    style: TextStyle(
-                                                        fontSize: 10,
-                                                        color: Colors.white),
+                                                  )
+                                                else if (status == 'ด่วน')
+                                                  Container(
+                                                    decoration: BoxDecoration(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              10.0),
+                                                      color: Colors.amber[900],
+                                                    ),
+                                                    child: const Padding(
+                                                      padding:
+                                                          EdgeInsets.all(8.0),
+                                                      child: Text(
+                                                        'รับสมัครด่วน',
+                                                        style: TextStyle(
+                                                            fontSize: 10,
+                                                            color:
+                                                                Colors.white),
+                                                      ),
+                                                    ),
+                                                  )
+                                                else if (status ==
+                                                    'ปิดรับสมัคร')
+                                                  Container(
+                                                    decoration: BoxDecoration(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              10.0),
+                                                      color: Colors.red[900],
+                                                    ),
+                                                    child: const Padding(
+                                                      padding:
+                                                          EdgeInsets.all(8.0),
+                                                      child: Text(
+                                                        'ปิดรับสมัคร',
+                                                        style: TextStyle(
+                                                            fontSize: 10,
+                                                            color:
+                                                                Colors.white),
+                                                      ),
+                                                    ),
                                                   ),
-                                                ),
-                                              )
-                                            else if (status == 'ปิดรับสมัคร')
-                                              Container(
-                                                // color: Colors.green,
-                                                decoration: BoxDecoration(
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          10.0),
-                                                  color: Colors.red[900],
-                                                ),
-                                                child: const Padding(
-                                                  padding: EdgeInsets.all(8.0),
-                                                  child: Text(
-                                                    'ปิดรับสมัคร',
-                                                    // maxLines: 2,
-                                                    // overflow: TextOverflow.ellipsis,
-                                                    style: TextStyle(
-                                                        fontSize: 10,
-                                                        color: Colors.white),
-                                                  ),
-                                                ),
-                                              ),
-                                                  
-                                                   Container(
+                                                Container(
                                                   width: 50,
                                                   child: FlatButton(
                                                     onPressed: () {
-                                                      // myAlert(data['docid']);
-                                                      // // ignore: avoid_print
-                                                      // print('----------------------------------' +
-                                                      //     data['docid']);
-                                                      // // ignore: avoid_print
-                                                      // print(
-                                                      //     '----------------------------nnnnn------' +
-                                                      //         data['nameManual']);
-
                                                       route(EditStatus(
                                                         docid: widget.docid,
                                                         position: position,
@@ -290,15 +303,6 @@ class _EditDataWorkPageState extends State<EditDataWorkPage> {
                                                   width: 50,
                                                   child: FlatButton(
                                                     onPressed: () {
-                                                      // myAlert(data['docid']);
-                                                      // // ignore: avoid_print
-                                                      // print('----------------------------------' +
-                                                      //     data['docid']);
-                                                      // // ignore: avoid_print
-                                                      // print(
-                                                      //     '----------------------------nnnnn------' +
-                                                      //         data['nameManual']);
-
                                                       route(EditPosition(
                                                         docid: widget.docid,
                                                         position: position,
@@ -318,21 +322,14 @@ class _EditDataWorkPageState extends State<EditDataWorkPage> {
                                             ),
                                             Row(
                                               children: [
-                                                lineProgress(companyName,
-                                                    TextStyle(fontSize: 14)),
+                                                lineProgress(
+                                                    companyName,
+                                                    const TextStyle(
+                                                        fontSize: 14)),
                                                 Container(
                                                   width: 20,
                                                   child: FlatButton(
                                                     onPressed: () {
-                                                      // myAlert(data['docid']);
-                                                      // // ignore: avoid_print
-                                                      // print('----------------------------------' +
-                                                      //     data['docid']);
-                                                      // // ignore: avoid_print
-                                                      // print(
-                                                      //     '----------------------------nnnnn------' +
-                                                      //         data['nameManual']);
-
                                                       route(EditCompanyName(
                                                         docid: widget.docid,
                                                         position: companyName,
@@ -355,12 +352,12 @@ class _EditDataWorkPageState extends State<EditDataWorkPage> {
                                       ),
                                     ],
                                   ),
-                                  SizedBox(
+                                  const SizedBox(
                                     height: 15,
                                   ),
                                   Row(
                                     children: [
-                                      SizedBox(
+                                      const SizedBox(
                                         width: 15,
                                       ),
                                       Container(
@@ -374,8 +371,6 @@ class _EditDataWorkPageState extends State<EditDataWorkPage> {
                                           padding: EdgeInsets.all(8.0),
                                           child: Text(
                                             'เกี่ยวกับบริษัท',
-                                            // maxLines: 2,
-                                            // overflow: TextOverflow.ellipsis,
                                             style: TextStyle(
                                                 fontSize: 14,
                                                 color: Colors.white),
@@ -386,15 +381,6 @@ class _EditDataWorkPageState extends State<EditDataWorkPage> {
                                         width: 50,
                                         child: FlatButton(
                                           onPressed: () {
-                                            // myAlert(data['docid']);
-                                            // // ignore: avoid_print
-                                            // print('----------------------------------' +
-                                            //     data['docid']);
-                                            // // ignore: avoid_print
-                                            // print(
-                                            //     '----------------------------nnnnn------' +
-                                            //         data['nameManual']);
-
                                             route(EditAbout(
                                               docid: widget.docid,
                                               position: aboutCompany,
@@ -414,14 +400,14 @@ class _EditDataWorkPageState extends State<EditDataWorkPage> {
                                   ),
                                   Row(
                                     children: [
-                                      SizedBox(
+                                      const SizedBox(
                                         width: 15,
                                       ),
                                       Container(
                                         width: 340,
                                         child: lineProgressIMG(
                                           aboutCompany,
-                                          TextStyle(fontSize: 12),
+                                          const TextStyle(fontSize: 12),
                                         ),
                                       ),
                                     ],
@@ -453,7 +439,7 @@ class _EditDataWorkPageState extends State<EditDataWorkPage> {
                                                             8.0),
                                                     child: Text(
                                                       'รับสมัคร' + '$worktype',
-                                                      style: TextStyle(
+                                                      style: const TextStyle(
                                                           fontSize: 16),
                                                     ),
                                                   ),
@@ -461,15 +447,6 @@ class _EditDataWorkPageState extends State<EditDataWorkPage> {
                                                     width: 50,
                                                     child: FlatButton(
                                                       onPressed: () {
-                                                        // myAlert(data['docid']);
-                                                        // // ignore: avoid_print
-                                                        // print('----------------------------------' +
-                                                        //     data['docid']);
-                                                        // // ignore: avoid_print
-                                                        // print(
-                                                        //     '----------------------------nnnnn------' +
-                                                        //         data['nameManual']);
-
                                                         route(EditWorkType(
                                                           docid: widget.docid,
                                                           position: worktype,
@@ -499,7 +476,7 @@ class _EditDataWorkPageState extends State<EditDataWorkPage> {
                                                           amount.toString() +
                                                           '\t' +
                                                           'คน',
-                                                      style: TextStyle(
+                                                      style: const TextStyle(
                                                           fontSize: 16),
                                                     ),
                                                   ),
@@ -507,15 +484,6 @@ class _EditDataWorkPageState extends State<EditDataWorkPage> {
                                                     width: 50,
                                                     child: FlatButton(
                                                       onPressed: () {
-                                                        // myAlert(data['docid']);
-                                                        // // ignore: avoid_print
-                                                        // print('----------------------------------' +
-                                                        //     data['docid']);
-                                                        // // ignore: avoid_print
-                                                        // print(
-                                                        //     '----------------------------nnnnn------' +
-                                                        //         data['nameManual']);
-
                                                         route(EditAmount(
                                                           docid: widget.docid,
                                                           position: amount,
@@ -532,6 +500,53 @@ class _EditDataWorkPageState extends State<EditDataWorkPage> {
                                                     ),
                                                   ),
                                                 ],
+                                              ),
+                                              Padding(
+                                                padding:
+                                                    const EdgeInsets.all(8.0),
+                                                child: Column(
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  children: [
+                                                    const Text(
+                                                      'รับสมัครถึงวันที่   ',
+                                                      style: TextStyle(
+                                                          fontSize: 12),
+                                                    ),
+                                                    Row(
+                                                      children: [
+                                                        Text(
+                                                          dateStop,
+                                                          style:
+                                                              const TextStyle(
+                                                                  fontSize: 16),
+                                                        ),
+                                                        Container(
+                                                          width: 50,
+                                                          child: FlatButton(
+                                                            onPressed: () {
+                                                              route(EditDate(
+                                                                docid: widget
+                                                                    .docid,
+                                                                position:
+                                                                    amount,
+                                                              ));
+                                                              print(
+                                                                  '******************************* ${widget.docid}');
+                                                            },
+                                                            child: const Center(
+                                                                child: Icon(
+                                                              Icons.edit,
+                                                              size: 16,
+                                                              color:
+                                                                  Colors.blue,
+                                                            )),
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ],
+                                                ),
                                               ),
                                             ],
                                           ),
@@ -566,7 +581,6 @@ class _EditDataWorkPageState extends State<EditDataWorkPage> {
                                                             .start,
                                                     children: [
                                                       Container(
-                                                        // color: Colors.green,
                                                         decoration:
                                                             BoxDecoration(
                                                           borderRadius:
@@ -581,8 +595,6 @@ class _EditDataWorkPageState extends State<EditDataWorkPage> {
                                                                   8.0),
                                                           child: Text(
                                                             'คุณสมบัติ',
-                                                            // maxLines: 2,
-                                                            // overflow: TextOverflow.ellipsis,
                                                             style: TextStyle(
                                                                 fontSize: 14,
                                                                 color: Colors
@@ -590,7 +602,7 @@ class _EditDataWorkPageState extends State<EditDataWorkPage> {
                                                           ),
                                                         ),
                                                       ),
-                                                      SizedBox(
+                                                      const SizedBox(
                                                         width: 10,
                                                       ),
                                                       Container(
@@ -648,8 +660,6 @@ class _EditDataWorkPageState extends State<EditDataWorkPage> {
                                                               children: [
                                                                 const Text(
                                                                   'อายุ : ',
-                                                                  // maxLines: 2,
-                                                                  // overflow: TextOverflow.ellipsis,
                                                                   style: TextStyle(
                                                                       fontSize:
                                                                           12,
@@ -664,8 +674,6 @@ class _EditDataWorkPageState extends State<EditDataWorkPage> {
                                                                     )),
                                                                 const Text(
                                                                   ' ปี',
-                                                                  // maxLines: 2,
-                                                                  // overflow: TextOverflow.ellipsis,
                                                                   style: TextStyle(
                                                                       fontSize:
                                                                           12,
@@ -702,7 +710,7 @@ class _EditDataWorkPageState extends State<EditDataWorkPage> {
                                                             ),
                                                             Row(
                                                               children: [
-                                                                Text(
+                                                                const Text(
                                                                   'ประสบการณ์ : ',
                                                                   style: TextStyle(
                                                                       fontSize:
@@ -712,11 +720,11 @@ class _EditDataWorkPageState extends State<EditDataWorkPage> {
                                                                 ),
                                                                 lineProgress(
                                                                     exp,
-                                                                    TextStyle(
+                                                                    const TextStyle(
                                                                       fontSize:
                                                                           12,
                                                                     )),
-                                                                Text(
+                                                                const Text(
                                                                   ' ปี',
                                                                   style: TextStyle(
                                                                       fontSize:
@@ -754,7 +762,7 @@ class _EditDataWorkPageState extends State<EditDataWorkPage> {
                                                             ),
                                                             Row(
                                                               children: [
-                                                                Text(
+                                                                const Text(
                                                                   'คุณสมบัติเพิ่มเติม : ',
                                                                   style: TextStyle(
                                                                       fontSize:
@@ -792,13 +800,12 @@ class _EditDataWorkPageState extends State<EditDataWorkPage> {
                                                             ),
                                                             Container(
                                                               width: 300,
-                                                              child:
-                                                                  lineProgressIMG3(
-                                                                      more3,
-                                                                      TextStyle(
-                                                                        fontSize:
-                                                                            12,
-                                                                      )),
+                                                              child: lineProgressIMG3(
+                                                                  more3,
+                                                                  const TextStyle(
+                                                                    fontSize:
+                                                                        12,
+                                                                  )),
                                                             ),
                                                           ],
                                                         ),
@@ -837,7 +844,6 @@ class _EditDataWorkPageState extends State<EditDataWorkPage> {
                                                   Row(
                                                     children: [
                                                       Container(
-                                                        // color: Colors.green,
                                                         decoration:
                                                             BoxDecoration(
                                                           borderRadius:
@@ -847,8 +853,8 @@ class _EditDataWorkPageState extends State<EditDataWorkPage> {
                                                           color: Colors.purple,
                                                         ),
                                                         child: Row(
-                                                          children: [
-                                                            const Padding(
+                                                          children: const [
+                                                            Padding(
                                                               padding:
                                                                   EdgeInsets
                                                                       .all(8.0),
@@ -886,7 +892,7 @@ class _EditDataWorkPageState extends State<EditDataWorkPage> {
                                                       ),
                                                     ],
                                                   ),
-                                                  SizedBox(
+                                                  const SizedBox(
                                                     width: 10,
                                                   ),
                                                   Column(
@@ -896,7 +902,7 @@ class _EditDataWorkPageState extends State<EditDataWorkPage> {
                                                     children: [
                                                       lineProgressIMG(
                                                           mission,
-                                                          TextStyle(
+                                                          const TextStyle(
                                                             fontSize: 12,
                                                           )),
                                                     ],
@@ -960,7 +966,7 @@ class _EditDataWorkPageState extends State<EditDataWorkPage> {
                                                           ),
                                                         ),
                                                       ),
-                                                      SizedBox(
+                                                      const SizedBox(
                                                         width: 10,
                                                       ),
                                                       Column(
@@ -1021,10 +1027,11 @@ class _EditDataWorkPageState extends State<EditDataWorkPage> {
                                                                         .pink,
                                                                   ),
                                                                   child: Row(
-                                                                    children: [
-                                                                      Icon(Icons
-                                                                          .check),
-                                                                      const Padding(
+                                                                    children: const [
+                                                                      Icon(
+                                                                          Icons
+                                                                              .check),
+                                                                      Padding(
                                                                         padding:
                                                                             EdgeInsets.all(8.0),
                                                                         child:
@@ -1087,10 +1094,11 @@ class _EditDataWorkPageState extends State<EditDataWorkPage> {
                                                                         .pink,
                                                                   ),
                                                                   child: Row(
-                                                                    children: [
-                                                                      Icon(Icons
-                                                                          .check),
-                                                                      const Padding(
+                                                                    children: const [
+                                                                      Icon(
+                                                                          Icons
+                                                                              .check),
+                                                                      Padding(
                                                                         padding:
                                                                             EdgeInsets.all(8.0),
                                                                         child:
@@ -1153,10 +1161,11 @@ class _EditDataWorkPageState extends State<EditDataWorkPage> {
                                                                         .pink,
                                                                   ),
                                                                   child: Row(
-                                                                    children: [
-                                                                      Icon(Icons
-                                                                          .check),
-                                                                      const Padding(
+                                                                    children: const [
+                                                                      Icon(
+                                                                          Icons
+                                                                              .check),
+                                                                      Padding(
                                                                         padding:
                                                                             EdgeInsets.all(8.0),
                                                                         child:
@@ -1219,10 +1228,11 @@ class _EditDataWorkPageState extends State<EditDataWorkPage> {
                                                                         .pink,
                                                                   ),
                                                                   child: Row(
-                                                                    children: [
-                                                                      Icon(Icons
-                                                                          .check),
-                                                                      const Padding(
+                                                                    children: const [
+                                                                      Icon(
+                                                                          Icons
+                                                                              .check),
+                                                                      Padding(
                                                                         padding:
                                                                             EdgeInsets.all(8.0),
                                                                         child:
@@ -1285,10 +1295,11 @@ class _EditDataWorkPageState extends State<EditDataWorkPage> {
                                                                         .pink,
                                                                   ),
                                                                   child: Row(
-                                                                    children: [
-                                                                      Icon(Icons
-                                                                          .check),
-                                                                      const Padding(
+                                                                    children: const [
+                                                                      Icon(
+                                                                          Icons
+                                                                              .check),
+                                                                      Padding(
                                                                         padding:
                                                                             EdgeInsets.all(8.0),
                                                                         child:
@@ -1350,10 +1361,11 @@ class _EditDataWorkPageState extends State<EditDataWorkPage> {
                                                                         .pink,
                                                                   ),
                                                                   child: Row(
-                                                                    children: [
-                                                                      Icon(Icons
-                                                                          .check),
-                                                                      const Padding(
+                                                                    children: const [
+                                                                      Icon(
+                                                                          Icons
+                                                                              .check),
+                                                                      Padding(
                                                                         padding:
                                                                             EdgeInsets.all(8.0),
                                                                         child:
@@ -1471,7 +1483,8 @@ class _EditDataWorkPageState extends State<EditDataWorkPage> {
                                           ),
                                           Row(
                                             children: [
-                                              Text('สวัสดิการเพิ่มเติม :'),
+                                              const Text(
+                                                  'สวัสดิการเพิ่มเติม :'),
                                               Container(
                                                 width: 50,
                                                 child: FlatButton(
@@ -1495,7 +1508,7 @@ class _EditDataWorkPageState extends State<EditDataWorkPage> {
                                           ),
                                           lineProgress(
                                               more4,
-                                              TextStyle(
+                                              const TextStyle(
                                                 fontSize: 12,
                                               ))
                                         ],
@@ -1551,7 +1564,7 @@ class _EditDataWorkPageState extends State<EditDataWorkPage> {
                                                           ),
                                                         ),
                                                       ),
-                                                      SizedBox(
+                                                      const SizedBox(
                                                         width: 10,
                                                       ),
                                                     ],
@@ -1564,7 +1577,7 @@ class _EditDataWorkPageState extends State<EditDataWorkPage> {
                                             children: [
                                               lineProgress(
                                                   name,
-                                                  TextStyle(
+                                                  const TextStyle(
                                                     fontSize: 12,
                                                   )),
                                               Container(
@@ -1592,7 +1605,7 @@ class _EditDataWorkPageState extends State<EditDataWorkPage> {
                                             children: [
                                               lineProgress(
                                                   phone,
-                                                  TextStyle(
+                                                  const TextStyle(
                                                     fontSize: 12,
                                                   )),
                                               Container(
@@ -1620,7 +1633,7 @@ class _EditDataWorkPageState extends State<EditDataWorkPage> {
                                             children: [
                                               lineProgress(
                                                   email,
-                                                  TextStyle(
+                                                  const TextStyle(
                                                     fontSize: 12,
                                                   )),
                                               Container(
@@ -1650,7 +1663,7 @@ class _EditDataWorkPageState extends State<EditDataWorkPage> {
                                                 width: 280,
                                                 child: lineProgress(
                                                     address,
-                                                    TextStyle(
+                                                    const TextStyle(
                                                       fontSize: 12,
                                                     )),
                                               ),
@@ -1679,15 +1692,15 @@ class _EditDataWorkPageState extends State<EditDataWorkPage> {
                                             children: [
                                               lineProgress(
                                                   province,
-                                                  TextStyle(
+                                                  const TextStyle(
                                                     fontSize: 12,
                                                   )),
-                                              SizedBox(
+                                              const SizedBox(
                                                 width: 5,
                                               ),
                                               lineProgress(
                                                   area,
-                                                  TextStyle(
+                                                  const TextStyle(
                                                     fontSize: 12,
                                                   )),
                                               Container(
@@ -1753,8 +1766,8 @@ class _EditDataWorkPageState extends State<EditDataWorkPage> {
                                                           color: Colors.purple,
                                                         ),
                                                         child: Row(
-                                                          children: [
-                                                            const Padding(
+                                                          children: const [
+                                                            Padding(
                                                               padding:
                                                                   EdgeInsets
                                                                       .all(8.0),
@@ -1772,7 +1785,7 @@ class _EditDataWorkPageState extends State<EditDataWorkPage> {
                                                           ],
                                                         ),
                                                       ),
-                                                      SizedBox(
+                                                      const SizedBox(
                                                         width: 10,
                                                       ),
                                                       Container(
@@ -1805,7 +1818,7 @@ class _EditDataWorkPageState extends State<EditDataWorkPage> {
                                             children: [
                                               lineProgress(
                                                   more7,
-                                                  TextStyle(
+                                                  const TextStyle(
                                                     fontSize: 12,
                                                   ))
                                             ],
@@ -1830,7 +1843,7 @@ class _EditDataWorkPageState extends State<EditDataWorkPage> {
 
   Widget lineProgress(data, TextStyle style) {
     return data == null
-        ? LinearProgressIndicator()
+        ? const LinearProgressIndicator()
         : Text(
             data,
             style: style,
@@ -1839,7 +1852,7 @@ class _EditDataWorkPageState extends State<EditDataWorkPage> {
 
   Widget lineProgressIMG(data, TextStyle style) {
     return data == null
-        ? LinearProgressIndicator()
+        ? const LinearProgressIndicator()
         : Text(
             data,
             style: style,
@@ -1850,7 +1863,7 @@ class _EditDataWorkPageState extends State<EditDataWorkPage> {
 
   Widget lineProgressIMG3(data, TextStyle style) {
     return data == null
-        ? LinearProgressIndicator()
+        ? const LinearProgressIndicator()
         : Text(
             data,
             style: style,
@@ -1861,7 +1874,7 @@ class _EditDataWorkPageState extends State<EditDataWorkPage> {
 
   Widget lineProgressIMG2(data, TextStyle style) {
     return data == null
-        ? LinearProgressIndicator()
+        ? const LinearProgressIndicator()
         : Flexible(
             child: Text(
               data,

@@ -37,7 +37,7 @@ class _EditPhoneState extends State<EditPhone> {
                     .doc(widget
                         .docid) // <-- Doc ID where data should be updated.
                     .update({
-                  'name': nameForm,
+                  'phone': nameForm,
                 });
                 route(EditDataWorkPage(docid: widget.docid));
                 Fluttertoast.showToast(

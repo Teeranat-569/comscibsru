@@ -53,7 +53,6 @@ class _EditAboutState extends State<EditAbout> {
                 size: 40.0,
               ),
               backgroundColor: Colors.pink,
-              tooltip: 'บันทึกกิจกรรม',
             ),
           ],
         ),
@@ -66,7 +65,7 @@ class _EditAboutState extends State<EditAbout> {
                 const SizedBox(
                   height: 10.0,
                 ),
-                Text('เกี่ยวกับบริษัท'),
+                const Text('เกี่ยวกับบริษัท'),
                 nameform(),
                 const SizedBox(
                   height: 10.0,
@@ -84,12 +83,7 @@ class _EditAboutState extends State<EditAbout> {
           filled: true,
           fillColor: Colors.grey[200],
           border: InputBorder.none,
-          // labelText: 'เกี่ยวกับบริษัท',
-          // labelStyle: const TextStyle(
-          //   fontSize: 16.0,
-          //   color: Colors.grey,
-          //   fontWeight: FontWeight.bold,
-          // ),
+        
         ));
   }
 

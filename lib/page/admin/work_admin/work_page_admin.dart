@@ -1,13 +1,9 @@
-import 'dart:io';
+
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:comsci/page/admin/work_admin/add_work.dart';
-import 'package:comsci/page/admin/work_admin/data_workpage_admin.dart';
 import 'package:flutter/material.dart';
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:image_picker/image_picker.dart';
-
 import 'edit/edit_data_workpage_admin.dart';
 
 class WorkPageAdmin extends StatefulWidget {
@@ -35,11 +31,12 @@ class _WorkPageAdminState extends State<WorkPageAdmin> {
 
         if (snapshot.connectionState == ConnectionState.waiting) {
           return Scaffold(
-            body: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
-                CircularProgressIndicator(),
-              ],
+            body: Center(
+              child: Column(
+                children: const [
+                  CircularProgressIndicator(),
+                ],
+              ),
             ),
           );
         }
@@ -51,11 +48,12 @@ class _WorkPageAdminState extends State<WorkPageAdmin> {
               actions: [
                 IconButton(
                     onPressed: () {
-                      route(AddWork());
+                      route(const AddWork());
                     },
-                    icon: Icon(Icons.add))
+                    icon: const Icon(Icons.add))
               ],
             ),
+            // ignore: avoid_unnecessary_containers
             body: Container(
               // color: Colors.purple[50],
               child: ListView(
@@ -85,36 +83,52 @@ class _WorkPageAdminState extends State<WorkPageAdmin> {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
-                              // Icon(
-                              //   Icons.tab,
-                              //   color: Colors.blue[200],
-                              // ),
-                              Container(
-                                width: 120,
-                                child: Column(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceEvenly,
-                                  children: [
-                                    CircleAvatar(
-                                      backgroundColor: Colors.grey,
-                                      radius: 50,
-                                      child: ClipOval(
-                                        child: Image.network(
-                                          data['picCompany'],
-                                          height: 100,
-                                          width: 100,
-                                          fit: BoxFit.cover,
+                           
+                              Column(
+                                children: [
+                                  Container(
+                                    width: 120,
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceEvenly,
+                                      children: [
+                                        if (data['picCompany'] == null ||
+                                            data['picCompany'] == 'null' ||
+                                            data['picCompany'] == '')
+                                          CircleAvatar(
+                                            backgroundColor: Colors.white,
+                                            radius: 50,
+                                            child: ClipOval(
+                                              child: Image.asset(
+                                                'images/image.png',
+                                                height: 100,
+                                                width: 100,
+                                                fit: BoxFit.cover,
+                                              ),
+                                            ),
+                                          )
+                                        else if (data['picCompany'] != null)
+                                          CircleAvatar(
+                                            backgroundColor: Colors.white,
+                                            radius: 50,
+                                            child: ClipOval(
+                                              child: Image.network(
+                                                data['picCompany'],
+                                                height: 100,
+                                                width: 100,
+                                                fit: BoxFit.cover,
+                                              ),
+                                            ),
+                                          ),
+                                        Text(
+                                          data['companyName'],
+                                        
+                                          style: const TextStyle(fontSize: 12),
                                         ),
-                                      ),
+                                      ],
                                     ),
-                                    Text(
-                                      data['companyName'],
-                                      // maxLines: 3,
-                                      // overflow: TextOverflow.ellipsis,
-                                      style: const TextStyle(fontSize: 12),
-                                    ),
-                                  ],
-                                ),
+                                  ),
+                                ],
                               ),
                               const SizedBox(
                                 width: 10,
@@ -124,9 +138,9 @@ class _WorkPageAdminState extends State<WorkPageAdmin> {
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    if (statuss == 'เปิดรับสม้คร')
+                                    if (statuss == 'เปิดรับสมัคร')
                                       Container(
-                                        // color: Colors.green,
+                                 
                                         decoration: BoxDecoration(
                                           borderRadius:
                                               BorderRadius.circular(10.0),
@@ -136,8 +150,7 @@ class _WorkPageAdminState extends State<WorkPageAdmin> {
                                           padding: EdgeInsets.all(8.0),
                                           child: Text(
                                             'เปิดรับสมัคร',
-                                            // maxLines: 2,
-                                            // overflow: TextOverflow.ellipsis,
+                                            
                                             style: TextStyle(
                                                 fontSize: 10,
                                                 color: Colors.white),
@@ -146,7 +159,7 @@ class _WorkPageAdminState extends State<WorkPageAdmin> {
                                       )
                                     else if (statuss == 'ด่วน')
                                       Container(
-                                        // color: Colors.green,
+                                       
                                         decoration: BoxDecoration(
                                           borderRadius:
                                               BorderRadius.circular(10.0),
@@ -156,8 +169,7 @@ class _WorkPageAdminState extends State<WorkPageAdmin> {
                                           padding: EdgeInsets.all(8.0),
                                           child: Text(
                                             'รับสมัครด่วน',
-                                            // maxLines: 2,
-                                            // overflow: TextOverflow.ellipsis,
+                                           
                                             style: TextStyle(
                                                 fontSize: 10,
                                                 color: Colors.white),
@@ -166,7 +178,7 @@ class _WorkPageAdminState extends State<WorkPageAdmin> {
                                       )
                                     else if (statuss == 'ปิดรับสมัคร')
                                       Container(
-                                        // color: Colors.green,
+                                        
                                         decoration: BoxDecoration(
                                           borderRadius:
                                               BorderRadius.circular(10.0),
@@ -176,8 +188,7 @@ class _WorkPageAdminState extends State<WorkPageAdmin> {
                                           padding: EdgeInsets.all(8.0),
                                           child: Text(
                                             'ปิดรับสมัคร',
-                                            // maxLines: 2,
-                                            // overflow: TextOverflow.ellipsis,
+                                           
                                             style: TextStyle(
                                                 fontSize: 10,
                                                 color: Colors.white),
@@ -189,7 +200,7 @@ class _WorkPageAdminState extends State<WorkPageAdmin> {
                                       style: const TextStyle(
                                           fontSize: 18, color: Colors.purple),
                                     ),
-                                    SizedBox(
+                                    const SizedBox(
                                       height: 8,
                                     ),
                                     Text(
@@ -201,7 +212,7 @@ class _WorkPageAdminState extends State<WorkPageAdmin> {
                                           data['amount'].toString() +
                                           '\t' +
                                           'คน',
-                                      style: TextStyle(fontSize: 12),
+                                      style: const TextStyle(fontSize: 12),
                                     ),
                                     Text(
                                       'เงินเดือน/เบี้ยเลี้ยง' +
@@ -209,37 +220,36 @@ class _WorkPageAdminState extends State<WorkPageAdmin> {
                                           data['salary'] +
                                           '\t' +
                                           'บาท',
-                                      style: TextStyle(fontSize: 12),
+                                      style: const TextStyle(fontSize: 12),
                                     ),
                                     Text(
                                       data['province'] + '\t' + data['area'],
-                                      style: TextStyle(fontSize: 12),
+                                      style: const TextStyle(fontSize: 12),
+                                    ),
+                                    Container(
+                                      color: Colors.white,
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Column(
+                                          children: [
+                                            Text(
+                                              'รับสมัครถึงวันที่',
+                                              style: TextStyle(fontSize: 12),
+                                            ),
+                                            Text(
+                                              data['dateStop'],
+                                              style: TextStyle(fontSize: 12),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
                                     ),
                                   ],
                                 ),
                               ),
                             ],
                           ),
-                          // Row(
-                          //   mainAxisAlignment: MainAxisAlignment.end,
-                          //   // ignore: prefer_const_literals_to_create_immutables
-                          //   children: [
-                          //     FlatButton(
-                          //       onPressed: () {
-                          //         route(DataWorkPage(
-                          //           docid: data['docid'],
-                          //         ));
-                          //         print(
-                          //             '******************************* ${data['docid']}');
-                          //       },
-                          //       child: const Text(
-                          //         'ดูรายละเอียด >>>',
-                          //         style: TextStyle(
-                          //             fontSize: 12, color: Colors.grey),
-                          //       ),
-                          //     ),
-                          //   ],
-                          // ),
+                        
                           Column(
                             children: [
                               Row(
@@ -252,10 +262,7 @@ class _WorkPageAdminState extends State<WorkPageAdmin> {
                                       print(
                                           '----------------------------------' +
                                               data['docid']);
-                                      // ignore: avoid_print
-                                      print(
-                                          '----------------------------nnnnn------' +
-                                              data['nameManual']);
+                                    
                                     },
                                     child: const Center(
                                         child: Icon(
@@ -265,14 +272,7 @@ class _WorkPageAdminState extends State<WorkPageAdmin> {
                                   ),
                                   FlatButton(
                                     onPressed: () {
-                                      // myAlert(data['docid']);
-                                      // // ignore: avoid_print
-                                      // print('----------------------------------' +
-                                      //     data['docid']);
-                                      // // ignore: avoid_print
-                                      // print(
-                                      //     '----------------------------nnnnn------' +
-                                      //         data['nameManual']);
+                                   
 
                                       route(EditDataWorkPage(
                                         docid: data['docid'],
@@ -303,7 +303,7 @@ class _WorkPageAdminState extends State<WorkPageAdmin> {
     );
   }
 
-  Future<Null> route(Widget routeName) async {
+  Future<void> route(Widget routeName) async {
     MaterialPageRoute materialPageRoute =
         MaterialPageRoute(builder: (BuildContext context) => routeName);
     await Navigator.of(context).push(materialPageRoute);
@@ -344,7 +344,7 @@ class _WorkPageAdminState extends State<WorkPageAdmin> {
       // ignore: avoid_print
       print("User Deleted");
       Fluttertoast.showToast(
-        msg: "ลบแหล่งความรู้สำเร็จ",
+        msg: "ลบสำเร็จ",
         toastLength: Toast.LENGTH_SHORT,
         gravity: ToastGravity.CENTER,
         backgroundColor: Colors.purple[100],

@@ -158,6 +158,7 @@ flutter:
     - images/stu.png
     - images/CC.png
     - images/crop.jpg
+    - images/image.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

@@ -66,7 +66,6 @@ class _EditExpState extends State<EditExp> {
                 const SizedBox(
                   height: 10.0,
                 ),
-                // Text('')
                 nameform(),
                 const SizedBox(
                   height: 10.0,

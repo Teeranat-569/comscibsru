@@ -16,7 +16,7 @@ class AddWork6 extends StatefulWidget {
       amount,
       salary,
       pathPIC,
-      dateStop,
+      dateStop,fast,
       more3;
       bool
       bonus,
@@ -37,7 +37,7 @@ class AddWork6 extends StatefulWidget {
       this.age,
       this.exp,
       this.gender,
-      this.more3,
+      this.more3,this.fast,
       required this.bonus,
       required this.covid,
       required this.health,
@@ -351,6 +351,7 @@ class _AddWork6State extends State<AddWork6> {
             province: province,
             salary: widget.salary,
             pathPIC: widget.pathPIC,
+            fast:widget.fast
           ));
         },
         shape: RoundedRectangleBorder(

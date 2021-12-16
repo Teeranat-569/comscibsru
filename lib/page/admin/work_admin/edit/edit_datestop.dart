@@ -1,11 +1,16 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:comsci/page/admin/work_admin/add_work6.dart';
 import 'package:date_time_picker/date_time_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:intl/intl.dart';
 import 'package:buddhist_datetime_dateformat_sns/buddhist_datetime_dateformat_sns.dart';
 
-class AddWork5 extends StatefulWidget {
+import 'edit_data_workpage_admin.dart';
+
+class EditDate extends StatefulWidget {
   dynamic position,
+      docid,
       mission,
       companyName,
       aboutCompany,
@@ -17,47 +22,65 @@ class AddWork5 extends StatefulWidget {
       salary,
       more4,
       more3;
-  bool bonus, social, health, timecost, hospital, covid, people;
 
-  AddWork5(
-      {Key? key,
-      this.mission,
-      this.position,
-      this.aboutCompany,
-      this.companyName,
-      this.worktype,
-      this.age,
-      this.exp,
-      this.gender,
-      this.more3,
-      required this.bonus,
-      required this.covid,
-      required this.health,
-      required this.hospital,
-      required this.people,
-      required this.social,
-      required this.more4,
-      required this.salary,
-      required this.pathPIC,
-      required this.timecost})
-      : super(key: key);
+  EditDate({
+    Key? key,
+    this.docid,
+    this.mission,
+    this.position,
+    this.aboutCompany,
+    this.companyName,
+    this.worktype,
+    this.age,
+    this.exp,
+    this.gender,
+    this.more3,
+  }) : super(key: key);
 
   @override
-  _AddWork5State createState() => _AddWork5State();
+  _EditDateState createState() => _EditDateState();
 }
 
-class _AddWork5State extends State<AddWork5> {
+class _EditDateState extends State<EditDate> {
   dynamic _chosenValue, amount, mission, dateTimestop, dateThai, val;
   var textEditController = TextEditingController();
   var textEditController2 = TextEditingController();
   bool yes = false;
-  bool no = false;
+  bool no = false; var collection = FirebaseFirestore.instance.collection('work');
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(title: Text('ประกาศรับสมัครงานด้านไอที')),
+        appBar: AppBar(title: Text('ประกาศรับสมัครงานด้านไอที')),   floatingActionButton: Column(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            FloatingActionButton(
+              onPressed: () {
+                collection
+                    .doc(widget
+                        .docid) // <-- Doc ID where data should be updated.
+                    .update({
+                  'dateStop': dateThai,
+                });
+                route(EditDataWorkPage(docid: widget.docid));
+                Fluttertoast.showToast(
+                  msg: "แก้ไขสำเร็จ",
+                  toastLength: Toast.LENGTH_SHORT,
+                  gravity: ToastGravity.CENTER,
+                  backgroundColor: Colors.orange[100],
+                  textColor: Colors.black,
+                );
+              },
+              child: const Icon(
+                Icons.save,
+                size: 40.0,
+              ),
+              backgroundColor: Colors.pink,
+              tooltip: 'บันทึกกิจกรรม',
+            ),
+          ],
+        ),
         body: SingleChildScrollView(
           child: Container(
             width: MediaQuery.of(context).size.width,
@@ -66,20 +89,6 @@ class _AddWork5State extends State<AddWork5> {
               children: [
                 SizedBox(
                   height: 10,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      'จำนวนที่รับ',
-                      style: TextStyle(fontSize: 15),
-                    ),
-                    amountform(),
-                    Text(
-                      'คน',
-                      style: TextStyle(fontSize: 15),
-                    ),
-                  ],
                 ),
                 SizedBox(
                   height: 15,
@@ -92,45 +101,7 @@ class _AddWork5State extends State<AddWork5> {
                 SizedBox(
                   height: 15,
                 ),
-                Text(
-                  'รับสมัครด่วนหรือไม่?',
-                  style: TextStyle(fontSize: 22),
-                ),
-                Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Checkbox(
-                        value: yes,
-                        onChanged: (value) {
-                          setState(() {
-                            yes = value!;
-                            print('kkkkkkkk$yes');
-                            yes == true ? val = 'ด่วน' : val = 'เปิดรับสมัคร';
-                          });
-                        },
-                      ),
-                      const Text("ใช่"),
-                      Checkbox(
-                        value: no,
-                        onChanged: (value) {
-                          setState(() {
-                            no = value!;
-                            print('kkkkkkkk$no');
-
-                            no == true
-                                ? val = 'เปิดรับสมัคร'
-                                : val = 'เปิดรับสมัคร';
-                          });
-                        },
-                      ),
-                      const Text("ไม่"),
-                    ]),
-                Row(mainAxisAlignment: MainAxisAlignment.end, children: [
-                  buttonNext(),
-                  SizedBox(
-                    width: 15,
-                  ),
-                ]),
+             
               ],
             ),
           ),
@@ -155,11 +126,7 @@ class _AddWork5State extends State<AddWork5> {
                   Radius.circular(10.0),
                 ),
               ),
-              // labelText: 'ตำแหน่งงาน',
-              // labelStyle: const TextStyle(
-              //   fontSize: 16.0,
-              //   fontWeight: FontWeight.bold,
-              // ),
+           
             )),
       ),
     );
@@ -230,42 +197,13 @@ class _AddWork5State extends State<AddWork5> {
           print('exp: ${widget.exp},');
           print(' gender:${widget.gender},');
           print(' more3 : ${widget.more3},');
-          print('bonus: ${widget.bonus},');
-          print(' social: ${widget.social},');
-          print(' health:${widget.health},');
-          print('  timeCost:${widget.timecost},');
-          print(' hospital: ${widget.hospital},');
-          print('covid: ${widget.covid},');
-          print('people: ${widget.people},');
+
           print(' more4 : ${widget.more4},');
           print('salary: ${widget.salary},');
           print('  amount: ${amount.toString()}');
           print(' dateStop: ${dateThai},');
           print('path:${widget.pathPIC},');
-          route(AddWork6(
-            aboutCompany: widget.aboutCompany,
-            age: widget.age,
-            bonus: widget.bonus,
-            companyName: widget.companyName,
-            covid: widget.covid,
-            exp: widget.exp,
-            gender: widget.gender,
-            health: widget.health,
-            hospital: widget.hospital,
-            mission: widget.mission,
-            more3: widget.more3,
-            people: widget.people,
-            position: widget.position,
-            social: widget.social,
-            worktype: widget.worktype,
-            more4: widget.more4,
-            timecost: widget.timecost,
-            amount: amount.toString(),
-            dateStop: dateThai,
-            salary: widget.salary,
-            pathPIC: widget.pathPIC,
-            fast : val
-          ));
+        
         },
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(14.0),

@@ -87,7 +87,6 @@ class _EditWorkTypeState extends State<EditWorkType> {
             fontWeight: FontWeight.w500,
           ),
         ),
-        // const SizedBox(),
         Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10),
@@ -144,12 +143,6 @@ class _EditWorkTypeState extends State<EditWorkType> {
           filled: true,
           fillColor: Colors.grey[200],
           border: InputBorder.none,
-          // labelText: 'เกี่ยวกับบริษัท',
-          // labelStyle: const TextStyle(
-          //   fontSize: 16.0,
-          //   color: Colors.grey,
-          //   fontWeight: FontWeight.bold,
-          // ),
         ));
   }
 

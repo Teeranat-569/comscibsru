@@ -290,6 +290,27 @@ class _DataWorkState extends State<DataWork> {
                                               ),
                                             ],
                                           ),
+                                          Container(
+                                            color: Colors.white,
+                                            child: Padding(
+                                              padding:
+                                                  const EdgeInsets.all(8.0),
+                                              child: Column(
+                                                children: [
+                                                  Text(
+                                                    'รับสมัครถึงวันที่',
+                                                    style:
+                                                        TextStyle(fontSize: 12),
+                                                  ),
+                                                  Text(
+                                                    dateStop,
+                                                    style:
+                                                        TextStyle(fontSize: 12),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ),
                                         ],
                                       ),
                                     ),

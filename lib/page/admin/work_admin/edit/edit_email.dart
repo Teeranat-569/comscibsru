@@ -66,7 +66,7 @@ class _EditEmailState extends State<EditEmail> {
                 const SizedBox(
                   height: 10.0,
                 ),
-                // Text('')
+               
                 nameform(),
                 const SizedBox(
                   height: 10.0,

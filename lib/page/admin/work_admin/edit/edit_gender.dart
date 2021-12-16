@@ -37,7 +37,7 @@ class _EditGenderState extends State<EditGender> {
                     .doc(widget
                         .docid) // <-- Doc ID where data should be updated.
                     .update({
-                  'gender': nameForm,
+                  'gender': _chosenValue,
                 });
                 route(EditDataWorkPage(docid: widget.docid));
                 Fluttertoast.showToast(
@@ -66,7 +66,7 @@ class _EditGenderState extends State<EditGender> {
                 const SizedBox(
                   height: 10.0,
                 ),
-                // Text('เพศ'),
+            
                 dropDown(),
                 const SizedBox(
                   height: 10.0,
@@ -144,12 +144,6 @@ class _EditGenderState extends State<EditGender> {
           filled: true,
           fillColor: Colors.grey[200],
           border: InputBorder.none,
-          // labelText: 'เกี่ยวกับบริษัท',
-          // labelStyle: const TextStyle(
-          //   fontSize: 16.0,
-          //   color: Colors.grey,
-          //   fontWeight: FontWeight.bold,
-          // ),
         ));
   }
 

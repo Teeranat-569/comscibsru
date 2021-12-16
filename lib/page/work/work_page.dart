@@ -195,6 +195,24 @@ class _WorkPageState extends State<WorkPage> {
                                       data['province'] + '\t' + data['area'],
                                       style: TextStyle(fontSize: 12),
                                     ),
+                                      Container(
+                                      color: Colors.white,
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Column(
+                                          children: [
+                                            Text(
+                                              'รับสมัครถึงวันที่',
+                                              style: TextStyle(fontSize: 12),
+                                            ),
+                                            Text(
+                                              data['dateStop'],
+                                              style: TextStyle(fontSize: 12),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
                                   ],
                                 ),
                               ),

@@ -53,7 +53,7 @@ class _EditAddressState extends State<EditAddress> {
                 size: 40.0,
               ),
               backgroundColor: Colors.pink,
-              tooltip: 'บันทึกกิจกรรม',
+
             ),
           ],
         ),
@@ -66,7 +66,7 @@ class _EditAddressState extends State<EditAddress> {
                 const SizedBox(
                   height: 10.0,
                 ),
-                Text('ที่อยู่'),
+                const Text('ที่อยู่'),
                 nameform(),
                 const SizedBox(
                   height: 10.0,
@@ -84,12 +84,8 @@ class _EditAddressState extends State<EditAddress> {
           filled: true,
           fillColor: Colors.grey[200],
           border: InputBorder.none,
-          // labelText: 'เกี่ยวกับบริษัท',
-          // labelStyle: const TextStyle(
-          //   fontSize: 16.0,
-          //   color: Colors.grey,
-          //   fontWeight: FontWeight.bold,
-          // ),
+        
+         
         ));
   }
 

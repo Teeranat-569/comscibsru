@@ -133,7 +133,7 @@ class _AddWork3State extends State<AddWork3> {
               value: _chosenValue,
               style: const TextStyle(color: Colors.white),
               iconEnabledColor: Colors.black,
-              items: <String>['ชาย', 'หญิง']
+              items: <String>['ชาย', 'หญิง', 'ชายและหญิง']
                   .map<DropdownMenuItem<String>>((String value) {
                 return DropdownMenuItem<String>(
                   value: value,

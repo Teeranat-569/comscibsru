@@ -2,6 +2,7 @@ import 'dart:io';
 import 'dart:math';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:comsci/page/admin/work_admin/work_page_admin.dart';
 import 'package:date_time_picker/date_time_picker.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -10,6 +11,8 @@ import 'package:intl/intl.dart';
 import 'package:buddhist_datetime_dateformat_sns/buddhist_datetime_dateformat_sns.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import 'package:firebase_core/firebase_core.dart' as firebase_core;
+
+import '../add.dart';
 
 class AddWork7 extends StatefulWidget {
   dynamic position,
@@ -30,6 +33,7 @@ class AddWork7 extends StatefulWidget {
       province,
       salary,
       pathPIC,
+      fast,
       area,
       more3;
   bool bonus, social, health, timecost, hospital, covid, people;
@@ -44,6 +48,7 @@ class AddWork7 extends StatefulWidget {
       this.age,
       this.exp,
       this.gender,
+      this.fast,
       this.more3,
       required this.bonus,
       required this.covid,
@@ -70,12 +75,52 @@ class AddWork7 extends StatefulWidget {
 }
 
 class _AddWork7State extends State<AddWork7> {
-  dynamic more7, url, img;
+  dynamic more7, img;
   var textEditController = TextEditingController();
   var textEditController2 = TextEditingController();
   var textEditController3 = TextEditingController();
   var textEditController4 = TextEditingController();
   var textEditController5 = TextEditingController();
+
+  Future<void> uploadFile(String filePath, String fileName) async {
+    await Firebase.initializeApp();
+    final firebase_storage.FirebaseStorage storage =
+        firebase_storage.FirebaseStorage.instance;
+    File file = File(filePath);
+    try {
+      await storage.ref('company/$fileName').putFile(file);
+      dynamic url = await storage.ref('company/$fileName').getDownloadURL();
+      // setState(() {
+      img = url;
+      // downloadURLExample(fileName);
+      print('7777777777777777777777777777$fileName');
+      print(
+          '7777777777777777777-------------------------------------777777777$img');
+      print(
+          '7777777777777777777------------------------555555555-------------777777777$url');
+      // });
+    } on firebase_core.FirebaseException catch (e) {
+      // ignore: avoid_print
+      print(e);
+    }
+  }
+
+  Future<void> downloadURLExample(String fileName) async {
+    await Firebase.initializeApp();
+    dynamic url = await firebase_storage.FirebaseStorage.instance
+        .ref('company/$fileName')
+        .getDownloadURL();
+
+    setState(() {
+      print(
+          '7777777777777777777-------------------------------------777777777$img');
+      print(
+          '7777777777777777777------------------------555555555-------------777777777$url');
+    });
+  }
+
+  // Within your widgets:
+  // Image.network(downloadURL);
 
   @override
   Widget build(BuildContext context) {
@@ -145,8 +190,9 @@ class _AddWork7State extends State<AddWork7> {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: RaisedButton(
-        child: const Text("ถัดไป",
+        child: const Text("ประกาศ",
             style: TextStyle(
+              fontSize: 20,
               color: Colors.white,
               fontWeight: FontWeight.bold,
             )),
@@ -178,13 +224,40 @@ class _AddWork7State extends State<AddWork7> {
           // print(' health:${widget.health},');
           // print('  timeCost:${widget.timecost},');
           // print(' hospital: ${widget.hospital},');
+          // Random random = Random();
+          // int i = random.nextInt(100000);
+          Random random = Random();
+          int i = random.nextInt(100000);
+          await Firebase.initializeApp();
+          final firebase_storage.FirebaseStorage storage =
+              firebase_storage.FirebaseStorage.instance;
+          File file = File(widget.pathPIC);
+          try {
+            await storage.ref('company/img$i').putFile(file);
+            dynamic url = await storage.ref('company/img$i').getDownloadURL();
+            // setState(() {
+            img = url;
+            // downloadURLExample(fileName);
+            print('7777777777777777777777777777img$i');
+
+            // print(
+            //     '7777777777777777777------------------------555555555-------------777777777$url');
+            // });
+          } on firebase_core.FirebaseException catch (e) {
+            // ignore: avoid_print
+            print(e);
+          }
+          print(
+              '7777777777777777777-------------------------------------777777777$img');
           // print('covid: ${widget.covid},');
           // print('people: ${widget.people},');
           // print('path:${widget.pathPIC},');
           addUser();
-          Random random = Random();
-          int i = random.nextInt(100000);
+
           // uploadFile(widget.pathPIC, 'img$i.jpg');
+          print('222222222222222222222222222222 ${widget.pathPIC},');
+          // downloadURLExample('img$i.jpg');
+          print('7777777777777777777777eeeeeeeeeeeeeeeeee777777img$i.jpg');
           print('7777777777777777777777777777$img');
         },
         shape: RoundedRectangleBorder(
@@ -209,7 +282,7 @@ class _AddWork7State extends State<AddWork7> {
       'picCompany': img,
       'province': widget.province,
       'salary': widget.salary,
-      'status': 'open',
+      'status': widget.fast,
       'workPosition': widget.position,
       'workType': widget.worktype,
       'name': widget.name,
@@ -232,8 +305,12 @@ class _AddWork7State extends State<AddWork7> {
       'people': widget.people
     }).then((value) {
       // ignore: avoid_print
+      print('7777777777777777777----------bbbbb$img');
+      print(
+          '7777777777777777777------------------------555555555-------------777777777');
       print(
           "3636363636363636363636363636363636363636363636363636363636363636User Added");
+      route2(Add());
       Fluttertoast.showToast(
         msg: "เพิ่มแหล่งความรู้สำเร็จ",
         toastLength: Toast.LENGTH_SHORT,
@@ -245,40 +322,15 @@ class _AddWork7State extends State<AddWork7> {
     }).catchError((error) => print("Failed to add user: $error"));
   }
 
-  Future<void> uploadFile(String filePath, String fileName) async {
-    await Firebase.initializeApp();
-    final firebase_storage.FirebaseStorage storage =
-        firebase_storage.FirebaseStorage.instance;
-    File file = File(filePath);
-    try {
-      await storage.ref('company/$fileName').putFile(file);
-
-      setState(() {
-        downloadURLExample(fileName);
-        print('7777777777777777777777777777$fileName');
-      });
-    } on firebase_core.FirebaseException catch (e) {
-      // ignore: avoid_print
-      print(e);
-    }
-  }
-
-  Future<void> downloadURLExample(String fileName) async {
-    url = await firebase_storage.FirebaseStorage.instance
-        .ref('company/$fileName')
-        .getDownloadURL();
-    setState(() {
-      img = url.toString();
-      print('7777777777777777777777777777$img');
-    });
-
-    // Within your widgets:
-    // Image.network(downloadURL);
-  }
-
   Future<Null> route(Widget routeName) async {
     MaterialPageRoute materialPageRoute =
         MaterialPageRoute(builder: (BuildContext context) => routeName);
     await Navigator.of(context).push(materialPageRoute);
+  }
+
+  Future<Null> route2(Widget routeName) async {
+    Navigator.of(context).pushAndRemoveUntil(
+        MaterialPageRoute(builder: (context) => routeName),
+        (Route<dynamic> route) => false);
   }
 }

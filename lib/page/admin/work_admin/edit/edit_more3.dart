@@ -84,12 +84,6 @@ class _Editmore3State extends State<Editmore3> {
           filled: true,
           fillColor: Colors.grey[200],
           border: InputBorder.none,
-          // labelText: 'เกี่ยวกับบริษัท',
-          // labelStyle: const TextStyle(
-          //   fontSize: 16.0,
-          //   color: Colors.grey,
-          //   fontWeight: FontWeight.bold,
-          // ),
         ));
   }
 

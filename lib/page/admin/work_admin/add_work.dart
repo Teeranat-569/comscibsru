@@ -17,7 +17,7 @@ class AddWork extends StatefulWidget {
 }
 
 class _AddWorkState extends State<AddWork> {
-  dynamic companyName, aboutCompany, pathPIC, url;
+  dynamic companyName, aboutCompany, pathPIC, img;
   var textEditController = TextEditingController();
   var textEditController2 = TextEditingController();
   var _image;
@@ -29,7 +29,7 @@ class _AddWorkState extends State<AddWork> {
         body: SingleChildScrollView(
           child: Container(
             width: MediaQuery.of(context).size.width,
-            // height: MediaQuery.of(context).size.height,
+        
             child: Column(
               children: [
                 const SizedBox(
@@ -101,8 +101,7 @@ class _AddWorkState extends State<AddWork> {
   Widget companyNameform() {
     return Padding(
       padding: const EdgeInsets.all(15.0),
-      child: 
-      TextField(
+      child: TextField(
           onChanged: (value) => companyName = value.trim(),
           controller: textEditController,
           decoration: InputDecoration(
@@ -158,6 +157,8 @@ class _AddWorkState extends State<AddWork> {
             companyName: companyName,
             pathPIC: pathPIC,
           ));
+         
+          print('7777777777777777777----------bbbbb-777777777$img');
           print(' aboutCompany: ${aboutCompany}');
           print('companyName:${companyName},');
           print('path:${pathPIC},');
@@ -191,5 +192,42 @@ class _AddWorkState extends State<AddWork> {
     MaterialPageRoute materialPageRoute =
         MaterialPageRoute(builder: (BuildContext context) => routeName);
     await Navigator.of(context).push(materialPageRoute);
+  }
+
+  Future<void> uploadFile(String filePath, String fileName) async {
+    await Firebase.initializeApp();
+    final firebase_storage.FirebaseStorage storage =
+        firebase_storage.FirebaseStorage.instance;
+    File file = File(filePath);
+    try {
+      await storage.ref('company/$fileName').putFile(file);
+      dynamic url = await storage.ref('company/$fileName').getDownloadURL();
+      // setState(() {
+      img = url;
+      // downloadURLExample(fileName);
+      print('7777777777777777777777777777$fileName');
+      print(
+          '7777777777777777777-------------------------------------777777777$img');
+      print(
+          '7777777777777777777------------------------555555555-------------777777777$url');
+      // });
+    } on firebase_core.FirebaseException catch (e) {
+      // ignore: avoid_print
+      print(e);
+    }
+  }
+
+  Future<void> downloadURLExample(String fileName) async {
+    await Firebase.initializeApp();
+    dynamic url = await firebase_storage.FirebaseStorage.instance
+        .ref('company/$fileName')
+        .getDownloadURL();
+
+    setState(() {
+      print(
+          '7777777777777777777-------------------------------------777777777$img');
+      print(
+          '7777777777777777777------------------------555555555-------------777777777$url');
+    });
   }
 }

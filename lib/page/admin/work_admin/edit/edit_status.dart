@@ -135,24 +135,6 @@ class _EditStatusState extends State<EditStatus> {
     );
   }
 
-  Widget nameform() {
-    return TextField(
-        onChanged: (value) => nameForm = value.trim(),
-        controller: textEditController,
-        maxLines: 5,
-        decoration: InputDecoration(
-          filled: true,
-          fillColor: Colors.grey[200],
-          border: InputBorder.none,
-          // labelText: 'เกี่ยวกับบริษัท',
-          // labelStyle: const TextStyle(
-          //   fontSize: 16.0,
-          //   color: Colors.grey,
-          //   fontWeight: FontWeight.bold,
-          // ),
-        ));
-  }
-
   // ignore: prefer_void_to_null
   Future<Null> route(Widget routeName) async {
     MaterialPageRoute materialPageRoute =

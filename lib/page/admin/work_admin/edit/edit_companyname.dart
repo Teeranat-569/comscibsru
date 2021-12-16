@@ -66,7 +66,7 @@ class _EditCompanyNameState extends State<EditCompanyName> {
                 const SizedBox(
                   height: 10.0,
                 ),
-                // Text('')
+
                 nameform(),
                 const SizedBox(
                   height: 10.0,
