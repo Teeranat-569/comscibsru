@@ -1,3 +1,4 @@
+import 'package:comsci/page/admin/registeradmin.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -289,9 +290,12 @@ class _HomeState extends State<Home> {
                             children: [
                               workButton(),
                               agencyButton(),
-                              // aboutButton(),
+                              adminButton(),
                             ],
                           ),
+                        ),
+                        const SizedBox(
+                          height: 20,
                         ),
                       ],
                     ),
@@ -1004,6 +1008,57 @@ class _HomeState extends State<Home> {
         const Center(
             child: Text(
           'หน่วยงาน',
+          style: TextStyle(fontSize: 12),
+        )),
+      ],
+    );
+  }
+
+  Widget adminButton() {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Container(
+          width: 90,
+          height: 95,
+          decoration: const BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage('images/11.png'),
+              fit: BoxFit.cover,
+            ),
+          ),
+          child: Center(
+            child: MaterialButton(
+              padding: const EdgeInsets.all(8.0),
+              textColor: Colors.white,
+              splashColor: Colors.greenAccent,
+              elevation: 8.0,
+              child: Container(
+                decoration: const BoxDecoration(
+                  image: DecorationImage(
+                      image: AssetImage('images/admin2.png'),
+                      fit: BoxFit.cover),
+                ),
+                width: 65,
+                height: 75,
+              ),
+              // ),
+              onPressed: () {
+                // ignore: avoid_print
+                print('Tapped');
+                Navigator.of(context).push<void>(_createRoute(const Admin()));
+              },
+            ),
+          ),
+        ),
+        const Center(
+            child: Text(
+          'ผุ้ดูแลระบบ',
+          style: TextStyle(fontSize: 12),
+        )),
+        const Center(
+            child: Text(
+          '',
           style: TextStyle(fontSize: 12),
         )),
       ],

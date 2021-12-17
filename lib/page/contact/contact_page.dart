@@ -26,23 +26,23 @@ class _ContactPageState extends State<ContactPage> {
           toolbarHeight: 40,
           backgroundColor: Colors.purple[50],
           automaticallyImplyLeading: false,
-          actions: [
-            Row(
-              children: [
-                IconButton(
-                    onPressed: () {
-                      // ignore: avoid_print
-                      print('admin');
-                      route(const Admin());
-                    },
-                    icon: const Icon(
-                      Icons.account_box,
-                      size: 30,
-                      color: Colors.purple,
-                    )),
-              ],
-            ),
-          ],
+          // actions: [
+          //   Row(
+          //     children: [
+          //       IconButton(
+          //           onPressed: () {
+          //             // ignore: avoid_print
+          //             print('admin');
+          //             route(const Admin());
+          //           },
+          //           icon: const Icon(
+          //             Icons.account_box,
+          //             size: 30,
+          //             color: Colors.purple,
+          //           )),
+          //     ],
+          //   ),
+          // ],
           title: const Text(
             'ติดต่อ วิทย์-คอม',
             style: TextStyle(color: Colors.purple),

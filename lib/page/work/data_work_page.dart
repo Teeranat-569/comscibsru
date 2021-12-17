@@ -290,25 +290,43 @@ class _DataWorkState extends State<DataWork> {
                                               ),
                                             ],
                                           ),
-                                          Container(
-                                            color: Colors.white,
-                                            child: Padding(
-                                              padding:
-                                                  const EdgeInsets.all(8.0),
-                                              child: Column(
-                                                children: [
-                                                  Text(
-                                                    'รับสมัครถึงวันที่',
-                                                    style:
-                                                        TextStyle(fontSize: 12),
-                                                  ),
-                                                  Text(
-                                                    dateStop,
-                                                    style:
-                                                        TextStyle(fontSize: 12),
-                                                  ),
-                                                ],
-                                              ),
+                                       
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                     Padding(
+                                    padding: const EdgeInsets.all(10.0),
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                        borderRadius:
+                                            BorderRadius.circular(20.0),
+                                        color: Colors.grey.shade200,
+                                      ),
+                                      width: MediaQuery.of(context).size.width,
+                                      // ignore: deprecated_member_use
+                                      child: Column(
+                                        children: [
+                                          const SizedBox(
+                                            height: 5,
+                                          ),
+                                         
+                                          Padding(
+                                            padding:
+                                                const EdgeInsets.all(8.0),
+                                            child: Column(
+                                              children: [
+                                                Text(
+                                                  'รับสมัครถึงวันที่',
+                                                  style:
+                                                      TextStyle(fontSize: 13),
+                                                ),
+                                                Text(
+                                                  dateStop,
+                                                  style:
+                                                      TextStyle(fontSize: 13),
+                                                ),
+                                              ],
                                             ),
                                           ),
                                         ],
