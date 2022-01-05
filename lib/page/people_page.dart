@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class PeoplePage extends StatefulWidget {
   const PeoplePage({Key? key}) : super(key: key);
@@ -45,7 +46,7 @@ class _PeoplePageState extends State<PeoplePage> {
                       mainAxisSpacing: 10,
                       crossAxisSpacing: 10,
                       crossAxisCount: 1,
-                      childAspectRatio: 16 / 9,
+                      childAspectRatio: 16 / 12,
                       primary: false,
                       children: <Widget>[
                         // ignore: deprecated_member_use
@@ -83,6 +84,7 @@ class _PeoplePageState extends State<PeoplePage> {
                                 ),
                               ),
                               const Text('ประธานสาขาวิชา วิทยาการคอมพิวเตอร์'),
+                              phone('0858246954', '')
                             ],
                           ),
                         ),
@@ -120,10 +122,7 @@ class _PeoplePageState extends State<PeoplePage> {
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
-                              const Text(
-                                '',
-                                style: TextStyle(),
-                              ),
+                              phone('0850612416', '')
                             ],
                           ),
                         ),
@@ -161,9 +160,7 @@ class _PeoplePageState extends State<PeoplePage> {
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
-                              const Text(
-                                '',
-                              ),
+                              phone('0819208747', '')
                             ],
                           ),
                         ),
@@ -201,10 +198,7 @@ class _PeoplePageState extends State<PeoplePage> {
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
-                              const Text(
-                                '',
-                                style: TextStyle(),
-                              ),
+                              phone('0819077231', '')
                             ],
                           ),
                         ),
@@ -242,10 +236,7 @@ class _PeoplePageState extends State<PeoplePage> {
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
-                              const Text(
-                                '',
-                                style: TextStyle(),
-                              ),
+                              phone('0865911992', '')
                             ],
                           ),
                         ),
@@ -283,9 +274,7 @@ class _PeoplePageState extends State<PeoplePage> {
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
-                              const Text(
-                                '',
-                              ),
+                              phone2('', '')
                             ],
                           ),
                         ),
@@ -323,9 +312,7 @@ class _PeoplePageState extends State<PeoplePage> {
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
-                              const Text(
-                                '',
-                              ),
+                              phone('0879016033', '')
                             ],
                           ),
                         ),
@@ -363,10 +350,7 @@ class _PeoplePageState extends State<PeoplePage> {
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
-                              const Text(
-                                '',
-                                style: TextStyle(),
-                              ),
+                              phone('0852428661', '')
                             ],
                           ),
                         ),
@@ -404,9 +388,7 @@ class _PeoplePageState extends State<PeoplePage> {
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
-                              const Text(
-                                '',
-                              ),
+                              phone('0822842973', '')
                             ],
                           ),
                         ),
@@ -419,6 +401,86 @@ class _PeoplePageState extends State<PeoplePage> {
           ),
         ],
       ),
+    );
+  }
+
+  Widget phone(dynamic numPhone, String numTor) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        const Icon(
+          Icons.smartphone,
+          size: 30,
+        ),
+        Row(
+          children: [
+            Text(
+              numPhone,
+              style: const TextStyle(
+                color: Colors.blue,
+              ),
+            ),
+            IconButton(
+                icon: const Icon(
+                  Icons.local_phone,
+                  color: Colors.green,
+                ),
+                onPressed: () async {
+                  _makePhoneCall(numPhone);
+                })
+          ],
+        ),
+        Text(
+          numTor,
+          style: const TextStyle(fontSize: 11),
+        ),
+      ],
+    );
+  }
+
+  Future<void> _makePhoneCall(String phoneNumber) async {
+    // Use `Uri` to ensure that `phoneNumber` is properly URL-encoded.
+    // Just using 'tel:$phoneNumber' would create invalid URLs in some cases,
+    // such as spaces in the input, which would cause `launch` to fail on some
+    // platforms.
+    final Uri launchUri = Uri(
+      scheme: 'tel',
+      path: phoneNumber,
+    );
+    await launch(launchUri.toString());
+  }
+
+  Widget phone2(dynamic numPhone, String numTor) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        const Icon(
+          Icons.smartphone,
+          size: 30,
+        ),
+        Row(
+          children: [
+            Text(
+              numPhone,
+              style: const TextStyle(
+                color: Colors.blue,
+              ),
+            ),
+            // IconButton(
+            //     icon: const Icon(
+            //       Icons.local_phone,
+            //       color: Colors.green,
+            //     ),
+            //     onPressed: () async {
+            //       _makePhoneCall(numPhone);
+            //     })
+          ],
+        ),
+        Text(
+          numTor,
+          style: const TextStyle(fontSize: 11),
+        ),
+      ],
     );
   }
 }
