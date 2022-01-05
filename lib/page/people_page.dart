@@ -408,32 +408,40 @@ class _PeoplePageState extends State<PeoplePage> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        const Icon(
-          Icons.smartphone,
-          size: 30,
-        ),
         Row(
           children: [
-            Text(
-              numPhone,
-              style: const TextStyle(
-                color: Colors.blue,
-              ),
+            const Text(
+              'ติดต่อ',
+              // style: TextStyle(
+              //   color: Colors.white,
+              // ),
             ),
-            IconButton(
-                icon: const Icon(
-                  Icons.local_phone,
-                  color: Colors.green,
-                ),
-                onPressed: () async {
-                  _makePhoneCall(numPhone);
-                })
+            SizedBox(
+              width: 10,
+            ),
+            Container(
+              width: 40,
+              height: 40,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(80),
+                color: Colors.green,
+              ),
+              child: IconButton(
+                  icon: const Icon(
+                    Icons.local_phone,
+                    color: Colors.white,
+                    size: 20,
+                  ),
+                  onPressed: () async {
+                    _makePhoneCall(numPhone);
+                  }),
+            )
           ],
         ),
-        Text(
-          numTor,
-          style: const TextStyle(fontSize: 11),
-        ),
+        // Text(
+        //   numTor,
+        //   style: const TextStyle(fontSize: 11),
+        // ),
       ],
     );
   }
@@ -454,32 +462,40 @@ class _PeoplePageState extends State<PeoplePage> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        const Icon(
-          Icons.smartphone,
-          size: 30,
-        ),
         Row(
           children: [
-            Text(
-              numPhone,
-              style: const TextStyle(
-                color: Colors.blue,
-              ),
+            const Text(
+              'ติดต่อ',
+              // style: TextStyle(
+              //   color: Colors.white,
+              // ),
             ),
-            // IconButton(
-            //     icon: const Icon(
-            //       Icons.local_phone,
-            //       color: Colors.green,
-            //     ),
-            //     onPressed: () async {
-            //       _makePhoneCall(numPhone);
-            //     })
+            SizedBox(
+              width: 10,
+            ),
+            Container(
+              width: 40,
+              height: 40,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(80),
+                color: Colors.green,
+              ),
+              child: IconButton(
+                  icon: const Icon(
+                    Icons.local_phone,
+                    color: Colors.white,
+                    size: 20,
+                  ),
+                  onPressed: () async {
+                    _makePhoneCall(numPhone);
+                  }),
+            )
           ],
         ),
-        Text(
-          numTor,
-          style: const TextStyle(fontSize: 11),
-        ),
+        // Text(
+        //   numTor,
+        //   style: const TextStyle(fontSize: 11),
+        // ),
       ],
     );
   }
