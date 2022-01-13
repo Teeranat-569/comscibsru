@@ -54,6 +54,7 @@ class _DataWorkState extends State<DataWork> {
         .doc(widget.docid)
         .get()
         .then((value) {
+      // ignore: avoid_print
       print('+++++++++++++++++++++++++++++++++++${value['name']}');
     });
     return SafeArea(
@@ -66,10 +67,12 @@ class _DataWorkState extends State<DataWork> {
             children: [
               show
                   ? const Center(
+                      // ignore: unnecessary_const
                       child: const CircularProgressIndicator(
                       color: Colors.amber,
                     ))
                   : SingleChildScrollView(
+                      // ignore: sized_box_for_whitespace
                       child: Container(
                         width: MediaQuery.of(context).size.width,
                         child: Column(
@@ -120,7 +123,7 @@ class _DataWorkState extends State<DataWork> {
                                         ),
                                       ),
                                       const SizedBox(
-                                        width: 12,
+                                        width: 5,
                                       ),
                                       Container(
                                         width: 200,
@@ -240,7 +243,7 @@ class _DataWorkState extends State<DataWork> {
                                       ),
                                       Container(
                                         width: 340,
-                                        child: lineProgressIMG(
+                                        child: lineProgressIMG3(
                                           aboutCompany,
                                           const TextStyle(fontSize: 12),
                                         ),
@@ -290,12 +293,11 @@ class _DataWorkState extends State<DataWork> {
                                               ),
                                             ],
                                           ),
-                                       
                                         ],
                                       ),
                                     ),
                                   ),
-                                     Padding(
+                                  Padding(
                                     padding: const EdgeInsets.all(10.0),
                                     child: Container(
                                       decoration: BoxDecoration(
@@ -310,10 +312,8 @@ class _DataWorkState extends State<DataWork> {
                                           const SizedBox(
                                             height: 5,
                                           ),
-                                         
                                           Padding(
-                                            padding:
-                                                const EdgeInsets.all(8.0),
+                                            padding: const EdgeInsets.all(8.0),
                                             child: Column(
                                               children: [
                                                 Text(
@@ -530,6 +530,7 @@ class _DataWorkState extends State<DataWork> {
                                                     CrossAxisAlignment.start,
                                                 children: [
                                                   Container(
+                                                    // height: 400,
                                                     // color: Colors.green,
                                                     decoration: BoxDecoration(
                                                       borderRadius:
@@ -559,11 +560,25 @@ class _DataWorkState extends State<DataWork> {
                                                         CrossAxisAlignment
                                                             .start,
                                                     children: [
-                                                      lineProgressIMG(
-                                                          mission,
-                                                          const TextStyle(
-                                                            fontSize: 12,
-                                                          )),
+                                                      SizedBox(
+                                                        width: 15,
+                                                      ),
+                                                      Padding(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                .all(8.0),
+                                                        child: Container(
+                                                          // height: MediaQuery.of(
+                                                          //         context)
+                                                          //     .size
+                                                          //     .height,
+                                                          child: lineProgress(
+                                                              mission,
+                                                              const TextStyle(
+                                                                fontSize: 12,
+                                                              )),
+                                                        ),
+                                                      ),
                                                     ],
                                                   ),
                                                 ],
@@ -1109,7 +1124,7 @@ class _DataWorkState extends State<DataWork> {
                                                   'สวัสดิการเพิ่มเติม :'),
                                             ],
                                           ),
-                                          lineProgress(
+                                          lineProgressIMG3(
                                               more4,
                                               const TextStyle(
                                                 fontSize: 12,
@@ -1341,7 +1356,12 @@ class _DataWorkState extends State<DataWork> {
 
   Widget lineProgressIMG3(data, TextStyle style) {
     return data == null
-        ? const LinearProgressIndicator()
+        ? Text(
+            'ไม่มี',
+            style: style,
+            maxLines: 5,
+            overflow: TextOverflow.ellipsis,
+          )
         : Text(
             data,
             style: style,

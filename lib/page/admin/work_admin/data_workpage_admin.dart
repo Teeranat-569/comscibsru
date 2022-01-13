@@ -90,22 +90,24 @@ class _DataWorkPageState extends State<DataWorkPage> {
         .doc(widget.docid)
         .get()
         .then((value) {
+      // ignore: avoid_print
       print('+++++++++++++++++++++++++++++++++++${value['name']}');
     });
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          title: Text('ประกาศรับสมัครงาน'),
+          title: const Text('ประกาศรับสมัครงาน'),
         ),
         body: SafeArea(
           child: Stack(
             children: [
               show
-                  ? Center(
+                  ? const Center(
                       child: CircularProgressIndicator(
                       color: Colors.amber,
                     ))
                   : SingleChildScrollView(
+                      // ignore: sized_box_for_whitespace
                       child: Container(
                         width: MediaQuery.of(context).size.width,
                         child: Column(
@@ -138,7 +140,7 @@ class _DataWorkPageState extends State<DataWorkPage> {
                                           children: [
                                             if (pathPIC == null ||
                                                 pathPIC == '')
-                                              CircularProgressIndicator()
+                                              const CircularProgressIndicator()
                                             else
                                               CircleAvatar(
                                                 backgroundColor: Colors.white,
@@ -156,7 +158,7 @@ class _DataWorkPageState extends State<DataWorkPage> {
                                         ),
                                       ),
                                       const SizedBox(
-                                        width: 12,
+                                        width: 5,
                                       ),
                                       Container(
                                         width: 200,
@@ -234,18 +236,18 @@ class _DataWorkPageState extends State<DataWorkPage> {
                                                   color: Colors.purple),
                                             ),
                                             lineProgress(companyName,
-                                                TextStyle(fontSize: 14)),
+                                                const TextStyle(fontSize: 14)),
                                           ],
                                         ),
                                       ),
                                     ],
                                   ),
-                                  SizedBox(
+                                  const SizedBox(
                                     height: 15,
                                   ),
                                   Row(
                                     children: [
-                                      SizedBox(
+                                      const SizedBox(
                                         width: 15,
                                       ),
                                       Container(
@@ -271,14 +273,14 @@ class _DataWorkPageState extends State<DataWorkPage> {
                                   ),
                                   Row(
                                     children: [
-                                      SizedBox(
+                                      const SizedBox(
                                         width: 15,
                                       ),
                                       Container(
                                         width: 340,
-                                        child: lineProgressIMG(
+                                        child: lineProgressIMG3(
                                           aboutCompany,
-                                          TextStyle(fontSize: 12),
+                                          const TextStyle(fontSize: 12),
                                         ),
                                       ),
                                     ],
@@ -318,7 +320,7 @@ class _DataWorkPageState extends State<DataWorkPage> {
                                                           amount.toString() +
                                                           '\t' +
                                                           'คน',
-                                                      style: TextStyle(
+                                                      style: const TextStyle(
                                                           fontSize: 13),
                                                     ),
                                                   ),
@@ -381,7 +383,7 @@ class _DataWorkPageState extends State<DataWorkPage> {
                                                           ),
                                                         ),
                                                       ),
-                                                      SizedBox(
+                                                      const SizedBox(
                                                         width: 10,
                                                       ),
                                                       Container(
@@ -441,11 +443,11 @@ class _DataWorkPageState extends State<DataWorkPage> {
                                                             ),
                                                             Row(
                                                               children: [
-                                                                Text(
+                                                                const Text(
                                                                   'ประสบการณ์ : ',
                                                                   // maxLines: 2,
                                                                   // overflow: TextOverflow.ellipsis,
-                                                                  style: TextStyle(
+                                                                  style: const TextStyle(
                                                                       fontSize:
                                                                           12,
                                                                       color: Colors
@@ -453,15 +455,15 @@ class _DataWorkPageState extends State<DataWorkPage> {
                                                                 ),
                                                                 lineProgress(
                                                                     exp,
-                                                                    TextStyle(
+                                                                    const TextStyle(
                                                                       fontSize:
                                                                           12,
                                                                     )),
-                                                                Text(
+                                                                const Text(
                                                                   ' ปี',
                                                                   // maxLines: 2,
                                                                   // overflow: TextOverflow.ellipsis,
-                                                                  style: TextStyle(
+                                                                  style: const TextStyle(
                                                                       fontSize:
                                                                           12,
                                                                       color: Colors
@@ -471,11 +473,11 @@ class _DataWorkPageState extends State<DataWorkPage> {
                                                             ),
                                                             Row(
                                                               children: [
-                                                                Text(
+                                                                const Text(
                                                                   'คุณสมบัติเพิ่มเติม : ',
                                                                   // maxLines: 2,
                                                                   // overflow: TextOverflow.ellipsis,
-                                                                  style: TextStyle(
+                                                                  style: const TextStyle(
                                                                       fontSize:
                                                                           12,
                                                                       color: Colors
@@ -485,13 +487,12 @@ class _DataWorkPageState extends State<DataWorkPage> {
                                                             ),
                                                             Container(
                                                               width: 300,
-                                                              child:
-                                                                  lineProgressIMG3(
-                                                                      more3,
-                                                                      TextStyle(
-                                                                        fontSize:
-                                                                            12,
-                                                                      )),
+                                                              child: lineProgressIMG3(
+                                                                  more3,
+                                                                  const TextStyle(
+                                                                    fontSize:
+                                                                        12,
+                                                                  )),
                                                             ),
                                                           ],
                                                         ),
@@ -549,7 +550,7 @@ class _DataWorkPageState extends State<DataWorkPage> {
                                                       ),
                                                     ),
                                                   ),
-                                                  SizedBox(
+                                                  const SizedBox(
                                                     width: 10,
                                                   ),
                                                   Column(
@@ -557,11 +558,16 @@ class _DataWorkPageState extends State<DataWorkPage> {
                                                         CrossAxisAlignment
                                                             .start,
                                                     children: [
-                                                      lineProgressIMG(
-                                                          mission,
-                                                          TextStyle(
-                                                            fontSize: 12,
-                                                          )),
+                                                      Padding(
+                                                        padding: const EdgeInsets.all(8.0),
+                                                        child: Container(
+                                                          child: lineProgress(
+                                                              mission,
+                                                              const TextStyle(
+                                                                fontSize: 12,
+                                                              )),
+                                                        ),
+                                                      ),
                                                     ],
                                                   ),
                                                 ],
@@ -623,7 +629,7 @@ class _DataWorkPageState extends State<DataWorkPage> {
                                                           ),
                                                         ),
                                                       ),
-                                                      SizedBox(
+                                                      const SizedBox(
                                                         width: 10,
                                                       ),
                                                       Column(
@@ -648,8 +654,9 @@ class _DataWorkPageState extends State<DataWorkPage> {
                                                                   ),
                                                                   child: Row(
                                                                     children: [
-                                                                      Icon(Icons
-                                                                          .check),
+                                                                      const Icon(
+                                                                          Icons
+                                                                              .check),
                                                                       const Padding(
                                                                         padding:
                                                                             EdgeInsets.all(8.0),
@@ -714,8 +721,9 @@ class _DataWorkPageState extends State<DataWorkPage> {
                                                                   ),
                                                                   child: Row(
                                                                     children: [
-                                                                      Icon(Icons
-                                                                          .check),
+                                                                      const Icon(
+                                                                          Icons
+                                                                              .check),
                                                                       const Padding(
                                                                         padding:
                                                                             EdgeInsets.all(8.0),
@@ -780,8 +788,9 @@ class _DataWorkPageState extends State<DataWorkPage> {
                                                                   ),
                                                                   child: Row(
                                                                     children: [
-                                                                      Icon(Icons
-                                                                          .check),
+                                                                      const Icon(
+                                                                          Icons
+                                                                              .check),
                                                                       const Padding(
                                                                         padding:
                                                                             EdgeInsets.all(8.0),
@@ -846,8 +855,9 @@ class _DataWorkPageState extends State<DataWorkPage> {
                                                                   ),
                                                                   child: Row(
                                                                     children: [
-                                                                      Icon(Icons
-                                                                          .check),
+                                                                      const Icon(
+                                                                          Icons
+                                                                              .check),
                                                                       const Padding(
                                                                         padding:
                                                                             EdgeInsets.all(8.0),
@@ -912,8 +922,9 @@ class _DataWorkPageState extends State<DataWorkPage> {
                                                                   ),
                                                                   child: Row(
                                                                     children: [
-                                                                      Icon(Icons
-                                                                          .check),
+                                                                      const Icon(
+                                                                          Icons
+                                                                              .check),
                                                                       const Padding(
                                                                         padding:
                                                                             EdgeInsets.all(8.0),
@@ -977,8 +988,9 @@ class _DataWorkPageState extends State<DataWorkPage> {
                                                                   ),
                                                                   child: Row(
                                                                     children: [
-                                                                      Icon(Icons
-                                                                          .check),
+                                                                      const Icon(
+                                                                          Icons
+                                                                              .check),
                                                                       const Padding(
                                                                         padding:
                                                                             EdgeInsets.all(8.0),
@@ -1101,12 +1113,13 @@ class _DataWorkPageState extends State<DataWorkPage> {
                                           ),
                                           Row(
                                             children: [
-                                              Text('สวัสดิการเพิ่มเติม :'),
+                                              const Text(
+                                                  'สวัสดิการเพิ่มเติม :'),
                                             ],
                                           ),
                                           lineProgress(
                                               more4,
-                                              TextStyle(
+                                              const TextStyle(
                                                 fontSize: 12,
                                               ))
                                         ],
@@ -1164,7 +1177,7 @@ class _DataWorkPageState extends State<DataWorkPage> {
                                                           ),
                                                         ),
                                                       ),
-                                                      SizedBox(
+                                                      const SizedBox(
                                                         width: 10,
                                                       ),
                                                     ],
@@ -1177,7 +1190,7 @@ class _DataWorkPageState extends State<DataWorkPage> {
                                             children: [
                                               lineProgress(
                                                   name,
-                                                  TextStyle(
+                                                  const TextStyle(
                                                     fontSize: 12,
                                                   )),
                                             ],
@@ -1194,7 +1207,7 @@ class _DataWorkPageState extends State<DataWorkPage> {
                                               // ),
                                               lineProgress(
                                                   phone,
-                                                  TextStyle(
+                                                  const TextStyle(
                                                     fontSize: 12,
                                                   )),
                                               // lineProgress(name, TextStyle()),
@@ -1216,7 +1229,7 @@ class _DataWorkPageState extends State<DataWorkPage> {
                                               // ),
                                               lineProgress(
                                                   email,
-                                                  TextStyle(
+                                                  const TextStyle(
                                                     fontSize: 12,
                                                   )),
                                               // lineProgress(name, TextStyle()),
@@ -1240,7 +1253,7 @@ class _DataWorkPageState extends State<DataWorkPage> {
                                                 width: 300,
                                                 child: lineProgress(
                                                     address,
-                                                    TextStyle(
+                                                    const TextStyle(
                                                       fontSize: 12,
                                                     )),
                                               ),
@@ -1263,15 +1276,15 @@ class _DataWorkPageState extends State<DataWorkPage> {
                                               // ),
                                               lineProgress(
                                                   province,
-                                                  TextStyle(
+                                                  const TextStyle(
                                                     fontSize: 12,
                                                   )),
-                                              SizedBox(
+                                              const SizedBox(
                                                 width: 5,
                                               ),
                                               lineProgress(
                                                   area,
-                                                  TextStyle(
+                                                  const TextStyle(
                                                     fontSize: 12,
                                                   )),
                                               // lineProgress(name, TextStyle()),
@@ -1336,7 +1349,7 @@ class _DataWorkPageState extends State<DataWorkPage> {
                                                           ),
                                                         ),
                                                       ),
-                                                      SizedBox(
+                                                      const SizedBox(
                                                         width: 10,
                                                       ),
                                                     ],
@@ -1349,7 +1362,7 @@ class _DataWorkPageState extends State<DataWorkPage> {
                                             children: [
                                               lineProgress(
                                                   more7,
-                                                  TextStyle(
+                                                  const TextStyle(
                                                     fontSize: 12,
                                                   ))
                                             ],
@@ -1418,7 +1431,7 @@ class _DataWorkPageState extends State<DataWorkPage> {
 
   Widget lineProgress(data, TextStyle style) {
     return data == null
-        ? LinearProgressIndicator()
+        ? const LinearProgressIndicator()
         : Text(
             data,
             style: style,
@@ -1427,7 +1440,7 @@ class _DataWorkPageState extends State<DataWorkPage> {
 
   Widget lineProgressIMG(data, TextStyle style) {
     return data == null
-        ? LinearProgressIndicator()
+        ? const LinearProgressIndicator()
         : Text(
             data,
             style: style,
@@ -1438,7 +1451,7 @@ class _DataWorkPageState extends State<DataWorkPage> {
 
   Widget lineProgressIMG3(data, TextStyle style) {
     return data == null
-        ? LinearProgressIndicator()
+        ? const LinearProgressIndicator()
         : Text(
             data,
             style: style,
@@ -1449,7 +1462,7 @@ class _DataWorkPageState extends State<DataWorkPage> {
 
   Widget lineProgressIMG2(data, TextStyle style) {
     return data == null
-        ? LinearProgressIndicator()
+        ? const LinearProgressIndicator()
         : Flexible(
             child: Text(
               data,

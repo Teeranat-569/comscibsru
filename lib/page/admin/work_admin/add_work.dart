@@ -29,7 +29,6 @@ class _AddWorkState extends State<AddWork> {
         body: SingleChildScrollView(
           child: Container(
             width: MediaQuery.of(context).size.width,
-        
             child: Column(
               children: [
                 const SizedBox(
@@ -152,12 +151,13 @@ class _AddWorkState extends State<AddWork> {
               fontWeight: FontWeight.bold,
             )),
         onPressed: () async {
+          if (aboutCompany == null|| aboutCompany == '') aboutCompany = 'ไม่มี';
           route(AddWork2(
             aboutCompany: aboutCompany,
             companyName: companyName,
             pathPIC: pathPIC,
           ));
-         
+
           print('7777777777777777777----------bbbbb-777777777$img');
           print(' aboutCompany: ${aboutCompany}');
           print('companyName:${companyName},');

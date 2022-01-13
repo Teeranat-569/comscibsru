@@ -252,6 +252,7 @@ class _AddWork7State extends State<AddWork7> {
           // print('covid: ${widget.covid},');
           // print('people: ${widget.people},');
           // print('path:${widget.pathPIC},');
+
           addUser();
 
           // uploadFile(widget.pathPIC, 'img$i.jpg');
@@ -273,6 +274,7 @@ class _AddWork7State extends State<AddWork7> {
 
   CollectionReference users = FirebaseFirestore.instance.collection('work');
   Future<void> addUser() {
+    if (more7 == null || more7 == '') more7 == "ไม่มี";
     return users.add({
       'aboutCompany': widget.aboutCompany,
       'amount': widget.amount,

@@ -291,7 +291,7 @@ class _EditDataWorkPageState extends State<EditDataWorkPage> {
                                                 ),
                                               ],
                                             ),
-                                            Row(
+                                            Column(
                                               children: [
                                                 lineProgress(
                                                   position,
@@ -300,7 +300,6 @@ class _EditDataWorkPageState extends State<EditDataWorkPage> {
                                                       color: Colors.purple),
                                                 ),
                                                 Container(
-                                                  width: 50,
                                                   child: FlatButton(
                                                     onPressed: () {
                                                       route(EditPosition(
@@ -320,7 +319,7 @@ class _EditDataWorkPageState extends State<EditDataWorkPage> {
                                                 ),
                                               ],
                                             ),
-                                            Row(
+                                            Column(
                                               children: [
                                                 lineProgress(
                                                     companyName,
@@ -900,11 +899,18 @@ class _EditDataWorkPageState extends State<EditDataWorkPage> {
                                                         CrossAxisAlignment
                                                             .start,
                                                     children: [
-                                                      lineProgressIMG(
-                                                          mission,
-                                                          const TextStyle(
-                                                            fontSize: 12,
-                                                          )),
+                                                      Padding(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                .all(8.0),
+                                                        child: Container(
+                                                          child: lineProgress(
+                                                              mission,
+                                                              const TextStyle(
+                                                                fontSize: 12,
+                                                              )),
+                                                        ),
+                                                      ),
                                                     ],
                                                   ),
                                                 ],
@@ -1028,9 +1034,8 @@ class _EditDataWorkPageState extends State<EditDataWorkPage> {
                                                                   ),
                                                                   child: Row(
                                                                     children: const [
-                                                                      Icon(
-                                                                          Icons
-                                                                              .check),
+                                                                      Icon(Icons
+                                                                          .check),
                                                                       Padding(
                                                                         padding:
                                                                             EdgeInsets.all(8.0),
@@ -1095,9 +1100,8 @@ class _EditDataWorkPageState extends State<EditDataWorkPage> {
                                                                   ),
                                                                   child: Row(
                                                                     children: const [
-                                                                      Icon(
-                                                                          Icons
-                                                                              .check),
+                                                                      Icon(Icons
+                                                                          .check),
                                                                       Padding(
                                                                         padding:
                                                                             EdgeInsets.all(8.0),
@@ -1162,9 +1166,8 @@ class _EditDataWorkPageState extends State<EditDataWorkPage> {
                                                                   ),
                                                                   child: Row(
                                                                     children: const [
-                                                                      Icon(
-                                                                          Icons
-                                                                              .check),
+                                                                      Icon(Icons
+                                                                          .check),
                                                                       Padding(
                                                                         padding:
                                                                             EdgeInsets.all(8.0),
@@ -1229,9 +1232,8 @@ class _EditDataWorkPageState extends State<EditDataWorkPage> {
                                                                   ),
                                                                   child: Row(
                                                                     children: const [
-                                                                      Icon(
-                                                                          Icons
-                                                                              .check),
+                                                                      Icon(Icons
+                                                                          .check),
                                                                       Padding(
                                                                         padding:
                                                                             EdgeInsets.all(8.0),
@@ -1296,9 +1298,8 @@ class _EditDataWorkPageState extends State<EditDataWorkPage> {
                                                                   ),
                                                                   child: Row(
                                                                     children: const [
-                                                                      Icon(
-                                                                          Icons
-                                                                              .check),
+                                                                      Icon(Icons
+                                                                          .check),
                                                                       Padding(
                                                                         padding:
                                                                             EdgeInsets.all(8.0),
@@ -1362,9 +1363,8 @@ class _EditDataWorkPageState extends State<EditDataWorkPage> {
                                                                   ),
                                                                   child: Row(
                                                                     children: const [
-                                                                      Icon(
-                                                                          Icons
-                                                                              .check),
+                                                                      Icon(Icons
+                                                                          .check),
                                                                       Padding(
                                                                         padding:
                                                                             EdgeInsets.all(8.0),

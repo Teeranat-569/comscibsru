@@ -10,7 +10,8 @@ class AddWork4 extends StatefulWidget {
       worktype,
       gender,
       age,
-      exp,pathPIC,
+      exp,
+      pathPIC,
       more3;
   AddWork4(
       {Key? key,
@@ -22,7 +23,8 @@ class AddWork4 extends StatefulWidget {
       this.age,
       this.exp,
       this.gender,
-      this.more3,this.pathPIC})
+      this.more3,
+      this.pathPIC})
       : super(key: key);
 
   @override
@@ -320,6 +322,7 @@ class _AddWork4State extends State<AddWork4> {
           print(' more4 : ${more4},');
           print('salary: ${salary},');
           print('path:${widget.pathPIC},');
+          if (more4 == null || more4 == '') more4 = 'ไม่มี';
           route(AddWork5(
             aboutCompany: widget.aboutCompany,
             age: widget.age,

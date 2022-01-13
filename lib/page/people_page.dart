@@ -416,7 +416,7 @@ class _PeoplePageState extends State<PeoplePage> {
               //   color: Colors.white,
               // ),
             ),
-            SizedBox(
+            const SizedBox(
               width: 10,
             ),
             Container(
@@ -470,7 +470,7 @@ class _PeoplePageState extends State<PeoplePage> {
               //   color: Colors.white,
               // ),
             ),
-            SizedBox(
+            const SizedBox(
               width: 10,
             ),
             Container(

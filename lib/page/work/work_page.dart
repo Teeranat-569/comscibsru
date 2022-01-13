@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:comsci/page/admin/work_admin/data_workpage_admin.dart';
+// import 'package:comsci/page/admin/work_admin/data_workpage_admin.dart';
 import 'package:comsci/page/work/data_work_page.dart';
 import 'package:flutter/material.dart';
 
@@ -60,110 +60,101 @@ class _WorkPageState extends State<WorkPage> {
                       child: Column(
                         children: [
                           const SizedBox(
-                            height: 5,
+                            height: 10,
                           ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              // Icon(
-                              //   Icons.tab,
-                              //   color: Colors.blue[200],
-                              // ),
-                              Container(
-                                width: 120,
-                                child: Column(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceEvenly,
-                                  children: [
-                                    CircleAvatar(
-                                      backgroundColor: Colors.grey,
-                                      radius: 50,
-                                      child: ClipOval(
-                                        child: Image.network(
-                                          data['picCompany'],
-                                          height: 100,
-                                          width: 100,
-                                          fit: BoxFit.cover,
-                                        ),
-                                      ),
+                          Container(
+                            // width: 120,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                CircleAvatar(
+                                  backgroundColor: Colors.grey,
+                                  radius: 50,
+                                  child: ClipOval(
+                                    child: Image.network(
+                                      data['picCompany'],
+                                      height: 100,
+                                      width: 100,
+                                      fit: BoxFit.cover,
                                     ),
-                                    Text(
-                                      data['companyName'],
-                                      // maxLines: 3,
-                                      // overflow: TextOverflow.ellipsis,
-                                      style: const TextStyle(fontSize: 12),
-                                    ),
-                                  ],
+                                  ),
+                                ),
+                                Text(
+                                  data['companyName'],
+                                  // maxLines: 3,
+                                  // overflow: TextOverflow.ellipsis,
+                                  style: const TextStyle(fontSize: 12),
+                                ),
+                                const SizedBox(
+                                  height: 5,
+                                ),
+                              ],
+                            ),
+                          ),
+                          const SizedBox(
+                            width: 10,
+                          ),
+                          if (statuss == 'เปิดรับสมัคร')
+                            Container(
+                              // color: Colors.green,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10.0),
+                                color: Colors.green,
+                              ),
+                              child: const Padding(
+                                padding: EdgeInsets.all(8.0),
+                                child: Text(
+                                  'เปิดรับสมัคร',
+                                  // maxLines: 2,
+                                  // overflow: TextOverflow.ellipsis,
+                                  style: TextStyle(
+                                      fontSize: 10, color: Colors.white),
                                 ),
                               ),
-                              const SizedBox(
-                                width: 10,
+                            )
+                          else if (statuss == 'ด่วน')
+                            Container(
+                              // color: Colors.green,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10.0),
+                                color: Colors.amber[900],
                               ),
-                              Container(
-                                width: 200,
-                                child: Column(
+                              child: const Padding(
+                                padding: EdgeInsets.all(8.0),
+                                child: Text(
+                                  'รับสมัครด่วน',
+                                  // maxLines: 2,
+                                  // overflow: TextOverflow.ellipsis,
+                                  style: TextStyle(
+                                      fontSize: 10, color: Colors.white),
+                                ),
+                              ),
+                            )
+                          else if (statuss == 'ปิดรับสมัคร')
+                            Container(
+                              // color: Colors.green,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10.0),
+                                color: Colors.red[900],
+                              ),
+                              child: const Padding(
+                                padding: EdgeInsets.all(8.0),
+                                child: Text(
+                                  'ปิดรับสมัคร',
+                                  // maxLines: 2,
+                                  // overflow: TextOverflow.ellipsis,
+                                  style: TextStyle(
+                                      fontSize: 10, color: Colors.white),
+                                ),
+                              ),
+                            ),
+                          Container(
+                            // width: 200,
+                            child: Row(
+                              children: [
+                                Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    if (statuss == 'เปิดรับสมัคร')
-                                      Container(
-                                        // color: Colors.green,
-                                        decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(10.0),
-                                          color: Colors.green,
-                                        ),
-                                        child: const Padding(
-                                          padding: EdgeInsets.all(8.0),
-                                          child: Text(
-                                            'เปิดรับสมัคร',
-                                            // maxLines: 2,
-                                            // overflow: TextOverflow.ellipsis,
-                                            style: TextStyle(
-                                                fontSize: 10,
-                                                color: Colors.white),
-                                          ),
-                                        ),
-                                      )
-                                    else if (statuss == 'ด่วน')
-                                      Container(
-                                        // color: Colors.green,
-                                        decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(10.0),
-                                          color: Colors.amber[900],
-                                        ),
-                                        child: const Padding(
-                                          padding: EdgeInsets.all(8.0),
-                                          child: Text(
-                                            'รับสมัครด่วน',
-                                            // maxLines: 2,
-                                            // overflow: TextOverflow.ellipsis,
-                                            style: TextStyle(
-                                                fontSize: 10,
-                                                color: Colors.white),
-                                          ),
-                                        ),
-                                      )
-                                    else if (statuss == 'ปิดรับสมัคร')
-                                      Container(
-                                        // color: Colors.green,
-                                        decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(10.0),
-                                          color: Colors.red[900],
-                                        ),
-                                        child: const Padding(
-                                          padding: EdgeInsets.all(8.0),
-                                          child: Text(
-                                            'ปิดรับสมัคร',
-                                            // maxLines: 2,
-                                            // overflow: TextOverflow.ellipsis,
-                                            style: TextStyle(
-                                                fontSize: 10,
-                                                color: Colors.white),
-                                          ),
-                                        ),
-                                      ),
                                     Text(
                                       data['workPosition'],
                                       style: const TextStyle(
@@ -195,28 +186,31 @@ class _WorkPageState extends State<WorkPage> {
                                       data['province'] + '\t' + data['area'],
                                       style: TextStyle(fontSize: 12),
                                     ),
-                                      Container(
-                                      color: Colors.white,
-                                      child: Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: Column(
-                                          children: [
-                                            Text(
-                                              'รับสมัครถึงวันที่',
-                                              style: TextStyle(fontSize: 12),
-                                            ),
-                                            Text(
-                                              data['dateStop'],
-                                              style: TextStyle(fontSize: 12),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
                                   ],
                                 ),
+                              ],
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          Container(
+                            color: Colors.white,
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Column(
+                                children: [
+                                  Text(
+                                    'รับสมัครถึงวันที่',
+                                    style: TextStyle(fontSize: 12),
+                                  ),
+                                  Text(
+                                    data['dateStop'],
+                                    style: TextStyle(fontSize: 12),
+                                  ),
+                                ],
                               ),
-                            ],
+                            ),
                           ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.end,
