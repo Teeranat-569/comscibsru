@@ -237,6 +237,7 @@ class _AddWork7State extends State<AddWork7> {
             dynamic url = await storage.ref('company/img$i').getDownloadURL();
             // setState(() {
             img = url;
+            
             // downloadURLExample(fileName);
             print('7777777777777777777777777777img$i');
 
